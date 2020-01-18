@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mychazuke</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   
+      <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+        <div class="container">
+          <!--トップページへジャンプ(linkto 画像)-->
+            <ul class="nav navbar-nav nav-right">
+              <!--もしログインしていたら以下のアイコンを表示-->
+                <li>
+                  <!--「検索」ページへジャンプ linkto アイコン-->
+                </li>
+                
+                <li>
+                  <!--「投稿一覧」ページへジャンプ linkto アイコン-->
+                </li>
+                
+                <li>
+                  <!--「投稿」ページへジャンプ linkto アイコン-->
+                </li>
+                
+                <li>
+                  <!--「ログアウト」する linkto アイコン-->
+                </li>
+                
+              <!--もしログインしていなかったら以下のアイコンを表示-->
+                
+                <li>
+                  <!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+                </li>
+                
+                <li>
+                  <!--「ログイン」ページへジャンプ linkto アイコン-->
+                </li>
+            </ul>
+        </div>
+      </nav>
+      
+     <%= yield %>
+    
+    
+  </body>
+</html>
