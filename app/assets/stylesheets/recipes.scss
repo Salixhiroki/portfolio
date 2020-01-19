@@ -1,3 +1,46 @@
-// Place all the styles related to the Recipes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.recipes-new-container{
+    
+    margin-top:150px;
+    // border:1px solid;
+    color: red;  
+    font-size: 10px;
+    // paddin/g-left:150px;
+    
+    
+  .recipes{
+    margin-left: 70px;
+    margin-bottom:30px;
+    padding:0;
+  }
+  
+  .recipes-top{
+    height: 285px;
+    border:1px dashed;
+  }
+  
+  
+  .recipes-bottom{
+    border:1px dashed;
+  }
+  
+  .recipes:last-child{
+    margin-right:0;
+  }
+  
+  // .recipes:nth-child(3n-2) {
+  // margin-left: 0;
+// }
+  
+  
+  @media screen and (max-width: 617px) {
+  .recipes{
+  margin-left:0;
+  }
+}
+  
+}
+
+
+  
+
+
