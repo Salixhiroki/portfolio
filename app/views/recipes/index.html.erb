@@ -2,8 +2,10 @@
 
 <html>
   <body>
-    <div class="recipes-new-wrapper">
-      <div class="container recipes-new-container">
+    <div class="recipes-index-wrapper">
+      <div class="container recipes-index-container">
+        
+            <!--@recipes.each do |recipe|-->
         <div class="row">
           <div class="col-md-offset-5 index-wrap">
               <p class="index"><input type="text" class="index-text" placeholder="材料を入力"><button type="submit"></button></p>
@@ -11,25 +13,28 @@
           <div class="col-lg-12 content">
             
             <!--レシピ1つでリンクさせるようにする-->
-            <!-- form_tag%>-->
+            <!-- form_tag recipe detail_path %>-->
             <!--top-->
             <div class="col-md-3 recipes">
               <div class="recipes-top">
-                <img src=url('images.jpeg') width="285" height="285"><!--レシピの画像をいれる-->
+                <!--レシピの画像をいれる ↓ recipe.image-->
+                <img src=url('images.jpeg') width="285" height="285">
               </div>
               
               <!--bottom-->
               <div class="recipes-bottom">
                 <div class="recipes-discription">
-                  <h4>最高に美味しい！最高に美味しい</h2>
-                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p><!--レシピのポイント <p>-->
+                  <!--タイトル ↓ recipe.title-->
+                  <h4>最高に美味しい！最高に美味しい</h4>
+                  <!--ポイント ↓ recipe.discription-->
+                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p>
                 </div>
                 
                 <div class="recipes-favorite">
                   <!--link_to お気に入りアイコン-->
                   <!--end-->
                    <!--link_toコメントアイコンを表示-->
-                  <!--end  -->
+                  <!--end %>  -->
                   <p><img src="images/heart-black.png">
                     <img src="images/comment.png">
                     Salihiro
