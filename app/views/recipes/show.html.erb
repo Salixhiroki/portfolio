@@ -3,26 +3,86 @@
 <html>
 <body>
   
-<div class="recipes--wrapper">
-  <div class="container recipes-new-container">
-    <div class="row">
+  <div class="recipes-show-wrapper">
+    <div class="container show-container">
+      <div class="row">
+        <!--@detail.***から持ってくる-->
+        <div class="col-md-12 show-content">
+          <div class="col-md-5 col-md-offset-4 show-title">
+            <h2>めかぶとお茶漬けの相性抜群</h2>
+            <!--レシピのタイトル-->
+        
+          </div>
+        
+          <div class="col-md-4 col-md-offset-4 show-user-name">
+          <p><img src="aaa" width="40px" height="40px" >Salihiro</p>
+          <!--ユーザーの画像 user_idがあるので-->
+          
+          <!--<h5>ユーザー名</h5>-->
+          <!--ユーザー名-->
+          </div>
+          <br>
+          <br>
+          
+          <div class="col-md-5 col-md-offset-5 show-image">
+            <img src="aaa" width="600px" height="300px"><!--レシピの画像-->
+          </div>
+      
+          <div class="col-md-8 col-md-offset-2 show-material">
+            <h3>材料</h1>
+            <li>昆布だし</li>
+            <li>カツオだし</li>
+            <li>煮干し</li>
+            <li>めかぶ</li>
+            <li>アカモク</li>
+          
+          
+          
+            <h3>作り方</h3>
+            <p>お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
+            お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
+            お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
+            お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る<!--作り方--></p>
+          
+          
+            <h3>感想</h3>
+            <p>最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい<!--感想--></p>
+          </div>      
+        </div>      
+      </div>      
+    </div>      
+  </div>      
+  
+  <div id="page_top">aaa</div>
+  
+  <script>
+  // id=page_topを変数に格納する
+  var pagetop=#page_top
+  // 初期状態は非表示
+  pagetop.hide();
+  // 処理開始
+    (function($,window){
+      $(function){
+        // 100pxスクロールしたら
+        if($(this).scroltop()>100){
+          pagetop.fadein();  // フェードインさせる
+        }else{
+          pagetop.fadeout();  // フェードアウトさせる
+        });
+        
+        // pagetopをクリックしたら
+        $('pagetop').on('click',function()){
+          $('html','body').animate({scrolltop: 0 }, 500)
+        }
+      }
+    });
+  </script>
       
     
-    <!--レイアウトを考えよう-->
-    
-    <!--表示するもの-->
-    <!--@detail.***から持ってくる-->
-    <!--ユーザーの画像 user_idがあるのでそこからテーブル結合して持ってこれるかな-->
-    <!--ユーザー名-->
-    <!--レシピのタイトル-->
-    <!--レシピの画像-->
-    <!--材料--->
-    <!--作り方-->
-    <!--感想-->
-     
       
-    
-    
+      
 </body>
     
 </html>
