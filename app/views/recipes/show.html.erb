@@ -14,30 +14,51 @@
         
           </div>
         
-          <div class="col-md-4 col-md-offset-4 show-user-name">
-          <p><img src="aaa" width="40px" height="40px" >Salihiro</p>
+          <div class="col-md-4 col-md-offset-2 show-user-name">
+          <!--<p><img src="aaa" width="40px" height="40px" >Salihiro</p>-->
           <!--ユーザーの画像 user_idがあるので-->
           
           <!--<h5>ユーザー名</h5>-->
           <!--ユーザー名-->
           </div>
-          <br>
-          <br>
           
-          <div class="col-md-5 col-md-offset-5 show-image">
-            <img src="aaa" width="600px" height="300px"><!--レシピの画像-->
+          <div class="col-md-5 col-md-offset-2 show-image">
+            <!--<img src="aaa" width="800px" height="400px"><!--レシピの画像-->
           </div>
-      
-          <div class="col-md-8 col-md-offset-2 show-material">
-            <h3>材料</h1>
-            <li>昆布だし</li>
-            <li>カツオだし</li>
-            <li>煮干し</li>
-            <li>めかぶ</li>
-            <li>アカモク</li>
+          
+          <h3 class="col-md-8 col-md-offset-2">材料</h3>
+          
+          <!--要素の数によって両端に振り分ける-->
+            <!--n=material.length / 2     ex) material.length=16の時、n=8となるので両端に8コずつ並ぶ-->
+            <div class="col-md-8 col-md-offset-2 show-material">
+              <!--%= for i  in  0..n+1-->
+                <ul class="show-left-material">
+                  <!--<div>%= material[i]</div>-->
+                  <li>昆布だし</li>
+                  <li>カツオだし</li>
+                  <li>煮干し</li>
+                  <li>めかぶ</li>
+                  <li>アカモク</li>
+                </ul>
+              <!--end-->
+                
+              
+              <!--if material.length > 5 -->
+                <!--%= for(i = n + 1 ; i < material.length ; i++)-->
+                  <ul class="show-right-material">
+                    <!--<div>%= material[i]</div>-->
+                    <li>昆布だし</li>
+                    <li>カツオだし</li>
+                    <li>煮干し</li>
+                    <li>めかぶ</li>
+                    <li>アカモク</li>
+                  </ul>
+                <!--end-->
+              <!--end-->
+            </div>
           
           
-          
+          <div class="col-md-8 col-md-offset-2">
             <h3>作り方</h3>
             <p>お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
             お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
@@ -48,41 +69,59 @@
             <h3>感想</h3>
             <p>最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
             最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
-            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい<!--感想--></p>
-          </div>      
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい<!--感想-->
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
+            
+            </p>
+          </div>
         </div>      
       </div>      
     </div>      
   </div>      
   
-  <div id="page_top">aaa</div>
+  <div id="page_top"></div>
   
   <script>
-  // id=page_topを変数に格納する
-  var pagetop=#page_top
-  // 初期状態は非表示
-  pagetop.hide();
   // 処理開始
-    (function($,window){
-      $(function){
+    jQuery(function(){
+      var pagetop = $('#page_top');
+      // 実験結果＝＞hideにすると非表示になって何も起こらない
+      // showで再度表示させるとアニメーションが起こる！
+      pagetop.hide();
+      pagetop.show();
+      
+      $(window).scroll(function(){
+       
         // 100pxスクロールしたら
-        if($(this).scroltop()>100){
-          pagetop.fadein();  // フェードインさせる
+        if($(this).scrollTop() > 70){
+          pagetop.stop().animate({
+          'bottom': '50px' //下から50pxの位置に
+        }, 300);// フェードインさせる
         }else{
-          pagetop.fadeout();  // フェードアウトさせる
-        });
-        
-        // pagetopをクリックしたら
-        $('pagetop').on('click',function()){
-          $('html','body').animate({scrolltop: 0 }, 500)
+          pagetop.stop().animate({
+          'bottom': '-50px' //下から-50pxの位置に
+        }, 300);  // フェードアウトさせる
         }
-      }
+      });
+        // pagetopをクリックしたら
+        pagetop.on('click',function(){
+          $('body,html').animate({scrollTop: 0 }, 500);
+          return false;
+        });
+     
     });
   </script>
-      
-    
-      
-      
 </body>
-    
 </html>

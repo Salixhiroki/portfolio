@@ -7,3 +7,53 @@ img{
 h2{
   margin-top:100px;
 }
+
+
+.show-user-name{
+ margin-bottom:30px; 
+}
+
+
+
+.show-left-material{
+  // display:inline;
+  float:left;
+  padding-left:30px;
+}
+
+.show-right-material{
+  // display:inline;
+  float:left;
+  margin-left:180px;
+}
+
+
+.show-material{
+  padding:0;
+}
+
+.show-material:after{
+  clear:both;
+  display:block;
+  content:" ";
+}
+
+h3{
+  margin-right:260px;
+}
+
+
+
+
+
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: #3f98ef;
+  opacity: 0.6;
+  border-radius: 50%;
+  margin-right:50px;
+}
