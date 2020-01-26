@@ -5,32 +5,30 @@
   
   <div class="recipes-show-wrapper">
     <div class="container show-container">
-      <div class="row">
         <!--@detail.***から持ってくる-->
-        <div class="col-md-12 show-content">
-          <div class="col-md-5 col-md-offset-4 show-title">
-            <h2>めかぶとお茶漬けの相性抜群</h2>
-            <!--レシピのタイトル-->
-        
+          <div class="row">
+            <div class="col-md-12 p-0">
+              <div class="text-center show-title">
+                <h2 class="bg-success text-white pt-2 pb-2">めかぶとお茶漬けの相性抜群</h2>
+                <!--レシピのタイトル-->
+                <p class="text-left"><img src="aaa">Salihiro</p>
+                <!--ユーザーの画像 user_idがあるので-->
+                <!--<h5>ユーザー名</h5>-->
+                <!--ユーザー名-->
+              </div>
           </div>
-        
-          <div class="col-md-4 col-md-offset-2 show-user-name">
-          <!--<p><img src="aaa" width="40px" height="40px" >Salihiro</p>-->
-          <!--ユーザーの画像 user_idがあるので-->
-          
-          <!--<h5>ユーザー名</h5>-->
-          <!--ユーザー名-->
-          </div>
-          
-          <div class="col-md-5 col-md-offset-2 show-image">
-            <!--<img src="aaa" width="800px" height="400px"><!--レシピの画像-->
+      <div class="row">
+        <div class="col-md-12 ">
+          <div class="text-center show-image">
+            <img src="aaa"><!--レシピの画像-->
           </div>
           
-          <h3 class="col-md-8 col-md-offset-2">材料</h3>
           
           <!--要素の数によって両端に振り分ける-->
             <!--n=material.length / 2     ex) material.length=16の時、n=8となるので両端に8コずつ並ぶ-->
-            <div class="col-md-8 col-md-offset-2 show-material">
+            <div class="show-material">
+              <h3 class="pt-2 pb-2">材料</h3>
+          
               <!--%= for i  in  0..n+1-->
                 <ul class="show-left-material">
                   <!--<div>%= material[i]</div>-->
@@ -58,15 +56,15 @@
             </div>
           
           
-          <div class="col-md-8 col-md-offset-2">
-            <h3>作り方</h3>
+          <div>
+            <h3 class="pt-2 pb-2">作り方</h3>
             <p>お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
             お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
             お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る
             お湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切るお湯をいれる切る<!--作り方--></p>
           
           
-            <h3>感想</h3>
+            <h3 class="pt-2 pb-2">感想</h3>
             <p>最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
             最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい
             最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい最高に美味しい<!--感想-->
@@ -86,12 +84,18 @@
             
             </p>
           </div>
-        </div>      
+        </div>    
+        </div>
       </div>      
     </div>      
   </div>      
   
-  <div id="page_top"></div>
+  <div id="page_top">
+    <p id="return">TOP</p>
+  </div>
+  
+  
+  
   
   <script>
   // 処理開始

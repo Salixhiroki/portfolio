@@ -1,5 +1,4 @@
 // bootstrap導入
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 
@@ -8,6 +7,12 @@
 
 // レシピ詳細ページ(recipes/show)
 @import "show";
+@import "new";
 
 
 
+
+.navigation{
+  background-color:lightgreen;
+  color:seagreen;
+}

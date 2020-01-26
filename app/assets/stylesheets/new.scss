@@ -1,0 +1,101 @@
+
+// .title{
+//   // background-color:lightgreen;
+//   height:40px;
+// }
+
+
+
+.text-form{
+  width:540px;
+  outline:none;
+  border-color:lightgreen;
+}
+
+// .text-form:hover{
+//     border-color:limegreen;
+//   }
+
+
+label{
+  margin-bottom:10px;
+  // padding:30px;
+  // height:30px;
+}
+
+input{
+  margin-bottom:20px;
+  border-radius:none;
+  
+  &:hover{
+    border-color:limegreen;
+  }
+}
+
+
+
+
+.material-name{
+  width:100px;
+  outline:none;
+  border-color:lightgreen;
+  
+  &:hover{
+    border-color:limegreen; 
+  }
+}
+
+
+
+.material-quantity{
+  width:100px;
+  outline:none;
+  border-color:lightgreen; 
+  
+  &:hover{
+    border-color:limegreen;
+  }
+}
+
+
+.method{
+  outline:none;
+  border-color:lightgreen; 
+  
+  &:hover{
+    border-color:limegreen;
+  }
+  
+}
+
+
+
+.point{
+  width:500px;
+  height:200px;
+  
+  &:hover{
+    border-color:limegreen;
+  }
+  
+}
+
+.impression{
+  width:500px;
+  height:200px;
+  
+  &:hover{
+    border-color:limegreen;
+  }
+  
+}
+
+textarea{
+  margin-bottom:30px;
+  outline:none;
+  border-color:lightgreen; 
+  
+  &:hover{
+    border-color:limegreen;
+  }
+}

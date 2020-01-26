@@ -6,6 +6,10 @@ body{
 
 .recipes-index-container{
     
+    .content{
+      float:left;
+    }
+    
     margin-top:80px;
     // border:1px solid;
     color: red;  
@@ -14,9 +18,10 @@ body{
     ;
     
   .recipes{
-    margin-left: 70px;
     margin-bottom:30px;
     padding:0;
+    float:left;
+    margin-right:30px;
   }
   
   .recipes-top{
@@ -29,19 +34,18 @@ body{
     border:1px dashed;
   }
   
-  .recipes:last-child{
-    margin-right:0;
-  }
+  // .recipes:last-child{
+  //   margin-right:0;
+  // }
   
   
-  .index-wrap{
-    margin-bottom:40px;
-    margin-left:455px;
+  // .index-wrap{
+  //   margin-bottom:40px;
+  //   margin-left:455px;
     
     
     .index{
       position:relative;
-      
     }
     
   .index-text{
@@ -88,17 +92,17 @@ body{
   }
   
   
-  @media screen and (max-width: 617px) {
-    .recipes{
-    margin-left:0;
-    }
-    img{
-      width:345px;
-    }
+  // @media screen and (max-width: 617px) {
+  //   .recipes{
+  //   margin-left:0;
+  //   }
+  //   img{
+  //     width:345px;
+  //   }
   
-  }
+  // }
   
-}
+// }
 
 
   

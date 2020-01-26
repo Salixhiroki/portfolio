@@ -1,11 +1,29 @@
 
-img{
-  margin:auto;
+.recipes-show-wrapper{
   
+
+
+
+// .show-title{
+// background: ivory; 
+// border:1px solid;
+// height:74px;
+ 
+// }
+
+
+// img{
+//   margin:auto;
+// }
+
+
+.show-image{
+  margin-bottom:30px;
 }
 
+
 h2{
-  margin-top:100px;
+  margin-top:20px;
 }
 
 
@@ -39,11 +57,14 @@ h2{
 }
 
 h3{
-  margin-right:260px;
+  background:beige;
+  border:1px solid;
+  padding-left:15px;
+  padding-right:0;
 }
 
 
-
+}
 
 
 #page_top{
@@ -55,5 +76,13 @@ h3{
   background: #3f98ef;
   opacity: 0.6;
   border-radius: 50%;
-  margin-right:50px;
+  margin-right:0px;
 }
+
+
+#return{
+  margin-top:17px;
+  margin-left:10px;
+}
+
+

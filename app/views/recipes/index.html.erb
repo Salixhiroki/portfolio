@@ -7,18 +7,24 @@
         
             <!--@recipes.each do |recipe|-->
         <div class="row">
-          <div class="col-md-offset-5 index-wrap">
+          <div class="offset-md-5 offset-sm-3 index-wrap">
               <p class="index"><input type="text" class="index-text" placeholder="材料を入力"><button type="submit"></button></p>
           </div>
-          <div class="col-lg-12 content">
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 offset-md-1 content">
             
             <!--レシピ1つでリンクさせるようにする-->
+            <%= link_to recipes_show_path do %>
             <!-- form_tag recipe detail_path %>-->
             <!--top-->
+    
+            
             <div class="col-md-3 recipes">
               <div class="recipes-top">
                 <!--レシピの画像をいれる ↓ recipe.image-->
-                <img src=url('images.jpeg') width="285" height="285">
+                <img src=url('images.jpeg')>
               </div>
               
               <!--bottom-->
@@ -29,7 +35,7 @@
                   <!--ポイント ↓ recipe.discription-->
                   <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p>
                 </div>
-                
+            
                 <div class="recipes-favorite">
                   <!--link_to お気に入りアイコン-->
                   <!--end-->
@@ -43,11 +49,51 @@
               </div>
             </div>
             
-            <!--end %>-->
+          <% end %>
           
             <div class="col-md-3 recipes">
               <div class="recipes-top">
-                 <img src=url('images.jpeg') width="285" height="285"><!--レシピの画像をいれる-->
+                 <img src=url('images.jpeg')><!--レシピの画像をいれる-->
+              </div>
+              <!--bottom-->
+              <div class="recipes-bottom">
+                <div class="recipes-discription">
+                  <h4>最高に美味しい！最高に美味しい</h2>
+                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p><!--レシピのポイント <p>-->
+                </div>
+                <div class="recipes-favorite">
+                  <p><img src="aaa"><!--お気に入りアイコン inline-block-->
+                  <img src="aaa">
+                  Salihiro
+                  <!--コメントアイコンinline-block--></p>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="col-md-3 recipes">
+              <div class="recipes-top">
+                 <img src=url('images.jpeg')><!--レシピの画像をいれる-->
+              </div>
+              <!--bottom-->
+              <div class="recipes-bottom">
+                <div class="recipes-discription">
+                  <h4>最高に美味しい！最高に美味しい</h2>
+                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p><!--レシピのポイント <p>-->
+                </div>
+                <div class="recipes-favorite">
+                  <p><img src="aaa"><!--お気に入りアイコン inline-block-->
+                  <img src="aaa">
+                  Salihiro
+                  <!--コメントアイコンinline-block--></p>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="col-md-3 recipes">
+              <div class="recipes-top">
+                 <img src=url('images.jpeg')><!--レシピの画像をいれる-->
               </div>
               <!--bottom-->
               <div class="recipes-bottom">
@@ -67,12 +113,6 @@
         </div>
       </div>
     </div>
-    <%= link_to '詳細', recipes_show_path %>
   </body>
 </html>
 
-
-<!--コメント-->
-<!--次は実際にサーバーサイドの方を実装していこう
-モデルは作成済
-コントローラーを作成しよう-->

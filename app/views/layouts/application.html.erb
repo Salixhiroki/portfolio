@@ -8,40 +8,46 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-
+  </head>
   <body>
    
-      <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
-        <div class="container">
+      <nav class="navbar navbar-dark navigation">
+        <div class="container m-0 col-md-12">
           <!--トップページへジャンプ(linkto 画像)-->
-            <ul class="nav navbar-nav nav-right">
-              <!--もしログインしていたら以下のアイコンを表示-->
-                <li>
-                  <!--「検索」ページへジャンプ linkto アイコン-->
-                </li>
-                <p>My chazuke</p>
-                <li>
-                  <!--「投稿一覧」ページへジャンプ linkto アイコン-->
-                </li>
+          
+          <ul class="nav">
+            <li>
+              <a>My chazuke</a>
+            </li>
+          </ul>
+          <ul class="nav">
+            <!--もしログインしていたら以下のアイコンを表示-->
+            <li class="nav-item mr-2">
+              <a>検索</a><!--「検索」ページへジャンプ linkto アイコン-->
+            </li>
                 
-                <li>
-                  <!--「投稿」ページへジャンプ linkto アイコン-->
-                </li>
+            <li class="nav-item mr-2">
+              <a>投稿一覧</a><!--「投稿一覧」ページへジャンプ linkto アイコン-->
+            </li>
                 
-                <li>
-                  <!--「ログアウト」する linkto アイコン-->
-                </li>
+            <li class="nav-item mr-2">
+              <a>新規投稿</a><!--「投稿」ページへジャンプ linkto アイコン-->
+            </li>
+                
+            <li class="nav-item">
+              <a>ログアウト</a><!--「ログアウト」する linkto アイコン-->
+            </li>
                 
               <!--もしログインしていなかったら以下のアイコンを表示-->
                 
-                <li>
-                  <!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
-                </li>
+            <li class="nav-item">
+              <!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+            </li>
                 
-                <li>
-                  <!--「ログイン」ページへジャンプ linkto アイコン-->
-                </li>
-            </ul>
+            <li class="nav-item">
+              <!--「ログイン」ページへジャンプ linkto アイコン-->
+            </li>
+          </ul>
         </div>
       </nav>
       
