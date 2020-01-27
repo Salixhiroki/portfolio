@@ -99,3 +99,30 @@ textarea{
     border-color:limegreen;
   }
 }
+
+.add-material{
+  background-color:gray;
+  border:1px solid dimgray;
+  outline:none;
+  
+  &:focus{
+    outline:none;
+   transform: scale(1.2);
+   transition-duration: 0.001s;
+  }
+  
+}
+
+.add-method{
+  background-color:gray;
+  border:1px solid dimgray;
+  outline:none;
+  
+  &:focus{
+    outline:none;
+   transform: scale(1.2);
+   transition-duration: 0.001s;
+  }
+  
+}
+

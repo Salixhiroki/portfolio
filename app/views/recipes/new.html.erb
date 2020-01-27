@@ -3,9 +3,9 @@
     <div class="recipes-new-wrapper">
       <div class="container">
         <div class="row">
-          <div class="col-md-offset-2">
-            <div class="heading">
-              <h2>お茶漬けレシピ 投稿</h2>
+          <div class="offset-md-2">
+            <div class="heading mb-3">
+              <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 投稿</h2>
             </div>
             
             <div class="heading">
@@ -30,8 +30,8 @@
               <div class="food">
                 <input class="text-form material-name" placeholder="材料を入力">
                 <input class="text-form material-quantity" placeholder="分量を入力">
-                
               </div>
+              
               <div class="food">
                 <input class="text-form material-name" placeholder="材料を入力">
                 <input class="text-form material-quantity" placeholder="分量を入力">
@@ -40,7 +40,7 @@
               <div class="food">
                 <input class="text-form material-name" placeholder="材料を入力">
                 <input class="text-form material-quantity" placeholder="分量を入力">
-                <button> +</button>
+                <button type="button" class="ml-1 add-material">+</button>
               </div>
               
                 <!--<label class="badge badge-success">材料の量を入力してください</label>-->
@@ -48,10 +48,10 @@
             
             <div class="method">
               <div><label class="badge badge-secondary">作り方を入力してください</label></div>
-              <div><label class="badge badge-pill badge-secondary">1</label><input class="textarea method" placeholder="作り方を入力"></div>
-              <div><label class="badge badge-pill badge-secondary">2</label><input class="textarea method" placeholder="作り方を入力"></div>
-              <div><label class="badge badge-pill badge-secondary">3</label><input class="textarea method" placeholder="作り方を入力"></div>
-              <div><label class="badge badge-pill badge-secondary">4</label><input class="textarea method" placeholder="作り方を入力"><button> +</button></div>
+              <div><label class="badge badge-pill badge-secondary">1</label><input class="textarea method col-md-5 col-sm-10 ml-2" placeholder="作り方を入力"></div>
+              <div><label class="badge badge-pill badge-secondary">2</label><input class="textarea method col-md-5 col-sm-10 ml-2" placeholder="作り方を入力"></div>
+              <div><label class="badge badge-pill badge-secondary">3</label><input class="textarea method col-md-5 col-sm-10 ml-2" placeholder="作り方を入力"></div>
+              <div><label class="badge badge-pill badge-secondary">4</label><input class="textarea method col-md-5 col-sm-10 ml-2 d-inline" placeholder="作り方を入力"><button type="button" class="add-method ml-2">+</button></div>
             </div>
             
             
@@ -63,6 +63,10 @@
             <div>
               <div><label class="badge badge-secondary">作ってみた感想や食べてみた感想を入力してください</label></div>
               <textarea class="impression" placeholder="作った感想を入力（任意）"></textarea>
+            </div>
+            
+            <div>
+              <button class="btn btn-success col-md-3 offset-md-4 mb-5">投稿</button>
             </div>
             
             
