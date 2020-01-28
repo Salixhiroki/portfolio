@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  root 'users#new'
   # root 'recipes#index'
-  root 'recipes#index'
+  # root 'recipes#index'
   
-  get 'recipes/show', to: 'recipes#show'
+  # get 'recipes/show', to: 'recipes#show'
   
   resources :recipes
   
