@@ -6,6 +6,11 @@ body{
 
 .recipes-index-container{
     
+    
+    // .heading{
+    //   margin-left:130px;
+    // }
+    
     .content{
       float:left;
     }
@@ -89,20 +94,22 @@ body{
   }
     
     
-  }
+ 
   
   
-  // @media screen and (max-width: 617px) {
-  //   .recipes{
-  //   margin-left:0;
-  //   }
-  //   img{
-  //     width:345px;
-  //   }
+  @media screen and (max-width: 1199px) {
   
-  // }
+    .heading{
+      margin-left:90px;
+    }
+    
+    .index{
+      margin-left:50px;
+    }
+
+  }  
   
-// }
+}
 
 
   

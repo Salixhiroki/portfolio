@@ -1,0 +1,61 @@
+.user-login-wrapper{
+  
+  position:relative;
+  
+  
+  .login{
+    background-color:palegreen;
+    margin-top:30px;
+    padding-bottom:40px;
+    border-radius:10px;
+  }
+  
+  .title{
+    margin-top:100px;
+    margin-bottom:20px;
+  }
+
+  .title-name{
+    margin-left:0;
+  }
+  
+  
+  
+  .email{
+    margin:30px auto;
+  }
+  
+  .password{
+    margin:50px auto;
+  }
+  
+  
+  .login-button{
+    margin:30px auto;
+  }
+
+
+  
+  .image{
+    position: absolute;
+    // width: 100px;
+    // height: 100px;
+    top: 300px;
+    left: 350px;
+  }
+  
+  @media screen and (max-width: 617px) {
+      
+  .image{
+    display:none;
+  }
+  
+  .login{
+    margin-top:0;
+  }
+    
+  }
+  
+  
+}
+

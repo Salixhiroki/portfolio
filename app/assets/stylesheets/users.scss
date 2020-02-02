@@ -3,6 +3,17 @@
   
   position:relative;
   
+  
+  .login{
+    background-color:palegreen;
+    margin-top:40px;
+    border-radius:10px;
+  }
+  
+  .title{
+    margin-left:32px;
+  }
+  
   .image{
     position: absolute;
     // width: 100px;
@@ -12,7 +23,12 @@
   }
   
   @media screen and (max-width: 617px) {
-      
+    
+  .title{
+    margin-left:0;
+  }
+    
+  
   .image{
     display:none;
   }

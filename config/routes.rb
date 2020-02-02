@@ -1,10 +1,45 @@
 Rails.application.routes.draw do
-  root 'users#new'
-  # root 'recipes#index'
-  # root 'recipes#index'
   
-  # get 'recipes/show', to: 'recipes#show'
   
-  resources :recipes
+  # top
+  
+  root 'pages#index'
+  
+  # 新規登録
+  
+  # root 'users#new'
+  
+  
+  # ログイン
+  
+  # get 'sessions/new'
+  
+  
+  # 一覧
+  
+  # get 'recipes#index'
+  
+  
+  # 詳細
+  
+  get 'recipes/show', to: 'recipes#show'
+  
+  
+  # 検索
+  
+  
+  
+  # 新規投稿
+  
+  root 'recipes#new'
+  
+  
+  
+  # resources :recipes
+  
+  
+  
+  
+  
   
 end
