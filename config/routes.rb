@@ -8,16 +8,17 @@ Rails.application.routes.draw do
   # 新規登録
   
   # root 'users#new'
+  resources :users
   
   
   # ログイン
   
-  # get 'sessions/new'
+  get 'sessions/new'
   
   
   # 一覧
   
-  # get 'recipes#index'
+  get 'recipes/index', to: 'recipes#index'
   
   
   # 詳細
@@ -31,15 +32,7 @@ Rails.application.routes.draw do
   
   # 新規投稿
   
-  root 'recipes#new'
+  resources :recipes
   
-  
-  
-  # resources :recipes
-  
-  
-  
-  
-  
-  
+
 end
