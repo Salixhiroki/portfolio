@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   # 新規登録
   
+  
   # root 'users#new'
   resources :users
   
