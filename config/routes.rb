@@ -13,9 +13,8 @@ Rails.application.routes.draw do
   
   
   # ログイン
-  
-  get 'sessions/new'
-  
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
   
   # 一覧
   

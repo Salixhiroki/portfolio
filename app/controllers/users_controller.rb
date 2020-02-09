@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   end
   
   def create
+    # binding pry
     @user=User.new(user_params)
+    
     if @user.save
       redirect_to recipes_index_path, success: "登録に成功しました"
     else
@@ -17,6 +19,6 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name,:email,:password,:password_digest,:user_image)
+    params.require(:user).permit(:name,:email,:password,:password_confirmation,:user_image)
   end
 end
