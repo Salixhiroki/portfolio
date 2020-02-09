@@ -60,10 +60,20 @@
           </ul>
         </div>
       </nav>
+    <% flash.each do |key,value| %>
+       <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
+    <% end %>  
+    
       
      <%= yield %>
     
     <!--後でjavascript作成-->
+    
+    <script>
+      $(function(){
+        $(".alert").fadeOut(5000);
+      });
+    </script>
     
     
   </body>
