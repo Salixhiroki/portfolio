@@ -26,37 +26,40 @@
           </ul>
           <ul class="nav">
             <!--もしログインしていたら以下のアイコンを表示-->
-           
-            <li class="nav-item mr-2">
-             <%= link_to recipes_index_path do %>
-                <P>投稿一覧</P><!--「投稿一覧」ページへジャンプ linkto アイコン-->
-              <% end %>
-            </li>
-                
-            <li class="nav-item mr-2">
-              <%= link_to new_recipe_path do %>
-                <P>新規投稿</P>
-              <% end %><!--「投稿」ページへジャンプ linkto アイコン-->
-            </li>
-                
-            <li class="nav-item">
-              <a>ログアウト</a><!--「ログアウト」する linkto アイコン-->
-            </li>
-                
-              <!--もしログインしていなかったら以下のアイコンを表示-->
-                
-            <li class="nav-item">
-              <%= link_to new_user_path do %>
-                <p>新規作成</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
-              <% end %>
-            </li>
-                
-            <li class="nav-item">
-              <%= link_to login_path do %>
-                <p>ログイン</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
-              <% end %>
-              <!--「ログイン」ページへジャンプ linkto アイコン-->
-            </li>
+            <% if logged_in? %>
+              <li class="nav-item mr-2">
+               <%= link_to recipes_index_path do %>
+                  <P>投稿一覧</P><!--「投稿一覧」ページへジャンプ linkto アイコン-->
+                <% end %>
+              </li>
+                  
+              <li class="nav-item mr-2">
+                <%= link_to new_recipe_path do %>
+                  <P>新規投稿</P>
+                <% end %><!--「投稿」ページへジャンプ linkto アイコン-->
+              </li>
+                  
+              <li class="nav-item">
+                <%= link_to logout_path, method: :delete do %>
+                  <p>ログアウト</p><!--「ログアウト」する linkto アイコン-->
+                <% end %>
+              </li>
+                  
+                <!--もしログインしていなかったら以下のアイコンを表示-->
+              <% else %>    
+              <li class="nav-item">
+                <%= link_to new_user_path do %>
+                  <p>新規作成</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+                <% end %>
+              </li>
+                  
+              <li class="nav-item">
+                <%= link_to login_path do %>
+                  <p>ログイン</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+                <% end %>
+                <!--「ログイン」ページへジャンプ linkto アイコン-->
+              </li>
+            <% end %>
           </ul>
         </div>
       </nav>
