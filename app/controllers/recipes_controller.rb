@@ -2,71 +2,72 @@ class RecipesController < ApplicationController
   
   protect_from_forgery except: :create
   
-  # 新規投稿
+  attr_accessor :material_name, :material_quantity, :method
+  
+  # 親モデルのインスタンス作成、buildで関係性のある子モデルのインスタンスを作成
   def new
+    
     @recipe=Recipe.new
-    @material=@recipe.materials.build(material_params)
+    @cookmethod=@recipe.cookmethods.build
+    @material=@recipe.materials.build
     
   end
   
   
   # 新規作成
   def create
-    # binding pry
+    
     # レシピと材料のオブジェクトを作成
-    @recipe=Recipe.new(recipe_params)
-    binding pry
-    # binding.pry
-    # @material=Material.new(material_params)
+    @recipe=Recipe.new(user_id: recipe_params[:user_id],title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
     
-    # ---------必要な情報を格納----------#
+    # ---------必要な情報を格納、保存----------#
         
-    # @recipe、@materialにuser_idを格納
+    # @recipeにuser_idを格納
     @recipe.user_id=current_user.id
-    # @material.user_id=current_user.id
-    @recipe.save
-    # @materialにrecipe_idを格納
     
-    @material.recipe_id=@recipe.id
+    if @recipe.save
     
-    # @materialsに材料名と分量を格納 => ひとつずつ取り出して保存する？
-  
-    # @material.material_name=material_params[:material_name]
-    # @material.material_quantity=material_params[:material_quantity]
-  
-    # 配列で格納されているので添字の数を把握
-    
-    # material_name_cnt=@material.material_name.size
-    # material_quantity_cnt=@material.material_quantity.size
-    
-    # 材料名と分量は配列で格納されているのでひとつずつ取り出して保存
-    
-    material_params[:material_name].zip(material_params[:material_quantity]).each do |m_name,m_quantity|
+      # 材料名と分量を格納、保存
+      recipe_params[:materials_attributes]["0"]["material_name"].zip(recipe_params[:materials_attributes]["0"]["material_quantity"]).each do |m_name,m_quantity|
+        
+        @material=@recipe.materials.create!(user_id: current_user.id, material_name: m_name, material_quantity: m_quantity)
+        
+        if m_name!="" && m_quantity!=""
+          @material.save
+        elsif (m_name=="" && m_quantity!="") || (m_name!="" && m_quantity=="")
+          @material.save
+        else
+          @material.delete
+        end
+        
+      end
       
+      # 作り方を格納、保存
+      recipe_params[:cookmethods_attributes]["0"]["method"].each do |cm|
+        
+        @cookmethod=@recipe.cookmethods.create!(user_id: current_user.id, method: cm)
+        if cm!=""
+          @cookmethod.save
+        else
+          @cookmethod.delete
+        end
+        
+      end
       
-      @material.material_name=m_name
-      @material.material_quantity=m_quantity
+      # ---------結果を出力----------#
       
-      
-      @material.material_name.save
-      @material.material_quantity.save
-      
-    end
-    
-   # ---------格納した情報をテーブルに保存----------#
-
-    
-    if @recipe.save && @material.material_name.save && @material.material_quantity.save
       redirect_to recipes_index_path, success:"レシピを投稿しました！"
+      
     else
+      
       flash.now[:danger]="レシピの投稿に失敗しました"
       render :new
+      
     end
     
   end
   
-  
-  
+
   # 投稿一覧
   def index
     # @recipes=Recipes.all.order(created_at: :desc)
@@ -83,7 +84,7 @@ class RecipesController < ApplicationController
   private
   
   def recipe_params
-    params.require(:recipe).permit(:title, :point, :image, :impression,material_attributes:[:material_name,:material_quantity])
+    params.require(:recipe).permit(:title, :point, :image, :impression,materials_attributes: {material_name: [],material_quantity: []},cookmethods_attributes: {method: []})
   end
 
   
