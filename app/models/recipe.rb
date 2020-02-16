@@ -2,13 +2,15 @@ class Recipe < ApplicationRecord
 
  validate :recipes_nothing
  
-  def recipes_nothing
-    :recipes.each do |recipe|
-    
-    if recipe=nil?
-    end
-  end
-    
-  end
+  has_many :materials
+  has_many :user
+  
+  accepts_nested_attributes_for :materials
+ 
+   def recipes_nothing
+     
+     
+     
+   end
 
 end

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   
   
   # 新規投稿
-  
+  post 'recipes/create', to: 'recipes#create'
   resources :recipes
   
 
