@@ -70,14 +70,31 @@ class RecipesController < ApplicationController
 
   # 投稿一覧
   def index
-    # @recipes=Recipes.all.order(created_at: :desc)
+    @recipes=Recipes.all.order(created_at: :desc)
+    @user=User.find_by(id: @recipes.user_id)
   end
   
   
   # 投稿詳細
   def show
-    # @detail=Recipe.find_by(id: params[:id])
-    # @user=User.find_by(id: @detail.user_id)
+    # レシピをクリックしてレコードを取得する
+    @detail=Recipe.find_by(id: params[:id])
+    
+    # @detailにあるuser_idとrecipe_idを用いて「材料名」と「分量」の情報を抽出する
+    @detail_material=Material.find_by(user_id: @detail.user_id, recipe_id: @detail.id)
+    
+    # @detailにあるuser_idとrecipe_idを用いて「作り方」の情報を抽出する
+    @detail_method=Cookmethod.find_by(user_id: @detail.user_id, recipe_id: @detail.id)
+    
+    # @detailにあるuser_idを用いて「User」の情報を抽出する
+    @user=User.find_by(id: @detail.user_id)
+    
+    if @detail!=nil
+      redirect_to show_path
+    else
+      render :show 
+      flash.now[:danger]="データがないか、既に削除されています"
+    end
   end
   
   
