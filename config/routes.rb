@@ -19,12 +19,12 @@ Rails.application.routes.draw do
   
   # 一覧
   
-  get 'recipes/index', to: 'recipes#index'
+  # get 'recipes/index', to: 'recipes#index'
   
   
   # 詳細
   
-  get 'recipes/show', to: 'recipes#show'
+  # get 'recipes/show', to: 'recipes#show'
   
   
   # 検索
@@ -32,8 +32,9 @@ Rails.application.routes.draw do
   
   
   # 新規投稿
-  post 'recipes/create', to: 'recipes#create'
   resources :recipes
+  # post 'recipes/create', to: 'recipes#create'
+ 
   
 
 end

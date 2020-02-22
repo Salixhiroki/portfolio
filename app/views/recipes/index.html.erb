@@ -26,7 +26,7 @@
             
             <!--レシピ1つでリンクさせるようにする-->
             <!--< link_to recipes_show_path do %>-->
-            <!-- form_tag recipe detail_path %>-->
+             <% @recipes.each do |recipe| %>
             <!--top-->
     
             
@@ -40,9 +40,9 @@
               <div class="recipes-bottom">
                 <div class="recipes-discription">
                   <!--タイトル ↓ recipe.title-->
-                  <h4>最高に美味しい！最高に美味しい</h4>
+                  <h4><%= recipe.title %></h4>
                   <!--ポイント ↓ recipe.discription-->
-                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p>
+                   <p><%= recipe.point %></p>
                 </div>
             
                 <div class="recipes-favorite">
@@ -52,73 +52,16 @@
                   <!--end %>  -->
                   <p><img src="images/heart-black.png">
                     <img src="images/comment.png">
-                    Salihiro
+                    <%= recipe.user.name %>
                   </p>
                 </div>
               </div>
             </div>
             
-          <!--< end %>-->
+          <% end %>
           
-            <div class="col-md-3 recipes">
-              <div class="recipes-top">
-                 <img src=url('images.jpeg')><!--レシピの画像をいれる-->
-              </div>
-              <!--bottom-->
-              <div class="recipes-bottom">
-                <div class="recipes-discription">
-                  <h4>最高に美味しい！最高に美味しい</h2>
-                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p><!--レシピのポイント <p>-->
-                </div>
-                <div class="recipes-favorite">
-                  <p><img src="aaa"><!--お気に入りアイコン inline-block-->
-                  <img src="aaa">
-                  Salihiro
-                  <!--コメントアイコンinline-block--></p>
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="col-md-3 recipes">
-              <div class="recipes-top">
-                 <img src=url('images.jpeg')><!--レシピの画像をいれる-->
-              </div>
-              <!--bottom-->
-              <div class="recipes-bottom">
-                <div class="recipes-discription">
-                  <h4>最高に美味しい！最高に美味しい</h2>
-                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p><!--レシピのポイント <p>-->
-                </div>
-                <div class="recipes-favorite">
-                  <p><img src="aaa"><!--お気に入りアイコン inline-block-->
-                  <img src="aaa">
-                  Salihiro
-                  <!--コメントアイコンinline-block--></p>
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="col-md-3 recipes">
-              <div class="recipes-top">
-                 <img src='../../assets/images/images.jpeg')><!--レシピの画像をいれる-->
-              </div>
-              <!--bottom-->
-              <div class="recipes-bottom">
-                <div class="recipes-discription">
-                  <h4>最高に美味しい！最高に美味しい</h2>
-                  <p>最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！最高に美味しい！</p><!--レシピのポイント <p>-->
-                </div>
-                <div class="recipes-favorite">
-                  <p><img src="aaa"><!--お気に入りアイコン inline-block-->
-                  <img src="aaa">
-                  Salihiro
-                  <!--コメントアイコンinline-block--></p>
-                </div>
-              </div>
-            </div>
-          </div>
+           
+         </div>
         </div>
       </div>
     </div>

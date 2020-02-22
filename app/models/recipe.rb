@@ -4,11 +4,17 @@ class Recipe < ApplicationRecord
  
   has_many :materials
   has_many :cookmethods
-  has_many :user
+  belongs_to :user
   
   accepts_nested_attributes_for :materials 
   accepts_nested_attributes_for :cookmethods
   
+ 
+ 
+ 
+  
+ 
+ 
  
    def recipes_nothing
      
