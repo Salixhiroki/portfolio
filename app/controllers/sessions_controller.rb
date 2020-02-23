@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     # binding pry
     if user && user.authenticate(session_params[:password])
       log_in user
-      redirect_to recipes_index_path, success: "ログインに成功しました"
+      redirect_to recipes_path, success: "ログインに成功しました"
       
     else
       flash.now[:danger]="ログインに失敗しました"

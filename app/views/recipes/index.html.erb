@@ -25,15 +25,16 @@
           <div class="col-md-12 offset-md-1 content">
             
             <!--レシピ1つでリンクさせるようにする-->
-            <!--< link_to recipes_show_path do %>-->
-             <% @recipes.each do |recipe| %>
+            
+            <% @recipes.each do |recipe| %>
+            <%= link_to recipe_path(recipe.id) do %>
             <!--top-->
     
             
             <div class="col-md-3 recipes">
               <div class="recipes-top">
                 <!--レシピの画像をいれる ↓ recipe.image-->
-                <img src=url('images.jpeg')>
+                <%= image_tag 'images.jpeg', class:"img" %>
               </div>
               
               <!--bottom-->
@@ -50,14 +51,14 @@
                   <!--end-->
                    <!--link_toコメントアイコンを表示-->
                   <!--end %>  -->
-                  <p><img src="images/heart-black.png">
-                    <img src="images/comment.png">
-                    <%= recipe.user.name %>
+                  <p><%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+                    <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                    <%= recipe&.user.name %>
                   </p>
                 </div>
               </div>
             </div>
-            
+            <% end %>
           <% end %>
           
            
