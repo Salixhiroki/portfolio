@@ -6,8 +6,8 @@ class Recipe < ApplicationRecord
   has_many :cookmethods
   belongs_to :user
   
-  accepts_nested_attributes_for :materials 
-  accepts_nested_attributes_for :cookmethods
+  accepts_nested_attributes_for :materials, allow_destroy: true
+  accepts_nested_attributes_for :cookmethods, allow_destroy: true
   
  
  

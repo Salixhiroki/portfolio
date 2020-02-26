@@ -87,16 +87,43 @@ class RecipesController < ApplicationController
     @detail=Recipe.find_by(id: params[:id])
   
     # @detailにあるuser_idとrecipe_idを用いて「材料名」と「分量」の情報を抽出する
-    @detail_material=Material.find_by(user_id: @detail.user_id, recipe_id: @detail.id)
+    @detail_material=Material.where(user_id: @detail.user_id, recipe_id: @detail.id)
     
     # @detailにあるuser_idとrecipe_idを用いて「作り方」の情報を抽出する
-    @detail_method=Cookmethod.find_by(user_id: @detail.user_id, recipe_id: @detail.id)
+    @detail_method=Cookmethod.where(user_id: @detail.user_id, recipe_id: @detail.id)
     
     # @detailにあるuser_idを用いて「User」の情報を抽出する
+    
+    @n =  @detail_material.length/ 2
+    @m =  @detail_method.length
     @user=User.find_by(id: @detail.user_id)
     # binding pry
-  
+    # binding pry
+    
   end
+  
+  
+  def edit
+    @recipe=Recipe.find_by(id: params[:id])
+    @material=Material.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
+    @cookmethod=Cookmethod.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
+  end
+    
+    
+  def update
+     @recipe=Recipe.find_by(id: params[:id])
+     @material=Material.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
+     @cookmethod=Cookmethod.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
+      binding pry
+    if @recipe.update(update_recipe_params) && @material.update(update_recipe_params) && @cookmethod.update(update_recipe_params)
+        redirect_to recipes_path, success:"投稿内容の編集をしました"
+    else
+      flash.now[:danger]="投稿の編集に失敗しました"
+      render :edit
+    end
+   
+  end
+    
   
   
   private
@@ -104,6 +131,13 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :point, :image, :impression,materials_attributes: {material_name: [],material_quantity: []},cookmethods_attributes: {method: []})
   end
+  
+  def update_recipe_params
+  
+    params.require(:recipe).permit(:title, :point, :image, :impression,materials_attributes: {material_name: [:_destroy, :id],material_quantity: [:_destroy, :id]},cookmethods_attributes: {method: [:_destroy, :id]})
+  
+  end
+    
 
   
 end
