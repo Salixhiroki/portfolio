@@ -6,35 +6,23 @@ Rails.application.routes.draw do
   root 'pages#index'
   
   # 新規登録
-  
-  
-  # root 'users#new'
   resources :users
   
   
-  # ログイン
+  # ログイン,ログアウト
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  # 一覧
+  # 新規投稿,一覧,詳細,
+  resources :recipes
   
-  # get 'recipes/index', to: 'recipes#index'
-  
-  
-  # 詳細
-  
-  # get 'recipes/show', to: 'recipes#show'
-  
+  # お気に入り
+  get 'favorites/index'
+  post '/favorites', to: 'favorites#create'
+  delete 'cancel', to: 'favorites#cancel'
   
   # 検索
   
   
-  
-  # 新規投稿
-  resources :recipes
-  # post 'recipes/create', to: 'recipes#create'
- 
-  
-
 end

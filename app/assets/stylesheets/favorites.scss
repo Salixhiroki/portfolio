@@ -1,0 +1,12 @@
+.favorite{
+    background-color:#FF3366;
+    animation: anime 1s alternate 2;
+    
+    &:hover{
+       opacity: 0.6;
+    }
+  }
+  
+.favorite:active{
+  color:red;
+}

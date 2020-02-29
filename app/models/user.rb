@@ -12,7 +12,8 @@ class User < ApplicationRecord
   
   
   has_many :recipes
-  
+  has_many :favorites
+  has_many :favorites_recipes,through: :favorites, source: 'recipe'
   
   has_secure_password
   

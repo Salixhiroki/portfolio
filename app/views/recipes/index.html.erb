@@ -45,20 +45,28 @@
                   <!--ポイント ↓ recipe.discription-->
                    <p><%= recipe.point %></p>
                 </div>
+              <% end %>
             
                 <div class="recipes-favorite">
-                  <!--link_to お気に入りアイコン-->
-                  <!--end-->
-                   <!--link_toコメントアイコンを表示-->
-                  <!--end %>  -->
-                  <p><%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
-                    <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
-                    <%= recipe&.user.name %>
-                  </p>
+                  
+                  <% if !recipe.favorites_users.include?(current_user) %>
+                    <%= link_to favorites_path(recipe_id: recipe.id),method: :post do %>
+                      <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to cancel_path(recipe_id: recipe.id),method: :delete do %>
+                      <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
+                    <% end %>
+                  <% end %>
+                   
+                  <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                    
+                  <%= recipe&.user.name %>
+                
                 </div>
               </div>
             </div>
-            <% end %>
+          
           <% end %>
           
            

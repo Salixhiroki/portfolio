@@ -111,100 +111,82 @@ class RecipesController < ApplicationController
     
     
   def update
-     @update_recipe=Recipe.find_by(id: params[:id])
-     @update_user_id=@update_recipe.user_id
+    @recipe=Recipe.find_by(id: params[:id])
+    @update_user_id=@recipe.user_id
       
     # binding pry
-     @material=Material.where(user_id: @update_user_id , recipe_id: params[:id])
-     @cookmethod=Cookmethod.where(user_id: @update_user_id, recipe_id: params[:id])
-      # if true then
-      #   logger.debug("if文の中に入りました")
-      #   logger.debug(@update_user_id.inspect)
-        # logger.debug(@update_recipe.user_id.inspect)
-        # binding pry
-        
-        # @update_recipe.update_attributes(recipe_params)
-        # binding pry
-        @update_recipe.update(user_id: recipe_params[:user_id],title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
-        
-        @m_length=0
-        @m_lengths=recipe_params[:materials_attributes]["0"][:material_name][0].length
-        
-        for m_length in 0..@m_lengths do
-          # recipe_params[:materials_attributes][m_length.to_s]["material_name"].zip(recipe_params[:materials_attributes][m_length.to_s]["material_quantity"]).each do |m_name,m_quantity| 
-          logger.debug(@m_lengths)
-          
-          @m_name=recipe_params[:materials_attributes][m_length.to_s]["material_name"][0]
-          @m_quantity=recipe_params[:materials_attributes][m_length.to_s]["material_quantity"][0]
-          
-          if @m_name!="" && @m_quantity!=""
-           
-            # @m_.update_attributes(user_id: @update_user_id, material_name: m_name, material_quantity: m_quantity)
-            @material.update(material_name: @m_name)
-            @material.update(material_quantity: @m_quantity)
-        
-          elsif (m_name=="" && m_quantity!="") || (m_name!="" && m_quantity=="")
-            # @m_recipe.update_attributes(user_id: @update_user_id, material_name: m_name, material_quantity: m_quantity)
-            @material.update(m_name)
-            @material.update(m_quantity)
-            
-          else
-            flash.now[:danger]="投稿の編集に失敗しました"
-            render :edit
-          end
-          
-          
-        logger.debug(@m_name)
-        logger.debug(@m_quantity)
+    @material=Material.where(user_id: @update_user_id , recipe_id: params[:id])
+    @cookmethod=Cookmethod.where(user_id: @update_user_id, recipe_id: params[:id])
+    
+    logger.debug(@material)
+    @recipe_cnt=0
+    # if @recipe.update(user_id: recipe_params[:user_id],title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
+    if @recipe.update(title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
+      @recipe_cnt+=1
+    end
+    
+    @m_lengths=recipe_params[:materials_attributes].to_h.length
+    
+    @material_cnt=0
+    for m_length in 0..@m_lengths-1 do
+      @m_name=recipe_params[:materials_attributes][m_length.to_s][:material_name][0]
+      @m_quantity=recipe_params[:materials_attributes][m_length.to_s][:material_quantity][0]
+      # logger.debug(@m_name)
+      # logger.debug(@m_quantity)
+      if @m_name!="" && @m_quantity!=""
+        # @m_.update_attributes(user_id: @update_user_id, material_name: m_name, material_quantity: m_quantity)
+        if @material[m_length].update(material_name: @m_name) && @material[m_length].update(material_quantity: @m_quantity)
+          @material_cnt+=1
         end
-        
-        binding pry
-        
-        for method_length in 0..@lengths do
-          recipe_params[:cookmethods_attributes][method_length.to_s]["method"].each do |cm|
-          
-          @update_recie=@update_recipe.cookmethods.update(user_id: @update_user_id, method: cm)
-            if cm!=""
-              @cookmethod.update(user_id: @update_user_id, method: cm)
-            else
-              flash.now[:danger]="投稿の編集に失敗しました"
-              render :edit
-            end
-          end
+      elsif (@m_name=="" && @m_quantity!="") || (@m_name!="" && @m_quantity=="")
+        # @m_recipe.update_attributes(user_id: @update_user_id, material_name: m_name, material_quantity: m_quantity)
+        if @material[m_length].update(material_name: @m_name) && @material[m_length].update(material_quantity: @m_quantity)
+          @material_cnt+=1
         end
-                
+      end
+    end
         
-        
-        
-        
-        
-        
-     
+    @method_cnt=0
+    @method_lengths=recipe_params[:cookmethods_attributes].to_h.length
+    
+    for method_length in 0..@method_lengths-1 do
+      @method=recipe_params[:cookmethods_attributes][method_length.to_s][:method][0]
+      if @method!=""
+        # binding pry
+        if @cookmethod[method_length].update(method: @method)
+          @method_cnt+=1
+        end
+      end
+    end
+    
+    
+              
+      # binding pry
+    if @recipe_cnt==1 && @material_cnt==@m_lengths && @method_cnt==@method_lengths
+      # binding pry
+      redirect_to edit_recipe_path, success: "レシピの編集をしました"
       
-      redirect_to recipes_path, success:"投稿内容の編集をしました"
-    
-    # else
-      # flash.now[:danger]="投稿の編集に失敗しました"
-      # render :edit
-    # end
+    else
+      flash.now[:danger]="レシピの編集に失敗しました"
+      render :edit
+    end
   end
-    
   
+  
+  def destroy
+    @recipe=Recipe.find_by(id: params[:id])
+    if @recipe.destroy
+      redirect_to recipes_path, success:"レシピの削除に成功しました"
+    else
+      flash.now[:danger]="レシピの削除に失敗しました"
+      render :show
+    end
+  end
   
   private
   
- 
-  
-  # def recipe_params
-  #   params.require(:recipe).permit(:title, :point, :image, :impression,materials_attributes: [:material_name,:material_quantity],cookmethods_attributes: [:method])
-  # end
-  
   def recipe_params
-    params.require(:recipe).permit(:title, :point, :image, :impression,materials_attributes: [:id,material_name: [],material_quantity: []],cookmethods_attributes: [:id,method: []])
+    params.require(:recipe).permit(:title, :point, :image, :impression,materials_attributes: [:id,:_destroy,material_name: [],material_quantity: []],cookmethods_attributes: [:id,:_destroy,method: []])
   end
-  
-  
-  
-  
   
 end

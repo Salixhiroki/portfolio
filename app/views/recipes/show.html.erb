@@ -24,10 +24,9 @@
               <%= link_to edit_recipe_path do %>
                 <p class="mr-3">編集</p>
               <% end %>
-              
-              <%= link_to edit_recipe_path do %>
-                <p>削除</p>
-              <% end %>
+               
+                <p><%= link_to "削除", {controller: "recipes", action: "destroy"},method: :delete,data: {confirm: "このレシピを削除しますか？"}%></p>
+    
             </div>
             
             <!--要素の数によって両端に振り分ける-->
