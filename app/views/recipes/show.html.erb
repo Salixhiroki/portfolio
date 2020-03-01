@@ -12,7 +12,22 @@
                 <!--ユーザーの画像 user_idがあるので-->
               </div>
             </div>
-         </div> 
+         </div>
+         
+         
+         <% if !@detail.favorites_users.include?(current_user) %>
+            <%= link_to favorites_path(recipe_id: @detail.id),method: :post do %>
+                <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+            <% end %>
+        <% else %>
+            <%= link_to cancel_path(recipe_id: @detail.id),method: :delete do %>
+              <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
+            <% end %>
+        <% end %>
+        
+        <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+         
+         
           
         <div class="row">
           <div class="col-md-12">
@@ -71,6 +86,30 @@
               <h3 class="pt-2 pb-2">感想</h3>
               <p><%= @detail.impression %></p>
             </div>
+            
+            <div>
+              <%= form_for [@detail,@detail.comments.build] do |f| %>
+                <%= f.text_area :content,placeholder:"コメントを入力してください",size: "10x5", class:"col-md-5 offset-md-4 comment" %>
+                <div>
+                  <%= button_to "コメントする", {controller: "recipes", action: 'create'},{method: :post, class: "btn btn-success col-md-5 offset-md-4 mt-3 mb-5"} %>
+                </div>
+              <% end %>
+            </div>
+            
+            
+            <div>
+              <% @detail.comments.each do |comment| %>
+                <% if comment.content!= nil %>
+                  <ul class="list-group-item">
+                    <li class="list-group-item">
+                      <%= comment.content %>
+                      <%= link_to "削除", {controller: "comments", action: "destroy",recipe_id: @detail.id},{method: :delete} %>
+                    </li>
+                  </ul>
+                <% end %>
+              <% end %>
+            </div>
+            
           </div>    
         </div>
       </div>      
@@ -110,6 +149,5 @@
           $('body,html').animate({scrollTop: 0 }, 500);
           return false;
         });
-     
     });
   </script>

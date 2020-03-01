@@ -64,7 +64,27 @@ h3{
 }
 
 
+.favorite-img{
+   width:25px;
+   height:25px;
 }
+
+.comment{
+  outline:none;
+  border-color:lightgreen;
+  
+  &:hover{
+    border-color:limegreen;
+  }
+  
+  
+}
+
+
+}
+
+
+
 
 
 #page_top{

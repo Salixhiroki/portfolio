@@ -15,12 +15,16 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   # 新規投稿,一覧,詳細,
-  resources :recipes
+  resources :recipes do
+    resource :comments
+  end
   
   # お気に入り
   get 'favorites/index'
   post '/favorites', to: 'favorites#create'
   delete 'cancel', to: 'favorites#cancel'
+  
+  
   
   # 検索
   
