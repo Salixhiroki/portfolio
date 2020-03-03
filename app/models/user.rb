@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :favorites_recipes,through: :favorites, source: 'recipe'
   has_many :comments
   
+  mount_uploader :user_image,ImageUploader
+  
   has_secure_password
   
 end

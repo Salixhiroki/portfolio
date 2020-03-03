@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user=User.new(user_params)
     
     if @user.save
-      redirect_to recipes_index_path, success: "登録に成功しました"
+      redirect_to recipes_path, success: "登録に成功しました"
     else
       flash.now[:danger]="登録に失敗しました"
       render :new

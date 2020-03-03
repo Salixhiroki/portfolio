@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   # 新規登録
   resources :users
-  
+  get 'search', to: 'recipes#search'
   
   # ログイン,ログアウト
   get 'login', to: 'sessions#new'
@@ -24,9 +24,7 @@ Rails.application.routes.draw do
   post '/favorites', to: 'favorites#create'
   delete 'cancel', to: 'favorites#cancel'
   
-  
-  
-  # 検索
-  
+ 
+
   
 end

@@ -17,9 +17,15 @@
           </div>
         </div>
           
-          <div class="offset-md-5 offset-sm-5">
-                <p class="index"><input type="text" class="index-text" placeholder="材料を入力"><button type="submit"></button></p>
+          
+          <div class="offset-md-5 offset-sm-5 mb-4 index">
+            
+            <%= search_form_for(@q,url: search_path, method: :get) do |f| %>
+              <%= f.search_field :material_name_cont, class:"index-text",placeholder:"材料を入力" %>
+              <%= f.submit class:"index_button" %>
+            <% end %>
           </div>
+        
         
         <div class="row">
           <div class="col-md-12 offset-md-1 text-decoration-none content">
@@ -34,7 +40,9 @@
             <div class="col-md-3 recipes">
               <div class="recipes-top">
                 <!--レシピの画像をいれる ↓ recipe.image-->
-                <%= image_tag 'images.jpeg', class:"img" %>
+                <% if recipe.image.url!=nil %>
+                  <%= image_tag recipe.image.url, class:"img" %>
+                <% end %>
               </div>
               
               <!--bottom-->
@@ -68,7 +76,6 @@
             </div>
           
           <% end %>
-        
          </div>
         </div>
       </div>
