@@ -24,14 +24,12 @@ class RecipesController < ApplicationController
     @recipe=Recipe.new(user_id: recipe_params[:user_id],title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
     
     # ---------必要な情報を格納、保存----------#
-        # binding pry
     # @recipeにuser_idを格納
     @recipe.user_id=current_user.id
     if @recipe.save
     
       # 材料名と分量を格納、保存
       recipe_params[:materials_attributes]["0"]["material_name"].zip(recipe_params[:materials_attributes]["0"]["material_quantity"]).each do |m_name,m_quantity|
-        
         
         @material=@recipe.materials.create!(user_id: current_user.id, material_name: m_name, material_quantity: m_quantity)
         
@@ -72,8 +70,6 @@ class RecipesController < ApplicationController
   
 
 
-
-
   # 投稿一覧
   def index
     @recipes=Recipe.all
@@ -81,7 +77,7 @@ class RecipesController < ApplicationController
    
     # @q_method=Cookmethod.ransack(params[:q])
     @q=Material.ransack(params[:q])
-    @materials_q = @q.result(distinct: true)
+    @q_materials = @q.result(distinct: true)
     # binding pry
     # @recipe_q = @q.result(distinct: true)
     # @method_q = @q.result(distinct: true)
@@ -92,36 +88,27 @@ class RecipesController < ApplicationController
 
   def search
     @q=Material.ransack(params[:q])
-    # @q=Material.search(search_params)
-    # binding pry
-    # @recipe_q = @q.result(distinct: true)
-    binding pry
-    if @q!=nil
+  
+    if search_params[:material_name_cont]!="" &&  @q.result(distinct: true)!=nil
         @materials_q = @q.result(distinct: true)
         i=0
         @recipe_id=[]
         @recipes_q=[]
         @user_results=[]
         @materials_q.each do |material_q|  
-          # @recipe_id[q_num-1]=material_q[q_num-1].recipe_id
-          # binding pry
           logger.debug(material_q.recipe_id)
-          
           @recipe_id[i]=material_q.recipe_id
           @recipes_q[i]=Recipe.where(id: @recipe_id[i])
           @user_results[i]=User.find_by(id: material_q.user_id) 
           i+=1
         end
-        # @material_results=Material.where(recipe_id: @recipe_id)
-        # 1~3
-        # @material_results_size=@material_results.length
-        # @method_results=Cookmethod.where(recipe_id: @recipe_id)
-        # @method_results_size=@method_results.length
-        # binding pry 
-      # end 
-      redirect_to searh_path
+        @q_size=i-1
+        
     else
-      redirect_to search_path
+      # binding pry
+      @nothing=1
+      flash.now[:info]="検索結果は0件です"
+      render :search
     end
   end
   
@@ -208,12 +195,8 @@ class RecipesController < ApplicationController
     end
     
     
-              
-      # binding pry
     if @recipe_cnt==1 && @material_cnt==@m_lengths && @method_cnt==@method_lengths
-      # binding pry
       redirect_to edit_recipe_path, success: "レシピの編集をしました"
-      
     else
       flash.now[:danger]="レシピの編集に失敗しました"
       render :edit
@@ -221,6 +204,7 @@ class RecipesController < ApplicationController
   end
   
   
+  # レシピ削除
   def destroy
     @recipe=Recipe.find_by(id: params[:id])
     if @recipe.destroy
@@ -231,6 +215,8 @@ class RecipesController < ApplicationController
     end
   end
   
+  
+  # ストロングパラメータ
   private
   
   def recipe_params

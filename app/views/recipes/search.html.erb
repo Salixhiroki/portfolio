@@ -19,67 +19,65 @@
           
           <div class="offset-md-5 offset-sm-5 mb-4 index">
             
-            <%= search_form_for(@q_material,url: search_path, method: :get) do |f| %>
+            <%= search_form_for(@q,url: search_path, method: :get) do |f| %>
               <%= f.search_field :material_name_cont, class:"index-text",placeholder:"材料を入力" %>
               <%= f.submit class:"index_button" %>
             <% end %>
           </div>
         
-        <%# if @q.any? %>
+        <% if @nothing!=1 %>
             
             
           <div class="row">
             <div class="col-md-12 offset-md-1 text-decoration-none content">
               
               <!--レシピ1つでリンクさせるようにする-->
-              
-              <% @recipes.each do |recipe| %>
-              <%= link_to recipe_path(recipe.id) do %>
-              <!--top-->
-      
-              
-              <div class="col-md-3 recipes">
-                <div class="recipes-top">
-                  <!--レシピの画像をいれる ↓ recipe.image-->
-                  <% if recipe.image.url!=nil %>
-                    <%= image_tag recipe.image.url, class:"img" %>
-                  <% end %>
-                </div>
+              <% for i in 0..@q_size do %>
+              <%= link_to recipe_path(@recipes_q[i][0].id) do %>
+                <!--top-->
+        
                 
-                <!--bottom-->
-                <div class="recipes-bottom">
-                  <div class="recipes-discription">
-                    <!--タイトル ↓ recipe.title-->
-                    <h4><%= recipe.title %></h4>
-                    <!--ポイント ↓ recipe.discription-->
-                     <p><%= recipe.point %></p>
-                  </div>
-                <% end %>
-              
-                  <div class="recipes-favorite">
-                    
-                    <% if !recipe.favorites_users.include?(current_user) %>
-                      <%= link_to favorites_path(recipe_id: recipe.id),method: :post do %>
-                        <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
-                      <% end %>
-                    <% else %>
-                      <%= link_to cancel_path(recipe_id: recipe.id),method: :delete do %>
-                        <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
-                      <% end %>
+                <div class="col-md-3 recipes">
+                  <div class="recipes-top">
+                    <!--レシピの画像をいれる ↓ recipe.image-->
+                    <% if @recipes_q[i][0].image.url!=nil %>
+                      <%= image_tag @recipes_q[i][0].image.url, class:"img" %>
                     <% end %>
-                    
-                    <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
-                    
-                    <%= recipe&.user.name %>
+                  </div>
                   
+                  <!--bottom-->
+                  <div class="recipes-bottom">
+                    <div class="recipes-discription">
+                      <!--タイトル ↓ recipe.title-->
+                      <h4><%= @recipes_q[i][0].title %></h4>
+                      <!--ポイント ↓ recipe.discription-->
+                       <p><%= @recipes_q[i][0].point %></p>
+                    </div>
+                  <% end %>
+                
+                    <div class="recipes-favorite">
+                      
+                      <% if !@recipes_q[i][0].favorites_users.include?(current_user) %>
+                        <%= link_to favorites_path(recipe_id: @recipes_q[i][0].id),method: :post do %>
+                          <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to cancel_path(recipe_id: @recipes_q[i][0].id),method: :delete do %>
+                          <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
+                        <% end %>
+                      <% end %>
+                      
+                      <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                      
+                      <%= @recipes_q[i][0]&.user.name %>
+                    
+                    </div>
                   </div>
                 </div>
-              </div>
-            
-            <% end %>
+              <% end %>
          </div>
         </div>
-        <%# end %>
+        <% end %>
       </div>
     </div>
   </body>
