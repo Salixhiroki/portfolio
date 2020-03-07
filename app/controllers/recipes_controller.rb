@@ -125,7 +125,7 @@ class RecipesController < ApplicationController
     # @detailにあるuser_idとrecipe_idを用いて「材料名」と「分量」の情報を抽出する
     @detail_material=Material.where(user_id: @detail.user_id, recipe_id: @detail.id)
     
-    # @detailにあるuser_idとrecipe_idを用いて「作り��」の情報を抽出する
+    # @detailにあるuser_idとrecipe_idを用いて「作り方」の情報を抽出する
     @detail_method=Cookmethod.where(user_id: @detail.user_id, recipe_id: @detail.id)
     
     # @detailにあるuser_idを用いて「User」の情報を抽出する
@@ -153,16 +153,19 @@ class RecipesController < ApplicationController
     @material=Material.where(user_id: @update_user_id , recipe_id: params[:id])
     @cookmethod=Cookmethod.where(user_id: @update_user_id, recipe_id: params[:id])
     
-    logger.debug(@material)
+    # logger.debug(@material)
     @recipe_cnt=0
     # if @recipe.update(user_id: recipe_params[:user_id],title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
     if @recipe.update(title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
       @recipe_cnt+=1
     end
     
-    @m_lengths=recipe_params[:materials_attributes].to_h.length
     
+    @m_lengths=recipe_params[:materials_attributes].to_h.length
+    logger.debug(@m_lengths)
     @material_cnt=0
+    @nothing_material=[]
+    num=0
     for m_length in 0..@m_lengths-1 do
       @m_name=recipe_params[:materials_attributes][m_length.to_s][:material_name][0]
       @m_quantity=recipe_params[:materials_attributes][m_length.to_s][:material_quantity][0]
@@ -178,12 +181,16 @@ class RecipesController < ApplicationController
         if @material[m_length].update(material_name: @m_name) && @material[m_length].update(material_quantity: @m_quantity)
           @material_cnt+=1
         end
+      else
+        @nothing_material[num] = @material[m_length]
+        num+=1
       end
     end
-        
-    @method_cnt=0
-    @method_lengths=recipe_params[:cookmethods_attributes].to_h.length
     
+    @method_cnt=0
+    @nothing_method=[]
+    @method_lengths=recipe_params[:cookmethods_attributes].to_h.length
+    num=0
     for method_length in 0..@method_lengths-1 do
       @method=recipe_params[:cookmethods_attributes][method_length.to_s][:method][0]
       if @method!=""
@@ -191,17 +198,48 @@ class RecipesController < ApplicationController
         if @cookmethod[method_length].update(method: @method)
           @method_cnt+=1
         end
+      else
+        @nothing_method[num] = @cookmethod[method_length]
+        num+=1
       end
     end
     
-    
-    if @recipe_cnt==1 && @material_cnt==@m_lengths && @method_cnt==@method_lengths
+    # binding pry
+    if @recipe_cnt==1 && @material_cnt !=0 && @method_cnt !=0
+      # binding pry
+      material_method_destroy(@nothing_material,@nothing_method)
+      
       redirect_to edit_recipe_path, success: "レシピの編集をしました"
     else
       flash.now[:danger]="レシピの編集に失敗しました"
       render :edit
     end
   end
+  
+  
+  
+  
+  def material_method_destroy(nothing_material,nothing_method)
+    
+    num=0
+    if nothing_material.length!=0
+      nothing_material.each do |n_material|
+        n_material&.destroy
+        num+=1
+      end
+    end
+    
+    num=0
+    if nothing_method.length!=0
+      nothing_method.each do |n_method|
+        n_method&.destroy
+        num+=1
+      end
+    end
+    
+  end
+    
+  
   
   
   # レシピ削除
