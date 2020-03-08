@@ -14,6 +14,7 @@
             </div>
             
             <%= form_for @recipe do |f| %>
+            
               <div class="text-white title">
                 <h3 class="badge badge-secondary">タイトルを入力してください</h3>
                 <div><%= f.text_field :title, class:"text-form", placeholder:"タイトルを入力" %></div>
@@ -21,36 +22,40 @@
               
               <div><label class="badge badge-secondary">画像を選択してください</label></div>
                 <%= f.file_field :image_url %>
-          
+              
               <div class="material">
                   <label class="badge badge-secondary">材料とそれに対する分量を入力してください</label>
+                  
                   <% i=1 %>
                   <%= f.fields_for :materials do |m| %>
+                  
                     <div class="food">
                       <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                       <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
+                      
                       <% if @material.length==i %>
                         <button type="button" class="ml-1 add-material">+</button>    
                       <% end %>
+                      
                       <% i+=1 %>
                     </div>
                   <% end %>
-                  
               </div>
               
               <div class="method">
                 <div><label class="badge badge-secondary">作り方を入力してください</label></div>
+                
                   <% i=1 %>
                   <%= f.fields_for :cookmethods do |cm| %>
-                  <div class="food">
-                    <label class="badge badge-pill badge-secondary">1</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
-                    <% if @cookmethod.length==i %>
-                      <button type="button" class="add-method ml-2">+</button>
-                    <% end %>
-                    <% i+=1 %>
-                  </div>
-                  <% end %>
                   
+                    <div class="food">
+                      <label class="badge badge-pill badge-secondary">1</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
+                      <% if @cookmethod.length==i %>
+                        <button type="button" class="add-method ml-2">+</button>
+                      <% end %>
+                      <% i+=1 %>
+                    </div>
+                  <% end %>
               </div>
               
               <div>

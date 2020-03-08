@@ -1,26 +1,26 @@
 
-<!--ログイン画面を作成-->
-
 <div class="user-login-wrapper">
-    <img src="aaa" class="image" alt="お茶漬けに">
-    <div class="container">
-        <div class="row">
-          <div class="col-md-5 offset-md-7 login">
-            <div class="text-center title">
-                <h3 class="offset-sm-4 mb-4 title-name">LOGIN</h3>
-            </div>
-            <%= form_for :session, url: login_path do |f| %>
-            <div class="col-md-8 offset-md-2 user-account">
-                <%= f.text_field :email, class:"col-md-11 offset-md-1 d-block email", placeholder:"Email" %>
-                <%= f.password_field :password, class:"col-md-11 offset-md-1 d-block password", placeholder:"Password" %>
-            </div>
-            
-            <div class="col-md-8 offset-md-2">
-              <%= f.submit "ログイン", class:"col-md-6 offset-md-4 d-block btn btn-success login-button" %> 
-            </div>
-            <% end %>
-          </div>  
-            
+  <img src="aaa" class="image" alt="お茶漬けに">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 offset-md-7 login">
+        <div class="text-center title">
+          <h3 class="offset-sm-4 mb-4 title-name">LOGIN</h3>
         </div>
+        
+        <%= form_for :session, url: login_path do |f| %>
+        
+          <div class="col-md-8 offset-md-2 user-account">
+            <%= f.text_field :email, class:"col-md-11 offset-md-1 d-block email", placeholder:"Email" %>
+            <%= f.password_field :password, class:"col-md-11 offset-md-1 d-block password", placeholder:"Password" %>
+          </div>
+          
+          <div class="col-md-8 offset-md-2">
+            <%= f.submit "ログイン", class:"col-md-6 offset-md-4 d-block btn btn-success login-button" %> 
+          </div>
+          
+        <% end %>
+      </div>  
     </div>
+  </div>
 </div>

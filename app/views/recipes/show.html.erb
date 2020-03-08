@@ -1,158 +1,186 @@
-<!--レシピの詳細-->
 
-  <div class="recipes-show-wrapper">
-    <div class="container show-container">
+<div class="recipes-show-wrapper">
+  <div class="container show-container">
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <div class="text-center">
+          <h2 class="bg-success text-white pt-2 pb-2"><%= @detail.title %></h2>
+          <!--レシピのタイトル-->
+          <p class="text-left"><img src="aaa"><%= @user.name %></p>
+          <!--ユーザーの画像 user_idがあるので-->
+        </div>
+      </div>
+   </div>
+       
+  <% if @detail_material[0]&.material_name != nil %>
+   
+    <% if !@detail.favorites_users.include?(current_user) %>
      
-          <div class="row">
-            <div class="col-md-12 p-0">
-              <div class="text-center">
-                <h2 class="bg-success text-white pt-2 pb-2"><%= @detail.title %></h2>
-                <!--レシピのタイトル-->
-                <p class="text-left"><img src="aaa"><%= @user.name %></p>
-                <!--ユーザーの画像 user_idがあるので-->
-              </div>
-            </div>
-         </div>
+      <%= link_to favorites_path(recipe_id: @detail.id),method: :post do %>
+          <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+      <% end %>
+        
+    <% else %>
+    
+      <%= link_to cancel_path(recipe_id: @detail.id),method: :delete do %>
+        <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
+      <% end %>
+        
+    <% end %>
+    
+    <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
          
-         <% if @detail_material[0]&.material_name != nil %>
-           <% if !@detail.favorites_users.include?(current_user) %>
-              <%= link_to favorites_path(recipe_id: @detail.id),method: :post do %>
-                  <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
-              <% end %>
-          <% else %>
-              <%= link_to cancel_path(recipe_id: @detail.id),method: :delete do %>
-                <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
-              <% end %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center show-image">
+          
+          <% if @detail.image.url!=nil %>
+            <%= image_tag @detail.image.url, class:"image-size" %>
           <% end %>
           
-          <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+        </div>
+        
+        <div class="d-flex flex-row justify-content-end">
+          
+          <%= link_to edit_recipe_path do %>
+            <p class="mr-3">編集</p>
+          <% end %>
            
-           
+          <p><%= link_to "削除", {controller: "recipes", action: "destroy"},method: :delete,data: {confirm: "このレシピを削除しますか？"}%></p>
+
+        </div>
+        
+        <!--要素の数によって両端に振り分ける-->
+        <!--# ex) material.length=16の時、n=8となるので両端に8コずつ並ぶ-->
+        <div class="show-material">
+          <h3 class="pt-2 pb-2">材料</h3>
+          <% if @detail_material.length < 5 %>
+          
+            <% for num in 0..@n do %>
             
-          <div class="row">
-            <div class="col-md-12">
-              <div class="text-center show-image">
-                <% if @detail.image.url!=nil %>
-                  <%= image_tag @detail.image.url, class:"image-size" %>
-                <% end %>
-              </div>
+              <ul class="show-left-material">
+                <li><%= @detail_material[num].material_name %></li>
+                <li><%= @detail_material[num].material_quantity %></li>
+              </ul>
               
-              <div class="d-flex flex-row justify-content-end">
-                <%= link_to edit_recipe_path do %>
-                  <p class="mr-3">編集</p>
-                <% end %>
-                 
-                  <p><%= link_to "削除", {controller: "recipes", action: "destroy"},method: :delete,data: {confirm: "このレシピを削除しますか？"}%></p>
+            <% end %>
+              
+          <% elsif @detail_material.length >= 5 %>
+          
+            <% num=0 %>
+            <% while num < @n*2 do %>
+            
+              <ul class="show-right-material">
+                <li><%= @detail_material[num].material_name %></li>
+                <li class="list-inline"><%= @detail_material[num].material_quantity %></li>
+              </ul>
+              <% num+=1 %>
+              
+            <% end %>
+            
+          <% end %>
+          
+        </div>
+        
+        <div>
+          <h3 class="pt-2 pb-2">作り方</h3>
+          <% for num in 0..@m-1 do %>
+          
+            <ul>
+              <li><%= @detail_method[num].method %></li>
+            </ul>
+            
+          <% end %>
+        </div>
       
-              </div>
-              
-              <!--要素の数によって両端に振り分ける-->
-              <!--# ex) material.length=16の時、n=8となるので両端に8コずつ並ぶ-->
-              <div class="show-material">
-                <h3 class="pt-2 pb-2">材料</h3>
-                <% if @detail_material.length < 5 %>
-                  <% for num in 0..@n do %>
-                    <ul class="show-left-material">
-                      <li><%= @detail_material[num].material_name %></li>
-                      <li><%= @detail_material[num].material_quantity %></li>
-                    </ul>
-                  <% end %>
-                    
-                <% elsif @detail_material.length >= 5 %>
-                  <% num=0 %>
-                    <% while num < @n*2 do %>
-                      <ul class="show-right-material">
-                        <li><%= @detail_material[num].material_name %></li>
-                        <li class="list-inline"><%= @detail_material[num].material_quantity %></li>
-                      </ul>
-                      <% num+=1 %>
-                    <% end %>
-                <% end %>
-              </div>
-              
-              <div>
-                <h3 class="pt-2 pb-2">作り方</h3>
-                <% for num in 0..@m-1 do %>
-                  <ul>
-                    <li><%= @detail_method[num].method %></li>
-                  </ul>
-                <% end %>
-              </div>
-            
-              <div>
-                <h3 class="pt-2 pb-2">作る上でのポイント</h3>
-                <p><%= @detail.point %></p>
-              </div>
-              
-              <div>
-                <h3 class="pt-2 pb-2">感想</h3>
-                <p><%= @detail.impression %></p>
-              </div>
-              
-              <div>
-                <%= form_for [@detail,@detail.comments.build] do |f| %>
-                  <%= f.text_area :content,placeholder:"コメントを入力してください",size: "10x5", class:"col-md-5 offset-md-4 comment" %>
-                  <div>
-                    <%= button_to "コメントする", {controller: "recipes", action: 'create'},{method: :post, class: "btn btn-success col-md-5 offset-md-4 mt-3 mb-5"} %>
-                  </div>
-                <% end %>
-              </div>
-              
-              
-              <div>
-                <% @detail.comments.each do |comment| %>
-                  <% if comment.content!= nil %>
-                    <ul class="list-group-item">
-                      <li class="list-group-item">
-                        <%= comment.user.name %>
-                        <%= comment.content %>
-                        <%= link_to "削除", {controller: "comments", action: "destroy",recipe_id: @detail.id},{method: :delete} %>
-                      </li>
-                    </ul>
-                  <% end %>
-                <% end %>
-              <% end %>
-              
+        <div>
+          <h3 class="pt-2 pb-2">作る上でのポイント</h3>
+          <p><%= @detail.point %></p>
+        </div>
+        
+        <div>
+          <h3 class="pt-2 pb-2">感想</h3>
+          <p><%= @detail.impression %></p>
+        </div>
+        
+        <div>
+          <%= form_for [@detail,@detail.comments.build] do |f| %>
+          
+            <%= f.text_area :content,placeholder:"コメントを入力してください",size: "10x5", class:"col-md-5 offset-md-4 comment" %>
+            <div>
+              <%= button_to "コメントする", {controller: "recipes", action: 'create'},{method: :post, class: "btn btn-success col-md-5 offset-md-4 mt-3 mb-5"} %>
             </div>
             
-          </div>    
+          <% end %>
         </div>
-      </div>      
-    </div>      
+        
+        
+        <div>
+          <% @detail.comments.each do |comment| %>
+          
+            <% if comment.content!= nil %>
+            
+              <ul class="list-group-item">
+                <li class="list-group-item">
+                  <% if comment.user&.name!=nil %>
+                    <%= comment.user.name %>
+                  <% else %>
+                    <%= "削除されたユーザー" %>
+                  <% end %> 
+                  <%= comment.content %>
+                  <%= link_to "削除", {controller: "comments", action: "destroy",recipe_id: @detail.id},{method: :delete} %>
+                </li>
+              </ul>
+              
+            <% end %>
+            
+          <% end %>
+  <% end %>
+        </div>
+      </div>    
+    </div>
+  </div>      
+</div>      
+
+
+<div id="page_top">
+  <p id="return">TOP</p>
+</div>
+
+
+<script>
+// 処理開始
+  jQuery(function(){
+    var pagetop = $('#page_top');
+    // 実験結果＝＞hideにすると非表示になって何も起こらない
+    // showで再度表示させるとアニメーションが起こる！
+    pagetop.hide();
+    pagetop.show();
     
-  <div id="page_top">
-    <p id="return">TOP</p>
-  </div>
-  
-  
-  
-  
-  <script>
-  // 処理開始
-    jQuery(function(){
-      var pagetop = $('#page_top');
-      // 実験結果＝＞hideにすると非表示になって何も起こらない
-      // showで再度表示させるとアニメーションが起こる！
-      pagetop.hide();
-      pagetop.show();
-      
-      $(window).scroll(function(){
-       
-        // 100pxスクロールしたら
-        if($(this).scrollTop() > 70){
-          pagetop.stop().animate({
+    $(window).scroll(function(){
+     
+      // 100pxスクロールしたら
+      if($(this).scrollTop() > 70){
+        pagetop.stop().animate({
           'bottom': '50px' //下から50pxの位置に
         }, 300);// フェードインさせる
-        }else{
-          pagetop.stop().animate({
+        
+      }else{
+        pagetop.stop().animate({
           'bottom': '-50px' //下から-50pxの位置に
         }, 300);  // フェードアウトさせる
-        }
-      });
-        // pagetopをクリックしたら
-        pagetop.on('click',function(){
-          $('body,html').animate({scrollTop: 0 }, 500);
-          return false;
-        });
+      }
+      
     });
-  </script>
+      // pagetopをクリックしたら
+    pagetop.on('click',function(){
+      $('body,html').animate({scrollTop: 0 }, 500);
+        return false;
+      });
+  });
+  
+  
+  
+  
+  
+</script>

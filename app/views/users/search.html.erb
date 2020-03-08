@@ -8,6 +8,8 @@
           <div class="col-md-6 offset-md-3 mb-3">
             <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 一覧</h2>
           </div>
+          
+          
             
           <div class="offset-md-3">
             <p>お茶漬けレシピ一覧です。自分の好きなお茶漬けレシピを見つけて真似して作ってみたり<br>
@@ -16,7 +18,7 @@
         </div>
           
         <div class="offset-md-5 offset-sm-5 mb-4 index">
-          <%= search_form_for(@q,url: search_path, method: :get) do |f| %>
+          <%= search_form_for(@q,url: search_user_path, method: :get) do |f| %>
           
             <%= f.search_field :material_name_cont, class:"index-text",placeholder:"材料を入力" %>
             <%= f.submit class:"index_button" %>

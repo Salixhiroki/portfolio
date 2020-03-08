@@ -2,70 +2,79 @@ body{
   background-color:#F0FFF0
 }
 
-
-
 .recipes-index-container{
-    
-    
-    // .heading{
-    //   margin-left:130px;
-    // }
-    
-    .content{
-      float:left;
-    }
-    
-    // margin-top:80px;
-    // border:1px solid;
-    color: red;  
-    // font-size: 10px;
-    // paddin/g-left:150px;
-    ;
-    
+  
+  
+  // .heading{
+  //   margin-left:130px;
+  // }
+  
+  .content{
+    float:left;
+  }
+
+  .heading-sentence{
+    color:red;
+  }
+  
+  // margin-top:80px;
+  // border:1px solid;
+  color: green;  
+  // font-size: 10px;
+  // paddin/g-left:150px;
+  
   .recipes{
     margin-bottom:30px;
     padding:0;
     float:left;
     margin-right:30px;
+    
   }
-  
+
+  .link{
+    text-decoration:none;
+    color:green;
+  }
+
   .recipes-top{
     height: 285px;
-    border:1px dashed;
+    border:1px solid;
   }
-  
-  
+
+
+
   .recipes-bottom{
-    border:1px dashed;
+    border:1px solid;
   }
-  
+
   // .recipes:last-child{
   //   margin-right:0;
   // }
-  
-  
+
+
   // .index-wrap{
   //   margin-bottom:40px;
   //   margin-left:455px;
-    
-    
-    .index{
-      position:relative;
-    }
-    
+  
+  
+  .index{
+    position:relative;
+  }
+  
+  
   .index-text{
     width:200px;
     height:30px;
     font-size:15px;
     outline:none;
   }
-  
-  
+
+
   .index-text:hover{
     border-color:yellowgreen;
   }
-  
- .index_button{
+
+  .index_button{
     width:30px;
     height:26px;
     margin-left:10px;
@@ -83,7 +92,7 @@ body{
     left:200px;
     border-color:none;
   }
-  
+
   button:hover{
     // color:darkolivegreen;
     background-color:#F0FFF0;
@@ -93,22 +102,22 @@ body{
    transform: scale(1.2);
    transition-duration: 0.001s;
   }
-    
-    
- .img{
+  
+  
+  .img{
    background-size: cover;
    width:277.5px;
    height: 285px;
- }
- 
- .favorite-img{
+  }
+
+  .favorite-img{
    width:25px;
    height:25px;
- }
- 
-  
-  
-  @media screen and (max-width: 1199px) {
+  }
+
+
+
+  @media screen and (max-width: 1199px){
   
     .heading{
       margin-left:90px;
@@ -117,9 +126,7 @@ body{
     .index{
       margin-left:50px;
     }
-
   }  
-  
 }
 
 

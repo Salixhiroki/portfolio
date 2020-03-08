@@ -1,95 +1,88 @@
 
 .recipes-show-wrapper{
   
-
-
-
-// .show-title{
-// background: ivory; 
-// border:1px solid;
-// height:74px;
- 
-// }
-
-
-// img{
-//   margin:auto;
-// }
-
-
-.show-image{
-  margin-bottom:30px;
-}
-
-
-.image-size{
-  width: 300px;
-  height: 300px;
-}
-
-h2{
-  margin-top:20px;
-}
-
-
-.show-user-name{
- margin-bottom:30px; 
-}
-
-
-
-.show-left-material{
-  // display:inline;
-  float:left;
-  padding-left:30px;
-}
-
-.show-right-material{
-  // display:inline;
-  float:left;
-  margin-left:180px;
-}
-
-
-.show-material{
-  padding:0;
-}
-
-.show-material:after{
-  clear:both;
-  display:block;
-  content:" ";
-}
-
-h3{
-  background:beige;
-  border:1px solid;
-  padding-left:15px;
-  padding-right:0;
-}
-
-
-.favorite-img{
-   width:25px;
-   height:25px;
-}
-
-.comment{
-  outline:none;
-  border-color:lightgreen;
+  // .show-title{
+  // background: ivory; 
+  // border:1px solid;
+  // height:74px;
+   
+  // }
   
-  &:hover{
-    border-color:limegreen;
+  
+  // img{
+  //   margin:auto;
+  // }
+  
+  
+  .show-image{
+    margin-bottom:30px;
   }
   
   
+  .image-size{
+    width: 300px;
+    height: 300px;
+  }
+  
+  
+  h2{
+    margin-top:20px;
+  }
+  
+  .show-user-name{
+   margin-bottom:30px; 
+  }
+  
+  
+  .show-left-material{
+    // display:inline;
+    float:left;
+    padding-left:30px;
+  }
+  
+  
+  .show-right-material{
+    // display:inline;
+    float:left;
+    margin-left:180px;
+  }
+  
+  
+  .show-material{
+    padding:0;
+  }
+  
+  
+  .show-material:after{
+    clear:both;
+    display:block;
+    content:" ";
+  }
+  
+  
+  h3{
+    background:beige;
+    border:1px solid;
+    padding-left:15px;
+    padding-right:0;
+  }
+  
+  
+  .favorite-img{
+     width:25px;
+     height:25px;
+  }
+  
+  
+  .comment{
+    outline:none;
+    border-color:lightgreen;
+    
+    &:hover{
+      border-color:limegreen;
+    }
+  }
 }
-
-
-}
-
-
-
 
 
 #page_top{

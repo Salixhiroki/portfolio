@@ -10,6 +10,7 @@
     border-radius:10px;
   }
   
+  
   .title{
     margin-top:100px;
     margin-bottom:20px;
@@ -18,7 +19,6 @@
   .title-name{
     margin-left:0;
   }
-  
   
   
   .email{
@@ -35,7 +35,6 @@
   }
 
 
-  
   .image{
     position: absolute;
     // width: 100px;
@@ -44,18 +43,16 @@
     left: 350px;
   }
   
-  @media screen and (max-width: 617px) {
+  @media screen and (max-width: 617px){
       
-  .image{
-    display:none;
-  }
-  
-  .login{
-    margin-top:0;
-  }
+    .image{
+      display:none;
+    }
     
+    .login{
+      margin-top:0;
+    }
+      
   }
-  
-  
 }
 

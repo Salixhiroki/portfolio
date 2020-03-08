@@ -11,74 +11,82 @@
   </head>
   <body>
    
-      <nav class="navbar navbar-dark navigation">
-        <div class="container m-0 col-md-12">
-          <!--トップページへジャンプ(linkto 画像)-->
+    <nav class="navbar navbar-dark navigation">
+      <div class="container m-0 col-md-12">
+        <ul class="nav">
+          <li>
+            <%= link_to root_path do %>
+              <%#= image_tag "top.png" %>
+              <%= "My chazuke" %>
+            <% end %>    
+          </li>
+        </ul>
+        
+        <ul class="nav">
+          <!--もしログインしていたら以下のアイコンを表示-->
+          <% if logged_in? %>
           
-          
-          
-          <ul class="nav">
-            <li>
-              <%= link_to root_path do %>
-                <%#= image_tag "top.png" %>
-                <%= "My chazuke" %>
-              <% end %>    
+            <li class="nav-item mr-2">
+              <%= link_to users_path do %>
+                <p><%= current_user.name %></p>
+              <% end %>
             </li>
-          </ul>
-          <ul class="nav">
-            <!--もしログインしていたら以下のアイコンを表示-->
-            <% if logged_in? %>
-              <li class="nav-item mr-2">
-               <%= link_to recipes_path do %>
-                  <P>投稿一覧</P><!--「投稿一覧」ページへジャンプ linkto アイコン-->
-                <% end %>
-              </li>
-                  
-              <li class="nav-item mr-2">
-                <%= link_to new_recipe_path do %>
-                  <P>新規投稿</P>
-                <% end %><!--「投稿」ページへジャンプ linkto アイコン-->
-              </li>
-                  
-              <li class="nav-item">
-                <%= link_to logout_path, method: :delete do %>
-                  <p>ログアウト</p><!--「ログアウト」する linkto アイコン-->
-                <% end %>
-              </li>
-                  
-                <!--もしログインしていなかったら以下のアイコンを表示-->
-              <% else %>    
-              <li class="nav-item">
-                <%= link_to new_user_path do %>
-                  <p>新規作成</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
-                <% end %>
-              </li>
-                  
-              <li class="nav-item">
-                <%= link_to login_path do %>
-                  <p>ログイン</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
-                <% end %>
-                <!--「ログイン」ページへジャンプ linkto アイコン-->
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
+          
+            <!--「投稿一覧」ページへジャンプ linkto アイコン-->
+            <li class="nav-item mr-2">
+              <%= link_to recipes_path do %>
+                <p>投稿一覧</p>
+              <% end %>
+            </li>
+            
+            <!--「投稿」ページへジャンプ linkto アイコン-->
+            <li class="nav-item mr-2">
+              <%= link_to new_recipe_path do %>
+                <P>新規投稿</P>
+              <% end %>
+            </li>
+            
+            <!--「ログアウト」する linkto アイコン-->
+            <li class="nav-item">
+              <%= link_to logout_path, method: :delete do %>
+                <p>ログアウト</p>
+              <% end %>
+            </li>
+                
+          <!--もしログインしていなかったら以下のアイコンを表示-->
+          <% else %>
+          
+            <!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+            <li class="nav-item">
+              <%= link_to new_user_path do %>
+                <p>新規作成</p>
+              <% end %>
+            </li>
+            
+            <!--「ログイン」ページへジャンプ linkto アイコン-->
+            <li class="nav-item">
+              <%= link_to login_path do %>
+                <p>ログイン</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+              <% end %>
+            </li>
+            
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    
     <% flash.each do |key,value| %>
        <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
     <% end %>  
+  
     
-      
-     <%= yield %>
-    
-    <!--後でjavascript作成-->
-    
+    <%= yield %>
+  
     <script>
       $(function(){
         $(".alert").fadeOut(5000);
       });
     </script>
-    
     
   </body>
 </html>

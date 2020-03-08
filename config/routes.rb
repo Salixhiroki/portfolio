@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   
   
   # top
-  
   root 'pages#index'
   
-  # 新規登録
+  # 新規登録、アカウント削除
   resources :users
+  get 'search_user', to: 'users#search'
   get 'search', to: 'recipes#search'
   
   # ログイン,ログアウト
@@ -23,8 +23,5 @@ Rails.application.routes.draw do
   get 'favorites/index'
   post '/favorites', to: 'favorites#create'
   delete 'cancel', to: 'favorites#cancel'
-  
- 
-
   
 end

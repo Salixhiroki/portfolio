@@ -14,13 +14,13 @@
             </div>
             
             <%= form_for @recipe do |f| %>
-            <div class="text-white title">
-              <h3 class="badge badge-secondary">タイトルを入力してください</h3>
-              <div><%= f.text_field :title, class:"text-form", placeholder:"タイトルを入力" %></div>
-            </div>
+              <div class="text-white title">
+                <h3 class="badge badge-secondary">タイトルを入力してください</h3>
+                <div><%= f.text_field :title, class:"text-form", placeholder:"タイトルを入力" %></div>
+              </div>
             
-            <div><label class="badge badge-secondary">画像を選択してください</label></div>
-            <%= f.file_field :image %>
+              <div><label class="badge badge-secondary">画像を選択してください</label></div>
+              <%= f.file_field :image %>
             
               <%= f.fields_for :materials do |m| %>
             
@@ -59,8 +59,6 @@
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                     <button type="button" class="ml-1 add-material">+</button>
                   </div>
-                  
-                    <!--<label class="badge badge-success">材料の量を入力してください</label>-->
                 </div>
               
               <% end %>
@@ -69,10 +67,11 @@
             
                 <div class="method">
                   <div><label class="badge badge-secondary">作り方を入力してください</label></div>
-                  <div><label class="badge badge-pill badge-secondary">1</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div><label class="badge badge-pill badge-secondary">2</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div><label class="badge badge-pill badge-secondary">3</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div><label class="badge badge-pill badge-secondary">4</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %><button type="button" class="add-method ml-2">+</button></div>
+                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
+                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
+                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
+                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %></div>
+                  <button type="button" id="add-method ml-2 add_f">+</button>
                 </div>
             
               <% end %>
@@ -97,3 +96,37 @@
     </div>
   </body>
 </html>
+
+<script>
+
+jQuery(function(){
+  var add_class = $(".method")
+  var add_field = $(".af")
+  var size=$('.af').length
+  var plus=$("#add_f") //button
+   $('.method div .num').each(function(i){
+      $(this).text(i+1);
+    });
+
+  $(add_class).on('click',function(p){
+    
+    $('.method div .num').append(i+1)
+    $(add_class).append($(`.method div :nth-of-type(1)`).clone())
+    
+  });
+});
+    
+    
+    
+    
+    
+    // $(add_class).on('click',function(){
+    //   $(add_field).appendTo(add_class)
+    //   $(add_field).appendTo(add_class)
+      
+    // });
+    
+  
+    
+  
+</script>
