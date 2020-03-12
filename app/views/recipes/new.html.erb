@@ -25,59 +25,59 @@
               <%= f.fields_for :materials do |m| %>
             
                 <div class="material">
-                  <label class="badge badge-secondary">材料とそれに対する分量を入力してください</label>
-                  <div class="food">
+                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※空欄は投稿されません。</a>
+                  <div class="food1">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                   </div>
             
-                  <div class="food">
+                  <div class="food2">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                   </div>
                   
-                  <div class="food">
+                  <div class="food3">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                     <!--<button type="button" class="ml-1 add-material">+</button>-->
                   </div>
                   
-                  <div class="food">
+                  <div class="food4">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                     
                   </div>
                   
-                  <div class="food">
+                  <div class="food5">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                     <!--<button type="button" class="ml-1 add-material">+</button>-->
                   </div>
                   
-                  <div class="food">
+                  <div class="food6">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
-                    <button type="button" class="ml-1 add-material">+</button>
                   </div>
+                  <button type="button" class="ml-1 add-material">+</button>
                 </div>
               
               <% end %>
             
               <%= f.fields_for :cookmethods do |cm| %>
             
-                <div class="method">
-                  <div><label class="badge badge-secondary">作り方を入力してください</label></div>
-                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %></div>
-                  <button type="button" id="add-method ml-2 add_f">+</button>
+                <div class="method mt-4">
+                  <div><label class="badge badge-secondary mr-2">作り方を入力してください</label><a>※空欄は投稿されません。</a></div>
+                  <div class="af1"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
+                  <div class="af2"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
+                  <div class="af3"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
+                  <div class="af4"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %></div>
+                  <button type="button" id="add-method ml-2">+</button>
                 </div>
             
               <% end %>
             
               <div>
-                <div><label class="badge badge-secondary">作る上でのポイントを入力してください</label></div>
+                <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください</label></div>
                 <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力" %>
               </div>
               
@@ -98,35 +98,32 @@
 </html>
 
 <script>
-
-jQuery(function(){
-  var add_class = $(".method")
-  var add_field = $(".af")
-  var size=$('.af').length
-  var plus=$("#add_f") //button
-   $('.method div .num').each(function(i){
-      $(this).text(i+1);
-    });
-
-  $(add_class).on('click',function(p){
+  jQuery(function(){
     
-    $('.method div .num').append(i+1)
-    $(add_class).append($(`.method div :nth-of-type(1)`).clone())
+    var size=$('div[class*="af"]').length
+    var mate_size=$('div[class*="food"]').length
+    var meth_button=$(".method button")
+    var mate_button=$(".material button")
+    
+     $(".method div .num").each(function(i){
+        $(this).text(i+1);
+      });
+  
+    $(meth_button).on('click',function(){
+      $(meth_button).before($(`.af${size}`).clone())
+      size=$('div[class*="af"]').length
+     
+      $(".method div:last").attr("class",`af${size}`)
+      $(".method div .num:last").text(`${size}`)
+    });
+    
+    $(mate_button).on('click',function(){
+      $(mate_button).before($(`.food${mate_size}`).clone())
+      mate_size=$('div[class*="food"]').length
+      
+      $(".material div:last").attr("class",`food${mate_size}`)
+      // $(".material div .num:last").text(`${mate_size}`)
+    });
     
   });
-});
-    
-    
-    
-    
-    
-    // $(add_class).on('click',function(){
-    //   $(add_field).appendTo(add_class)
-    //   $(add_field).appendTo(add_class)
-      
-    // });
-    
-  
-    
-  
 </script>

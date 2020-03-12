@@ -28,7 +28,7 @@
         
     <% end %>
     
-    <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+    <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img comment"%>
          
     <div class="row">
       <div class="col-md-12">
@@ -43,10 +43,10 @@
         <div class="d-flex flex-row justify-content-end">
           
           <%= link_to edit_recipe_path do %>
-            <p class="mr-3">編集</p>
+            <p class="badge badge-success mr-3 p-2">編集</p>
           <% end %>
            
-          <p><%= link_to "削除", {controller: "recipes", action: "destroy"},method: :delete,data: {confirm: "このレシピを削除しますか？"}%></p>
+          <p><%= link_to "削除", {controller: "recipes", action: "destroy"},method: :delete,data: {confirm: "このレシピを削除しますか？"},class:"badge badge-danger p-2"%></p>
 
         </div>
         
@@ -99,7 +99,7 @@
         </div>
         
         <div>
-          <h3 class="pt-2 pb-2">感想</h3>
+          <h3 class="pt-2 pb-2 impression">感想</h3>
           <p><%= @detail.impression %></p>
         </div>
         
@@ -115,12 +115,13 @@
         </div>
         
         
+        
         <div>
           <% @detail.comments.each do |comment| %>
           
             <% if comment.content!= nil %>
             
-              <ul class="list-group-item">
+              <ul class="list-group-item comment-content">
                 <li class="list-group-item">
                   <% if comment.user&.name!=nil %>
                     <%= comment.user.name %>
@@ -177,10 +178,16 @@
       $('body,html').animate({scrollTop: 0 }, 500);
         return false;
       });
+      
+    
+    var ajust=500;
+    var speed=400;
+    var position=$(".comment").offset().top + ajust;
+    
+    $(".comment").on('click',function(){
+      $("html,body").animate({scrollTop:position},speed,'swing');
+        return false;
+    });
   });
-  
-  
-  
-  
   
 </script>

@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, success:"レシピを投稿しました！"
     else
       flash.now[:danger]="レシピの投稿に失敗しました"
-      render :new
+      render:new
     end
     
   end

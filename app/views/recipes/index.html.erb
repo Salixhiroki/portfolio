@@ -23,6 +23,8 @@
           <% end %>
         </div>
         
+       
+        
         
         <div class="row">
           <div class="col-md-12 offset-md-1 text-decoration-none content">
@@ -63,7 +65,10 @@
                         
                       <% end %>
                       
-                      <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                      <%= link_to recipe_path(recipe.id),id:"comment-index",oncick: 'getId(this.id);' do %>
+                        <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                      <% end %>
+                      
                       <%= recipe.user&.name %>
                     </div>
                   </div>
@@ -74,6 +79,43 @@
         </div>
       </div>
     </div>
+    
+    <div id="page_top">
+      <p id="return">TOP</p>
+    </div>
+    
   </body>
 </html>
 
+<script>
+  
+  jQuery(function(){
+    var pagetop = $('#page_top');
+    // 実験結果＝＞hideにすると非表示になって何も起こらない
+    // showで再度表示させるとアニメーションが起こる！
+    pagetop.hide();
+    pagetop.show();
+    
+    $(window).scroll(function(){
+     
+      // 100pxスクロールしたら
+      if($(this).scrollTop() > 70){
+        pagetop.stop().animate({
+          'bottom': '50px' //下から50pxの位置に
+        }, 300);// フェードインさせる
+        
+      }else{
+        pagetop.stop().animate({
+          'bottom': '-50px' //下から-50pxの位置に
+        }, 300);  // フェードアウトさせる
+      }
+      
+    });
+      // pagetopをクリックしたら
+    pagetop.on('click',function(){
+      $('body,html').animate({scrollTop: 0 }, 500);
+        return false;
+      });
+  }); 
+  
+</script>

@@ -7,16 +7,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
   </head>
   <body>
    
-    <nav class="navbar navbar-dark navigation">
+    <nav class="navbar navbar-dark navigation nav-class">
       <div class="container m-0 col-md-12">
         <ul class="nav">
-          <li>
+          <li class="nav-li">
             <%= link_to root_path do %>
               <%#= image_tag "top.png" %>
+              <i class="fas fa-utensils fa-2x mr-3"></i>
               <%= "My chazuke" %>
             <% end %>    
           </li>
@@ -28,28 +30,29 @@
           
             <li class="nav-item mr-2">
               <%= link_to users_path do %>
-                <p><%= current_user.name %></p>
+              <i class="far fa-user fa-2x mr-3"></i>
+                <!--<p><%#= current_user.name %></p>-->
               <% end %>
             </li>
           
             <!--「投稿一覧」ページへジャンプ linkto アイコン-->
             <li class="nav-item mr-2">
               <%= link_to recipes_path do %>
-                <p>投稿一覧</p>
+                <i class="fas fa-list-ul fa-2x mr-3"></i>
               <% end %>
             </li>
             
             <!--「投稿」ページへジャンプ linkto アイコン-->
             <li class="nav-item mr-2">
               <%= link_to new_recipe_path do %>
-                <P>新規投稿</P>
+               <i class="far fa-file fa-2x mr-3"></i>
               <% end %>
             </li>
             
             <!--「ログアウト」する linkto アイコン-->
             <li class="nav-item">
               <%= link_to logout_path, method: :delete do %>
-                <p>ログアウト</p>
+               <i class="fas fa-sign-out-alt fa-2x"></i>
               <% end %>
             </li>
                 
@@ -59,14 +62,14 @@
             <!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
             <li class="nav-item">
               <%= link_to new_user_path do %>
-                <p>新規作成</p>
+                <i class="fas fa-user-plus fa-2x mr-3"></i>
               <% end %>
             </li>
             
             <!--「ログイン」ページへジャンプ linkto アイコン-->
             <li class="nav-item">
               <%= link_to login_path do %>
-                <p>ログイン</p><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
+                <i class="fas fa-sign-in-alt fa-2x"></i><!--「アカウント作成（新規登録）」ページへジャンプ linkto アイコン-->
               <% end %>
             </li>
             

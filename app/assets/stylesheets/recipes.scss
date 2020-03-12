@@ -78,7 +78,7 @@ body{
     width:30px;
     height:26px;
     margin-left:10px;
-    font-size:15px;
+    font-size:0;
     border:none;
     outline:none;
     repeat: none;
@@ -93,7 +93,7 @@ body{
     border-color:none;
   }
 
-  button:hover{
+  .index_button:hover{
     // color:darkolivegreen;
     background-color:#F0FFF0;
     border-color:none;

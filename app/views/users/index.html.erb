@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-10 offset-md-1 mb-3">
             <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 一覧</h2>
-            <%= link_to "アカウントを削除する",{controller: "users",action: "destroy",id: current_user.id},{method: :delete} %>
+            <%= link_to "アカウントを削除する",{controller: "users",action: "destroy",id: current_user.id},{method: :delete, data: {confirm:"アカウントを削除しますか？"},class:"badge badge-danger"}%>
                 </li>
           </div>
           
