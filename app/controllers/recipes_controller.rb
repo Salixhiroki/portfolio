@@ -158,12 +158,16 @@ class RecipesController < ApplicationController
     @material_cnt=0 #カウンタ変数
     num=0 #カウンタ変数
     @nothing_material=[] #空の配列作成 => 忘れるな！
-
+    # binding pry
 
     # 要素数分ループする
     for m_length in 0..@m_lengths-1 do
+      # もし配列の中身が2つ以上だったらそれを取り出して保存する。
+      # idがないので新しくインスタンスに入れて保存する！
       @m_name=recipe_params[:materials_attributes][m_length.to_s][:material_name][0]
       @m_quantity=recipe_params[:materials_attributes][m_length.to_s][:material_quantity][0]
+      
+      # binding pry
       # logger.debug(@m_name)
       # logger.debug(@m_quantity)
       if @m_name!="" && @m_quantity!=""
@@ -183,6 +187,21 @@ class RecipesController < ApplicationController
         num+=1
       end
       
+      
+      m_quantity_l=recipe_params[:materials_attributes][m_length.to_s][:material_quantity]
+      m_name_l=recipe_params[:materials_attributes][m_length.to_s][:material_name]
+      
+      if m_quantity_l.length > 1 || m_name_l.length > 1
+        @m_quantities=m_quantity_l.length
+        @m_names=m_name_l.length
+        for n in 1..@m_quantities-1 do
+          @m_quantity_else=recipe_params[:materials_attributes][m_length.to_s][:material_quantity][n]
+          @m_name_else=recipe_params[:materials_attributes][m_length.to_s][:material_name][n]
+          
+          @material_new=Material.new(user_id: @update_user_id, recipe_id: params[:id], material_name: @m_name_else, material_quantity: @m_quantity_else)
+          @material_new.save
+        end
+      end
     end
     
 #----------------------------------<//>   
@@ -207,6 +226,19 @@ class RecipesController < ApplicationController
         num+=1
       end
     end
+    
+     method_l=recipe_params[:cookmethods_attributes][method_length.to_s][:method]
+     if method_l.length > 1
+      @methods=method_l.length
+      
+      for n in 1..@methods-1 do
+        @method_else=recipe_params[:cookmethods_attributes][method_length.to_s][:method][n]
+        # binding pry
+        @method_new=Cookmethod.new(user_id: @update_user_id, recipe_id: params[:id], method: @method_else)
+        @method_new.save
+      end 
+     end
+    
     
     # binding pry
     if @recipe_cnt==1 && @material_cnt !=0 && @method_cnt !=0

@@ -9,14 +9,15 @@
             <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 一覧</h2>
           </div>
             
-          <div class="offset-md-3 heading-sentence">
+          <div class="heading-sentence">
             <p>お茶漬けレシピ一覧です。自分の好きなお茶漬けレシピを見つけて真似して作ってみたり<br>
             アレンジしてみたりして、お茶漬けを楽しみましょう！材料で検索できます！</p>
           </div>
         </div>
           
           
-        <div class="offset-md-5 offset-sm-5 mb-4 index">
+        
+        <div class="mb-4 index">
           <%= search_form_for(@q,url: search_path, method: :get) do |f| %>
             <%= f.search_field :material_name_cont, class:"index-text",placeholder:"材料を入力" %>
             <%= f.submit class:"index_button" %>
@@ -24,8 +25,6 @@
         </div>
         
        
-        
-        
         <div class="row">
           <div class="col-md-12 offset-md-1 text-decoration-none content">
             
@@ -42,7 +41,7 @@
                   </div>
               
                   <div class="recipes-bottom">
-                    <div class="recipes-discription">
+                    <div class="recipes-discription ml-2">
                       <!--タイトル ↓ recipe.title-->
                       <h4><%= recipe.title %></h4>
                       <!--ポイント ↓ recipe.discription-->
@@ -54,20 +53,29 @@
                       <% if !recipe.favorites_users.include?(current_user) %>
                       
                         <%= link_to favorites_path(recipe_id: recipe.id),method: :post do %>
-                          <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+                          <i class="far fa-heart mr-2 ml-1 fa-lg non-favorite"></i>
                         <% end %>
                         
                       <% else %>
                       
                         <%= link_to cancel_path(recipe_id: recipe.id),method: :delete do %>
-                          <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
+                           <i class="fas fa-heart mr-2 ml-1 fa-lg favorite"></i>
                         <% end %>
                         
                       <% end %>
                       
-                      <%= link_to recipe_path(recipe.id),id:"comment-index",oncick: 'getId(this.id);' do %>
-                        <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                      <% if recipe.favorites_users.count!=0 %>
+                        <p class="favorites_count d-inline mr-3"><%= recipe.favorites_users.count %></p>
                       <% end %>
+                      
+                      <%= link_to recipe_path(recipe.id),id:"comment-index" do %>
+                        <i class="far fa-comment fa-lg mr-2 ml-1"></i>
+                      <% end %>
+                      
+                      <% if recipe.comments.count!=0 %>
+                        <p class="favorites_count d-inline mr-3"><%= recipe.comments.count %></p>
+                      <% end %>
+                      
                       
                       <%= recipe.user&.name %>
                     </div>

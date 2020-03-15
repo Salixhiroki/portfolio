@@ -1,12 +1,16 @@
-.favorite{
-  background-color:#FF3366;
-  animation: anime 1s alternate 2;
+.recipes-favorite{
   
-  &:hover{
-     opacity: 0.6;
+  i{
+    animation: anime 1s alternate 2;
+    color:red;
+    
+    &:hover{
+       opacity: 0.6;
+    }
   }
-}
-  
-.favorite:active{
-  color:red;
+    
+  .favorite:active{
+    color:red;
+  }
+
 }

@@ -4,17 +4,12 @@ body{
 
 .recipes-index-container{
   
-  
-  // .heading{
-  //   margin-left:130px;
-  // }
-  
   .content{
     float:left;
   }
 
   .heading-sentence{
-    color:red;
+    color: red;
   }
   
   // margin-top:80px;
@@ -103,7 +98,6 @@ body{
    transition-duration: 0.001s;
   }
   
-  
   .img{
    background-size: cover;
    width:277.5px;
@@ -115,21 +109,78 @@ body{
    height:25px;
   }
 
-
-
-  @media screen and (max-width: 1199px){
   
-    .heading{
-      margin-left:90px;
+  .image-input-btn{
+    background-color: limegreen;
+    width: 180px;
+    height: 30px;
+    padding-top: 2px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+    
+    
+  @media screen and ( min-width:1440px) {
+  
+    .heading-sentence{
+      margin-left: 270px;
     }
     
     .index{
-      margin-left:50px;
+      margin-left: 450px;
     }
-  }  
+  } 
+  
+  @media screen and ( min-width:768px) and ( max-width:1024px) {
+    
+    .heading-sentence{
+      margin-left: 160px;
+    }
+    
+    .index{
+      margin-left: 350px;
+    }
+  }
+  
+  @media screen and ( min-width:425px) and ( max-width:768px) {
+    
+    .heading-sentence{
+      margin-left: 60px;
+    }
+    
+    .index{
+      margin-left: 260px;
+    }
+  }
+  
+  
+  @media screen and ( min-width:375px) and ( max-width:425px) {
+    
+    .heading-sentence{
+      margin-left: 20px;
+    }
+    
+    .index{
+      margin-left: 90px;
+    }
+  }
+  
+  
 }
 
+  
+ 
 
+.image-input-btn{
+    background-color: lightgreen;
+    width: 180px;
+    height: 30px;
+    padding-top: 2px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
   
 
 

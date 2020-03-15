@@ -8,7 +8,7 @@
               <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 投稿</h2>
             </div>
             
-            <div class="heading">
+            <div class="heading-sentence">
               <p>お茶漬けにはバリエーションがたくさんあります。だしやトッピングを変えることで様々な味を表現することができます。<br>
               自分のオリジナルのお茶漬けを投稿して日本のお茶漬けを盛り上げましょう！</p>
             </div>
@@ -19,8 +19,9 @@
                 <div><%= f.text_field :title, class:"text-form", placeholder:"タイトルを入力" %></div>
               </div>
             
-              <div><label class="badge badge-secondary">画像を選択してください</label></div>
-              <%= f.file_field :image %>
+              <div><label class="badge badge-secondary ">画像を選択してください</label></div>
+              <%= f.label :image, "画像をアップロード", class: "image-input-btn" %> 
+               <%= f.file_field :image, style: "display:none;"%>
             
               <%= f.fields_for :materials do |m| %>
             
@@ -71,7 +72,7 @@
                   <div class="af2"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
                   <div class="af3"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
                   <div class="af4"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %></div>
-                  <button type="button" id="add-method ml-2">+</button>
+                  <button type="button" class="ml-2 add-method">+</button>
                 </div>
             
               <% end %>

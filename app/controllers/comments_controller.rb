@@ -22,8 +22,9 @@ class CommentsController < ApplicationController
   # コメントの削除
   def destroy
     @comment=Comment.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
-    @comment.destroy
-   redirect_to "/recipes/#{params[:recipe_id]}", success: "コメントを削除しました"
+    @comment&.destroy
+    # binding pry
+    redirect_to "/recipes/#{params[:recipe_id]}", success: "コメントを削除しました"
   end
 
   # Strong Parameter

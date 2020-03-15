@@ -7,13 +7,42 @@
   // height:74px;
    
   // }
+
+  i{
+     color:red;
+  }
+
+
+  .favorites_count{
+    color: green;
+  }
   
+  .comment-count{
+    color: green;
+  }
+
+  .user-img{
+    width: 3%;
+    height: 3%;
+  }
+
   
   // img{
   //   margin:auto;
   // }
   
   
+  
+  .table-color td{
+    border-top:solid 1px gray;
+  }
+
+
+  .thead-border{
+    border-top: none;
+    border-bottom: solid 2px green;
+  }
+
   .show-image{
     margin-bottom:30px;
   }
@@ -61,8 +90,9 @@
   
   
   h3{
-    background:beige;
-    border:1px solid;
+    background-color: ivory;
+    border-top: 1px solid peru;
+    border-bottom: 1px solid peru;
     padding-left:15px;
     padding-right:0;
   }
@@ -83,6 +113,7 @@
     }
   }
 }
+
 
 
 #page_top{

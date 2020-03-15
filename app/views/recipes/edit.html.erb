@@ -21,45 +21,39 @@
               </div>
               
               <div><label class="badge badge-secondary">画像を選択してください</label></div>
-                <%= f.file_field :image_url %>
+                <%= f.label :image, "画像をアップロード", class: "image-input-btn" %> 
+                
+                <%= f.file_field :image, style: "display:none;"%>
               
               <div class="material">
-                  <label class="badge badge-secondary">材料とそれに対する分量を入力してください</label>
-                  
-                  <% i=1 %>
+                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※空欄は投稿されません。</a>
+
                   <%= f.fields_for :materials do |m| %>
-                  
-                    <div class="food">
+                    <div class="food1">
                       <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                       <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
-                      
-                      <% if @material.length==i %>
-                        <button type="button" class="ml-1 add-material">+</button>    
-                      <% end %>
-                      
-                      <% i+=1 %>
                     </div>
                   <% end %>
+                  <button type="button" class="ml-1 add-material">+</button>    
               </div>
               
-              <div class="method">
-                <div><label class="badge badge-secondary">作り方を入力してください</label></div>
+              <div class="method mt-4">
+                <div><label class="badge badge-secondary mr-2">作り方を入力してください</label><a>※空欄は投稿されません。</a></div>
                 
-                  <% i=1 %>
+                 
                   <%= f.fields_for :cookmethods do |cm| %>
-                  
-                    <div class="food">
-                      <label class="badge badge-pill badge-secondary">1</label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
-                      <% if @cookmethod.length==i %>
-                        <button type="button" class="add-method ml-2">+</button>
-                      <% end %>
-                      <% i+=1 %>
+                    
+                    <div class="af" >
+                      <label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
                     </div>
                   <% end %>
+                  
+                  <button type="button" class="add-method ml-2">+</button>
+                   
               </div>
               
               <div>
-                <div><label class="badge badge-secondary">作る上でのポイントを入力してください</label></div>
+                <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください</label></div>
                 <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力" %>
               </div>
               
@@ -78,3 +72,37 @@
     </div>
   </body>
 </html>
+
+
+<script>
+  jQuery(function(){
+    
+    var size=$('div[class*="af"]').length
+    var mate_size=$('div[class*="food"]').length
+    var meth_button=$(".method button")
+    var mate_button=$(".material button")
+    
+     $(".method div .num").each(function(i){
+        $(this).text(i+1);
+      });
+  
+    $(meth_button).on('click',function(){
+      $(meth_button).before($(`.af${size}`).clone())
+      size=$('div[class*="af"]').length
+     
+      $(".method div:last").attr("class",`af${size}`)
+      $(".method div .num:last").text(`${size}`)
+      
+    });
+    
+    $(mate_button).on('click',function(){
+      $(mate_button).before($(`.food${mate_size}`).clone())
+      $(`food${mate_size}`).text("");
+      mate_size=$('div[class*="food"]').length
+      
+      $(".material div:last").attr("class",`food${mate_size}`)
+      $(".material div .num:last").text(`${mate_size}`)
+    });
+    
+  });
+</script>
