@@ -130,6 +130,10 @@ body{
     .index{
       margin-left: 450px;
     }
+    
+    .recipes:nth-child(2n){
+      width:25%;
+    }
   } 
   
   @media screen and ( min-width:768px) and ( max-width:1024px) {
@@ -141,6 +145,11 @@ body{
     .index{
       margin-left: 350px;
     }
+    
+    .recipes:nth-child(2n){
+      width:40%;
+    }
+    
   }
   
   @media screen and ( min-width:425px) and ( max-width:768px) {
@@ -152,7 +161,16 @@ body{
     .index{
       margin-left: 260px;
     }
+
+
+    .recipes:nth-child(2n){
+
+      width:40%;
+    }
+
   }
+  
+  
   
   
   @media screen and ( min-width:375px) and ( max-width:425px) {
@@ -164,7 +182,14 @@ body{
     .index{
       margin-left: 90px;
     }
+    
+   .recipes:nth-child(n){
+      width:100%;
+    }
+    
   }
+  
+ 
   
   
 }

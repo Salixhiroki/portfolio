@@ -8,12 +8,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
   </head>
   <body>
    
     <nav class="navbar navbar-dark navigation nav-class">
-      <div class="container m-0 col-md-12">
+      <div class="container col-md-12">
         <ul class="nav mt-2">
           <li class="nav-li">
             <%= link_to root_path do %>
@@ -23,7 +23,7 @@
           </li>
         </ul>
         
-        <ul class="nav">
+        <ul class="nav icon">
           <!--もしログインしていたら以下のアイコンを表示-->
           <% if logged_in? %>
           

@@ -34,3 +34,18 @@ i{
 .nav-li{
   font-size: 20px;
 }
+
+
+@media screen and ( min-width:375px) and ( max-width:425px) {
+  
+  .container ul{
+    margin-left:45px;
+  }
+  
+  .icon i{
+    margin-right:40px;
+    text-align: center;
+  }
+  
+  
+}

@@ -1,7 +1,7 @@
 .recipes-new-wrapper{
   
   .text-form{
-    width:540px;
+    width:320px;
     outline:none;
     border-color:lightgreen;
   }
@@ -61,7 +61,7 @@
   
   
   .point{
-    width:500px;
+    width:400px;
     height:200px;
     
     &:hover{
@@ -71,7 +71,7 @@
   }
   
   .impression{
-    width:500px;
+    width:400px;
     height:200px;
     
     &:hover{
@@ -125,5 +125,59 @@
     }
     
   }
-
+  
+  
+  
+  
+  
+  
+  @media screen and ( min-width:375px) and ( max-width:425px) {
+    
+    .point{
+      width:400px;
+      height:200px;
+    
+      &:hover{
+        border-color:limegreen;
+      }
+    }
+    
+    
+    .impression{
+      width:400px;
+      height:200px;
+    
+      &:hover{
+        border-color:limegreen;
+      }
+    }
+  }
+  
+  @media screen and ( max-width:375px){
+    .point{
+      width:370px;
+      height:200px;
+    
+      &:hover{
+        border-color:limegreen;
+      }
+    }
+    
+    
+    .impression{
+      width:370px;
+      height:200px;
+    
+      &:hover{
+        border-color:limegreen;
+      }
+    }
+  }
+  
+  
+  @media screen and ( min-width:768px) and ( max-width:1440px){
+    .sm-br{
+      display:none;
+    }
+  }
 }

@@ -9,7 +9,7 @@
             <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 一覧</h2>
           </div>
             
-          <div class="heading-sentence">
+          <div class="offset-md-3 heading-sentence">
             <p>お茶漬けレシピ一覧です。自分の好きなお茶漬けレシピを見つけて真似して作ってみたり<br>
             アレンジしてみたりして、お茶漬けを楽しみましょう！材料で検索できます！</p>
           </div>
@@ -17,7 +17,7 @@
           
           
         
-        <div class="mb-4 index">
+        <div class="offset-md-5 offset-sm-5 mb-4 index">
           <%= search_form_for(@q,url: search_path, method: :get) do |f| %>
             <%= f.search_field :material_name_cont, class:"index-text",placeholder:"材料を入力" %>
             <%= f.submit class:"index_button" %>
@@ -32,7 +32,7 @@
             
               <%= link_to recipe_path(recipe.id),class:"link" do %>
               
-                <div class="col-md-3 recipes">
+                <div class="recipes">
                   <div class="recipes-top">
                     
                     <% if recipe.image.url!=nil %>
