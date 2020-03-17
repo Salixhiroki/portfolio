@@ -15,8 +15,9 @@
 						<%= f.text_field :email, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Email" %>
 						<%= f.password_field :password, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Password" %>
 						<%= f.password_field :password_confirmation, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Confirmation Password" %>
-						<p class="col-md-7 pl-0 mb-1">自分の画像を選択:</p>
-						<%= f.file_field :user_image,  class:"offset-md-1 pl-0 mb-4",value:"画像を選択" %>
+						<p class="col-md-7 pl-0 mb-1 d-inline">自分の画像を選択:</p>
+						<%= f.label :user_image, "画像をアップロード", class: "border border-success mb-4 p-1 rounded" %> 
+						<%= f.file_field :user_image, style: "display:none;", class:"offset-md-1 pl-0 mb-4",value:"画像を選択" %>
 						<%= f.submit "登録", class:"col-md-3 offset-md-1 mt-3 mb-4 btn btn-success" %> 
 					</div>
 					

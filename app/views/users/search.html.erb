@@ -44,9 +44,9 @@
                     <div class="recipes-bottom">
                       <div class="recipes-discription">
                         <!--タイトル ↓ recipe.title-->
-                        <h4><%= @recipes_q[i][0].title %></h4>
+                        <h4 class="link"><%= @recipes_q[i][0].title %></h4>
                         <!--ポイント ↓ recipe.discription-->
-                         <p><%= @recipes_q[i][0].point %></p>
+                         <p class="link"><%= @recipes_q[i][0].point %></p>
                       </div>
                       
                 <% end %>
@@ -56,18 +56,18 @@
                         <% if !@recipes_q[i][0].favorites_users.include?(current_user) %>
                         
                           <%= link_to favorites_path(recipe_id: @recipes_q[i][0].id),method: :post do %>
-                            <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img" %>
+                            <i class="far fa-heart mr-2 ml-1 fa-lg non-favorite"></i>
                           <% end %>
                           
                         <% else %>
                         
                           <%= link_to cancel_path(recipe_id: @recipes_q[i][0].id),method: :delete do %>
-                            <%= image_tag 'heart-black', class:"mr-3 ml-1 favorite-img favorite" %>
+                            <i class="fas fa-heart mr-2 ml-1 fa-lg favorite"></i>
                           <% end %>
                           
                         <% end %>
                         
-                        <%= image_tag 'comment.png', class:"mr-3 ml-1 favorite-img"%>
+                        <i class="far fa-comment fa-lg mr-2 ml-1"></i>
                         <%= @recipes_q[i][0]&.user.name %>
                     
                       </div>

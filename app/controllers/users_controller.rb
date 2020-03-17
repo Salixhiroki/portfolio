@@ -61,7 +61,7 @@ class UsersController < ApplicationController
         logger.debug(material_q.recipe_id)
         @recipe_id[i]=material_q.recipe_id
         @recipes_q[i]=Recipe.where(id: material_q.recipe_id)
-        binding pry
+        # binding pry
         i+=1
       end
       

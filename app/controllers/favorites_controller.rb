@@ -11,7 +11,10 @@ class FavoritesController < ApplicationController
     @favorite.user_id=current_user.id
     @favorite.recipe_id=params[:recipe_id]
     # binding pry
+    logger.debug(request.url)
     if @favorite.save
+      
+      binding pry
       redirect_to recipe_path(@favorite.recipe_id), success:"お気に入りに登録しました"
     else
       flash.now[:danger]="お気に入りの登録に失敗しました"
