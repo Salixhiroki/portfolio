@@ -1,0 +1,26 @@
+<div class="user-index-wrapper">
+	<img src="aaa" class="image" alt="お茶漬けにお湯を入れている途中の画像">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 offset-md-8 text-center login">
+				<div class="col-md-7 offset-md-2 offset-sm-2">
+					<h3 class="text-center mt-5 mb-5 title">Edit Account</h3>
+				</div>
+				
+				<%= form_for @user do |f| %> 
+				
+					<div class="col-md-11">
+						<%= f.text_field :name, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Name" %>
+						<%= f.text_field :email, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Email" %>
+						<p class="col-md-7 pl-0 mb-1 d-inline">自分の画像を選択:</p>
+						<%= f.label :user_image, "画像をアップロード", class: "border border-success mb-4 p-1 rounded" %> 
+						<%= f.file_field :user_image, style: "display:none;", class:"offset-md-1 pl-0 mb-4",value:"画像を選択" %>
+						<%= f.submit "保存", class:"col-md-3 offset-md-1 mt-3 mb-4 btn btn-success" %> 
+					</div>
+					
+				<% end %>
+				
+			</div>
+		</div>
+	</div>
+</div>

@@ -46,12 +46,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
   
-  gem 'pry-rails'
-  gem 'pry-doc'
-  gem 'pry-byebug'
-  gem 'pry-stack_explorer'
-  
-   
 end
 
 group :development do

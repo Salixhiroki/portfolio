@@ -36,6 +36,9 @@ body{
   .link{
     text-decoration:none;
     color:green;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .recipes-top{

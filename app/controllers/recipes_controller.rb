@@ -121,6 +121,7 @@ class RecipesController < ApplicationController
   # 編集対象のレシピの情報を格納
   def edit
     @recipe=Recipe.find_by(id: params[:id])
+    # binding pry
     @material=Material.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
     @cookmethod=Cookmethod.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
   end
@@ -146,7 +147,7 @@ class RecipesController < ApplicationController
 
     # recipesテーブルを更新
     @recipe_cnt=0 #カウンタ変数
-    if @recipe.update(title: recipe_params[:title],point: recipe_params[:point],image: recipe_params[:image],impression: recipe_params[:impression])
+    if @recipe.update(recipe_params)
       @recipe_cnt+=1
     end
     

@@ -75,6 +75,27 @@ class UsersController < ApplicationController
   end
   
   
+  def edit
+    @user=User.find_by(id: params[:id])  
+  end
+  
+  def update
+    @user=User.find_by(id: params[:id])  
+    # @user.name=user_params[:name]
+    # @user.email=user_params[:email]
+    # @user.user_image=user_params[:user_image]
+    # binding pry
+    if @user.id == current_user.id
+      if @user.update(user_params)
+        redirect_to users_path, success: "アカウントを編集しました"
+      else
+        flash.now[:danger]="アカウントを編集できませんでした"
+        render :edit
+      end
+    else
+      redirect_to root_path
+    end
+  end  
   
   # Strong Parameter
   private

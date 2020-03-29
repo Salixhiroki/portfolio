@@ -23,7 +23,7 @@
               <div><label class="badge badge-secondary">画像を選択してください</label></div>
                 <%= f.label :image, "画像をアップロード", class: "image-input-btn" %> 
                 
-                <%= f.file_field :image, style: "display:none;"%>
+                <%= f.file_field :image, style: "display:none;",value:"画像を選択" %>
               
               <div class="material">
                   <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※空欄は投稿されません。</a>
@@ -39,17 +39,13 @@
               
               <div class="method mt-4">
                 <div><label class="badge badge-secondary mr-2">作り方を入力してください</label><a>※空欄は投稿されません。</a></div>
-                
-                 
                   <%= f.fields_for :cookmethods do |cm| %>
-                    
-                    <div class="af" >
-                      <label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
+                    <div class="af">
+                      <label class="badge badge-pill badge-secondary num"></label>
+                        <%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 methoa-area", placeholder:"作り方を入力" %>
                     </div>
                   <% end %>
-                  
                   <button type="button" class="add-method ml-2">+</button>
-                   
               </div>
               
               <div>
@@ -89,10 +85,8 @@
     $(meth_button).on('click',function(){
       $(meth_button).before($(`.af${size}`).clone())
       size=$('div[class*="af"]').length
-     
       $(".method div:last").attr("class",`af${size}`)
       $(".method div .num:last").text(`${size}`)
-      
     });
     
     $(mate_button).on('click',function(){
