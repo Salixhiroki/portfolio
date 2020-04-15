@@ -3,7 +3,7 @@
 class RecipesController < ApplicationController
   protect_from_forgery except: :create
   attr_accessor :material_name, :material_quantity, :method
-
+  before_action :all_comments, only: [:show]
   #-------------------------------------------------------------------------------------------------</>
 
   # 親モデルのインスタンス作成、buildで関係性のある子モデルのインスタンスを作成
@@ -288,6 +288,11 @@ class RecipesController < ApplicationController
   def search_params
     params.require(:q).permit(:material_name_cont)
   end
+  
+  def all_comments
+    @comments=Comment.all
+  end
+  
 end
 
 #-------------------------------------------------------------------------------------------------<///>

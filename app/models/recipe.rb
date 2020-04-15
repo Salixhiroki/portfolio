@@ -13,10 +13,18 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :user
 
+  def liked_by?(user)
+    favorites.where(user_id: user.id).exists?
+    # binding pry
+  end
+
   mount_uploader :image, ImageUploader
 
   accepts_nested_attributes_for :materials, allow_destroy: true
   accepts_nested_attributes_for :cookmethods, allow_destroy: true
 
   attr_accessor :content
+  
+ 
+  
 end

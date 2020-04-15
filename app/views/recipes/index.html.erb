@@ -50,23 +50,27 @@
             
                     <div class="recipes-favorite">
                       
-                      <% if !recipe.favorites_users.include?(current_user) %>
+                      <div id="favorite_button_<%= recipe.id %>", class="d-inline-block">
+                        <%= render partial: 'favorites/favorite_index', locals: {recipe: recipe} %>
+                      </div>
                       
-                        <%= link_to favorites_path(recipe_id: recipe.id),method: :post do %>
-                          <i class="far fa-heart mr-2 ml-1 fa-lg non-favorite"></i>
-                        <% end %>
+                      <%# if !recipe.favorites_users.include?(current_user) %>
+                      
+                        <%#= link_to favorites_path(recipe_id: recipe.id),method: :post do %>
+                          <!--<i class="far fa-heart mr-2 ml-1 fa-lg non-favorite"></i>-->
+                        <%# end %>
                         
-                      <% else %>
+                      <%# else %>
                       
-                        <%= link_to cancel_path(recipe_id: recipe.id),method: :delete do %>
-                           <i class="fas fa-heart mr-2 ml-1 fa-lg favorite"></i>
-                        <% end %>
+                        <%#= link_to cancel_path(recipe_id: recipe.id),method: :delete do %>
+                           <!--<i class="fas fa-heart mr-2 ml-1 fa-lg favorite"></i>-->
+                        <%# end %>
                         
-                      <% end %>
+                      <%# end %>
                       
-                      <% if recipe.favorites_users.count!=0 %>
-                        <p class="favorites_count d-inline mr-3"><%= recipe.favorites_users.count %></p>
-                      <% end %>
+                      <%# if recipe.favorites_users.count!=0 %>
+                        <!--<p class="favorites_count d-inline mr-3"><%#= recipe.favorites_users.count %></p>-->
+                      <%# end %>
                       
                       <%= link_to recipe_path(recipe.id),id:"comment-index" do %>
                         <i class="far fa-comment fa-lg mr-2 ml-1"></i>

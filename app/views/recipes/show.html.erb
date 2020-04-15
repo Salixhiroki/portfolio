@@ -14,32 +14,18 @@
        
   <% if @detail_material[0]&.material_name != nil %>
    
-    <% if !@detail.favorites_users.include?(current_user) %>
-     
-      <%= link_to favorites_path(recipe_id: @detail.id),method: :post do %>
-        <i class="far fa-heart mr-2 ml-1 fa-lg non-favorite"></i>
+    <div id="favorite_button_<%= @detail.id %>", class="d-inline-block">
+      <%= render partial: 'favorites/favorite', locals: {detail: @detail} %>
+    </div>
+    
+    <div class="d-inline-block">
+      <i class="far fa-comment fa-lg mr-2 ml-1 comment"></i>
+    
+      <% if @detail.comments.count!=0 %>
+        <p class="favorites_count d-inline comment-count"><%= @detail.comments.count %></p>
       <% end %>
-        
-    <% else %>
+    </div>
     
-      <%= link_to cancel_path(recipe_id: @detail.id),method: :delete do %>
-        <i class="fas fa-heart mr-2 ml-1 fa-lg favorite"></i>
-      <% end %>
-        
-    <% end %>
-    
-    <% if @detail.favorites_users.count!=0 %>
-      <p class="favorites_count d-inline mr-3 favorite-count"><%= @detail.favorites_users.count %></p>
-    <% end %>
-    
-    
-    <i class="far fa-comment fa-lg mr-2 ml-1 comment"></i>
-    
-    <% if @detail.comments.count!=0 %>
-      <p class="favorites_count d-inline comment-count"><%= @detail.comments.count %></p>
-    <% end %>
-    
-         
     <div class="row">
       <div class="col-md-12">
         <div class="text-center show-image">
@@ -123,42 +109,31 @@
         </div>
         
         <div>
-          <%= form_for [@detail,@detail.comments.build] do |f| %>
-          
-            <%= f.text_area :content,placeholder:"コメントを入力してください",size: "10x5", class:"col-md-5 offset-md-4 comment" %>
-            <div>
-              <%= button_to "コメントする", {controller: "recipes", action: 'create'},{method: :post, class: "btn btn-success col-md-5 offset-md-4 mt-3 mb-5"} %>
-            </div>
-            
-          <% end %>
+          <%= render partial: "comments/comment", locals: {detail: @detail} %>
         </div>
-        
-        
-        
+      
         <div>
           <% @detail.comments.each do |comment| %>
-          
             <% if comment.content!= nil %>
-            
               <ul class="list-group-item comment-content">
-                <li class="list-group-item">
+                <li id="comment" class="list-group-item">
                   <% if comment.user&.name!=nil %>
                     <%= comment.user.name %>
                   <% else %>
                     <%= "削除されたユーザー" %>
-                  <% end %> 
+                  <% end %>
+                  
                   <%= comment.content %>
                   <% if comment.user.id==current_user.id %>
-                    <%= link_to "削除", {controller: "comments", action: "destroy",recipe_id: @detail.id},{method: :delete} %>
+                    <%= link_to "削除", {controller: "comments", action: "destroy",recipe_id: @detail.id},{method: :delete, remote: true} %>
                   <% end %>
-                </li>
+                </li>  
               </ul>
-              
             <% end %>
-            
           <% end %>
-  <% end %>
         </div>
+          
+  <% end %>
       </div>    
     </div>
   </div>      

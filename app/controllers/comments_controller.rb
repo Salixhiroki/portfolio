@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+  # before_action :all_comments, only: [:create, :destroy]
+
   protect_from_forgery except: :create
 
   # コメントを作成
@@ -13,7 +15,12 @@ class CommentsController < ApplicationController
     # binding pry
     # 保存
     if @comment.save
-      redirect_to "/recipes/#{params[:recipe_id]}", success: 'コメントしました'
+      # redirect_to "/recipes/#{params[:recipe_id]}", success: 'コメントしました'
+      # respond_to do |format|
+      #   format.html
+      #   format.js
+      # end
+      # binding pry
     else
       flash.now[:danger] = 'コメントに失敗しました'
       render "/recipes/#{params[:recipe_id]}"
@@ -25,13 +32,19 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
     @comment&.destroy
     # binding pry
-    redirect_to "/recipes/#{params[:recipe_id]}", success: 'コメントを削除しました'
+    # redirect_to "/recipes/#{params[:recipe_id]}", success: 'コメントを削除しました'
   end
 
   # Strong Parameter
   private
-
+  
   def comment_params
     params.require(:comment).permit(:content)
   end
+  
+  # def all_comments
+  #   @comments = Comment.all
+  # end
+  
+  
 end

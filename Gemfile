@@ -72,6 +72,7 @@ gem 'bcrypt'
 gem 'bootstrap', '~> 4.3.1'
 gem 'carrierwave'
 gem 'jquery-rails'
+gem 'rails-ujs'
 gem 'ransack'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false

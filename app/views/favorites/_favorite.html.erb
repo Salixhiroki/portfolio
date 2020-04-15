@@ -1,0 +1,15 @@
+<% if !@detail.favorites_users.include?(current_user) %>
+  <%= link_to favorites_path(recipe_id: @detail.id), method: :post, remote: true do %>
+    <i class="far fa-heart mr-2 ml-1 fa-lg non-favorite"></i>
+  <% end %>
+
+<% else %>
+  <%= link_to cancel_path(recipe_id: @detail.id), method: :delete, remote: true do %>
+    <i class="fas fa-heart mr-2 ml-1 fa-lg favorite"></i>
+  <% end %>
+
+<% end %>
+
+<% if @detail.favorites_users.count!=0 %>
+  <p class="favorites_count d-inline mr-3 favorite-count"><%= @detail.favorites_users.count %></p>
+<% end %>
