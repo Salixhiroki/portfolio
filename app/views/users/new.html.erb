@@ -11,6 +11,7 @@
 				<%= form_for @user do |f| %> 
 				
 					<div class="col-md-11">
+						<%= render "layouts/error_messages", model: f.object %>
 						<%= f.text_field :name, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Name" %>
 						<%= f.text_field :email, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Email" %>
 						<%= f.password_field :password, class:"col-md-11 offset-md-1 mb-5 d-block",placeholder:"Password" %>

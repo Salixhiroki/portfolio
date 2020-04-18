@@ -48,7 +48,7 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, success: 'レシピを投稿しました！'
     else
       flash.now[:danger] = 'レシピの投稿に失敗しました'
-      render :new
+      render "recipes/new"
     end
   end
 
@@ -105,7 +105,7 @@ class RecipesController < ApplicationController
     @detail = Recipe.find_by(id: params[:id])
     @detail_material = Material.where(user_id: @detail.user_id, recipe_id: @detail.id)
     @detail_method = Cookmethod.where(user_id: @detail.user_id, recipe_id: @detail.id)
-
+    
     @n =  @detail_material.length / 2
     @m =  @detail_method.length
 

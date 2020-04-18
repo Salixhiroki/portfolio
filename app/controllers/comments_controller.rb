@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   # before_action :all_comments, only: [:create, :destroy]
 
   protect_from_forgery except: :create
-
+  
   # コメントを作成
   def create
     @comment = Comment.new(comment_params)
@@ -12,25 +12,23 @@ class CommentsController < ApplicationController
     @comment.recipe_id = params[:recipe_id]
 
     @comment.content = comment_params[:content]
+    @comments=Comment.where(recipe_id: params[:recipe_id])
     # binding pry
     # 保存
     if @comment.save
-      # redirect_to "/recipes/#{params[:recipe_id]}", success: 'コメントしました'
-      # respond_to do |format|
-      #   format.html
-      #   format.js
-      # end
-      # binding pry
     else
       flash.now[:danger] = 'コメントに失敗しました'
-      render "/recipes/#{params[:recipe_id]}"
+      # render "/recipes/#{params[:recipe_id]}"
     end
   end
 
   # コメントの削除
   def destroy
-    @comment = Comment.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
+    @comment = Comment.find_by(id: params[:id], user_id: current_user.id, recipe_id: params[:recipe_id])
+    # binding pry
+    
     @comment&.destroy
+    @comments=Comment.where(recipe_id: params[:recipe_id])
     # binding pry
     # redirect_to "/recipes/#{params[:recipe_id]}", success: 'コメントを削除しました'
   end

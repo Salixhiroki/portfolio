@@ -15,6 +15,7 @@
             </div>
             
             <%= form_for @recipe do |f| %>
+              <%= render "layouts/error_messages", model: f.object %>
               <div class="text-white title">
                 <h3 class="badge badge-secondary">タイトルを入力してください</h3>
                 <div><%= f.text_field :title, class:"text-form", placeholder:"タイトルを入力" %></div>

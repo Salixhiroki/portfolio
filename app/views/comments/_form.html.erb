@@ -1,0 +1,6 @@
+<%= form_for [@detail,@detail.comments.build],{remote: true} do |f| %>
+  <%= f.text_area :content,placeholder:"コメントを入力してください",size: "10x5", class:"col-md-5 offset-md-4 comment" %>
+  <div id="comment">
+    <%= button_to "コメントする", {controller: "recipes", action: 'create'},{method: :post,  class: "btn btn-success col-md-5 offset-md-4 mt-3 mb-5"} %>
+  </div>
+<% end %>

@@ -8,7 +8,7 @@ class User < ApplicationRecord
     validates :password_digest, on: :create
   end
 
-  validates :name, length: { maximum: 15 }
+  validates :name, length: { maximum: 15, message: :too_long }
   # validates :password, length: {in: 8..32}
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}+\z/i.freeze

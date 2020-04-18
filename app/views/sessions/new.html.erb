@@ -9,8 +9,8 @@
         </div>
         
         <%= form_for :session, url: login_path do |f| %>
-        
-          <div class="col-md-8 offset-md-2 user-account">
+          <div class="col-md-8 offset-md-2 is-invalid user-account">
+            <div class="error-message"><%= @error %></div>
             <%= f.text_field :email, class:"col-md-11 offset-md-1 d-block email", placeholder:"Email" %>
             <%= f.password_field :password, class:"col-md-11 offset-md-1 d-block password", placeholder:"Password" %>
           </div>
@@ -18,7 +18,6 @@
           <div class="col-md-8 offset-md-2">
             <%= f.submit "ログイン", class:"col-md-6 offset-md-4 d-block btn btn-success login-button" %> 
           </div>
-          
         <% end %>
       </div>  
     </div>

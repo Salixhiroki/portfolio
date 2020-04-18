@@ -123,6 +123,7 @@
      transform: scale(1.2);
      transition-duration: 0.001s;
     }
+  
     
   }
   
@@ -179,5 +180,13 @@
     .sm-br{
       display:none;
     }
+  }
+}
+
+
+.user-login-wrapper{
+  .error-message{
+    color: red;
+    font-size: 16px;
   }
 }

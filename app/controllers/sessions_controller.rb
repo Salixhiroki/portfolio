@@ -2,7 +2,9 @@
 
 class SessionsController < ApplicationController
   # アカウントの新規画面へ遷移
-  def new; end
+  def new
+    @login = User.new
+  end
 
   # アカウント新規作成
   def create
@@ -14,6 +16,7 @@ class SessionsController < ApplicationController
       redirect_to recipes_path, success: 'ログインに成功しました'
     else
       flash.now[:danger] = 'ログインに失敗しました'
+      @error="メールアドレスまたはパスワードが間違っています"
       # binding pry
       render :new
     end
