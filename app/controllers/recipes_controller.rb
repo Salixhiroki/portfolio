@@ -73,24 +73,28 @@ class RecipesController < ApplicationController
   # レシピ検索
   def search
     @q = Material.ransack(params[:q])
-
+    # binding pry
     if search_params[:material_name_cont] != '' && @q.result(distinct: true) != nil
+      
       @materials_q = @q.result(distinct: true)
       i = 0
       @recipe_id = []
       @recipes_q = []
       @user_results = []
-
-      @materials_q.each do |material_q|
-        logger.debug(material_q.recipe_id)
-        @recipe_id[i] = material_q.recipe_id
-        @recipes_q[i] = Recipe.where(id: @recipe_id[i])
-        @user_results[i] = User.find_by(id: material_q.user_id)
-        i += 1
+      
+      if @materials_q != []
+        @materials_q.each do |material_q|
+          logger.debug(material_q.recipe_id)
+          @recipe_id[i] = material_q.recipe_id
+          @recipes_q[i] = Recipe.where(id: @recipe_id[i])
+          @user_results[i] = User.find_by(id: material_q.user_id)
+          i += 1
+        end
+        @q_size = i - 1
+      else
+        @nothing = 1
+        render :search
       end
-
-      @q_size = i - 1
-
     else
       # binding pry
       @nothing = 1
