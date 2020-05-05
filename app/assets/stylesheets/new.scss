@@ -99,13 +99,27 @@
     text-decoration: none;
     text-align: center;
   
+     &:hover{
+      outline:none;
+     transform: scale(1.2);
+     transition-duration: 0.001s;
+    }
+  }
+  
+  .remove-material{
+    border:1px solid green;
+    outline:none;
+    background-color: lightgreen;
+    padding-top: 2px;
+    border-radius: 20%;
+    text-decoration: none;
+    text-align: center;
     
     &:hover{
       outline:none;
      transform: scale(1.2);
      transition-duration: 0.001s;
     }
-    
   }
   
   .add-method{
@@ -116,7 +130,22 @@
     border-radius: 20%;
     text-decoration: none;
     text-align: center;
+    
+    &:hover{
+      outline:none;
+     transform: scale(1.2);
+     transition-duration: 0.001s;
+    }
+  }
   
+  .remove-method{
+    border:1px solid green;
+    outline:none;
+    background-color: lightgreen;
+    padding-top: 2px;
+    border-radius: 20%;
+    text-decoration: none;
+    text-align: center;
     
     &:hover{
       outline:none;
@@ -124,12 +153,7 @@
      transition-duration: 0.001s;
     }
   
-    
   }
-  
-  
-  
-  
   
   
   @media screen and ( min-width:375px) and ( max-width:425px) {

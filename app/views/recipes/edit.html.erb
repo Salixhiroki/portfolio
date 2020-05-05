@@ -29,9 +29,10 @@
                   <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※空欄は投稿されません。</a>
 
                   <%= f.fields_for :materials do |m| %>
-                    <div class="food1">
+                    <div class="food">
                       <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                       <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
+                      <button type="button" class="ml-1 remove-material">-</button>
                     </div>
                   <% end %>
                   <button type="button" class="ml-1 add-material">+</button>    
@@ -39,14 +40,19 @@
               
               <div class="method mt-4">
                 <div><label class="badge badge-secondary mr-2">作り方を入力してください</label><a>※空欄は投稿されません。</a></div>
-                  <%= f.fields_for :cookmethods do |cm| %>
-                    <div class="af">
-                      <label class="badge badge-pill badge-secondary num"></label>
-                        <%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 methoa-area", placeholder:"作り方を入力" %>
-                    </div>
+                    <% i=0 %>
+                      
+                      <%= f.fields_for :cookmethods, @cookmethod.sort_by(&:row_order)  do |cm| %>
+                      <div class="cook" data-model-name=<%= @recipe.class.name.underscore %> data-update-url= <%= recipe_sort_path( @recipe.id) %> data-method-id= <%= @cookmethod[i].id %>>
+                        <label class="badge badge-pill badge-secondary num">i</label>
+                        <%= cm.text_field :method, multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 method-area", placeholder:"作り方を入力" %>
+                        <button type="button" class="ml-1 remove-method">-</button>
+                        <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
+                      </div>
+                      <% i= i + 1 %>
                   <% end %>
-                  <button type="button" class="add-method ml-2">+</button>
               </div>
+              <button type="button" class="add-method ml-2">+</button>
               
               <div>
                 <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください</label></div>
@@ -71,32 +77,117 @@
 
 
 <script>
+  
   jQuery(function(){
     
-    var size=$('div[class*="af"]').length
-    var mate_size=$('div[class*="food"]').length
-    var meth_button=$(".method button")
-    var mate_button=$(".material button")
     
-     $(".method div .num").each(function(i){
-        $(this).text(i+1);
-      });
+    
+    
+    
+    
+    
+    var i=1
+    $('.cook').each(function() {
+      var n = $(this).children("label").text();   
+      if(Number(n) !== i){
+        $(this).children("label").text(i);
+        $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+      }
+      i=i+1
+    });
+    
   
-    $(meth_button).on('click',function(){
-      $(meth_button).before($(`.af${size}`).clone())
-      size=$('div[class*="af"]').length
-      $(".method div:last").attr("class",`af${size}`)
-      $(".method div .num:last").text(`${size}`)
-    });
-    
+    var len = $(".food").length;
+    var mate_button=$(".add-material")
     $(mate_button).on('click',function(){
-      $(mate_button).before($(`.food${mate_size}`).clone())
-      $(`food${mate_size}`).text("");
-      mate_size=$('div[class*="food"]').length
-      
-      $(".material div:last").attr("class",`food${mate_size}`)
-      $(".material div .num:last").text(`${mate_size}`)
+      $(".food:last").after($(`.material > .food:last`).clone(true));
     });
     
+    var mate_remove_button=$(".remove-material")
+    $(mate_remove_button).on('click',function(){
+      var f_size = $(".food").length
+      if(f_size === 1){
+        $(".remove-material").remove("disabled");
+      }else{
+        $(this).parent().remove();
+      }
+    });
+    
+    
+    var meth_button=$(".add-method")
+    $(meth_button).on('click',function(){
+      $(".cook:last").after($(`.method > .cook:last`).clone(true));
+      // var len = $(".cook").length;
+      var i=1
+      $('.cook').each(function() {
+        var n = $(this).children("label").text();   
+        if(Number(n) !== i){
+          $(this).children("label").text(i);
+          $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+        }
+        i=i+1
+      });
+    });
+    
+    var meth_remove_button=$(".remove-method")
+    $(meth_remove_button).on('click',function(){
+      var c_size = $(".cook").length
+      if(c_size === 1){
+        $(".remove-method").remove("disabled");
+      }else{
+        $(this).parent().remove();
+        var i=1
+        $('.cook').each(function() {
+          var n = $(this).children("label").text();   
+          if(Number(n) !== i){
+            $(this).children("label").text(i);
+            $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+          }
+          i=i+1
+        });
+      }
+    });
+    
+      
+    Sortable.create($('.method')[0], {
+      // animation: 50
+      onUpdate: function(e)
+      {
+        item = e.item
+        // e.newIndex = Math.ceil(e.newIndex / 2);
+        e.newDraggableIndex = e.newIndex 
+        item_data= $(".cook").data();
+        // console.log(item_data)
+        params= {_method: 'put'}
+        console.log(e.oldIndex)
+        console.log(e);
+        
+        params[item_data.modelName] = { row_order_position: e.newIndex, method_id: item.dataset.methodId}
+        
+        $.ajax({
+          type: 'POST',
+          url: item_data.updateUrl,
+          dataType: 'json',
+          data: params
+        });
+        var i=1;
+        var method_move_button=$(".cook");
+        $("hidden").remove();
+        $(method_move_button).each(function(){
+          var n = $(this).children("label").text();
+          var m = n
+          // console.log(m)
+          // console.log(n)
+          // console.log(e.newIndex)
+          var n = $(this).children("label").text();   
+          if(Number(n) !== i){
+            $(this).children("label").text(i);
+            $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+          }
+          i=i+1;
+        });
+      }
+    });
   });
+
 </script>

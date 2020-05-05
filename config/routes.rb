@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # 新規投稿,一覧,詳細,
   resources :recipes do
     resource :comments
+    put :sort
   end
 
   # お気に入り

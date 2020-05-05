@@ -1,5 +1,8 @@
+
 <html>
   <body>
+    
+  <!--<script src="assets/javascripts/Sortable.min.js"></script>-->
     <div class="recipes-new-wrapper">
       <div class="container">
         <div class="row">
@@ -29,37 +32,43 @@
             
                 <div class="material">
                   <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><br class="sm-br"><a>※空欄は投稿されません。</a>
-                  <div class="food1">
+                  <div class="food">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
+                    <button type="button" class="ml-1 remove-material">-</button>
                   </div>
+                  
             
-                  <div class="food2">
+                  <div class="food">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
+                    <button type="button" class="ml-1 remove-material">-</button>
                   </div>
                   
-                  <div class="food3">
+                  <div class="food">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                     <!--<button type="button" class="ml-1 add-material">+</button>-->
+                    <button type="button" class="ml-1 remove-material">-</button>
                   </div>
                   
-                  <div class="food4">
+                  <div class="food">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
-                    
+                    <button type="button" class="ml-1 remove-material">-</button>
                   </div>
                   
-                  <div class="food5">
+                  <div class="food">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
                     <!--<button type="button" class="ml-1 add-material">+</button>-->
+                    <button type="button" class="ml-1 remove-material">-</button>
                   </div>
                   
-                  <div class="food6">
+                  <div class="food">
                     <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
                     <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
+                    <button type="button" class="ml-1 remove-material">-</button>
                   </div>
                   <button type="button" class="ml-1 add-material">+</button>
                 </div>
@@ -70,12 +79,37 @@
             
                 <div class="method mt-4">
                   <div><label class="badge badge-secondary mr-2">作り方を入力してください</label><a>※空欄は投稿されません。</a></div>
-                  <div class="af1"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div class="af2"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div class="af3"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %></div>
-                  <div class="af4"><label class="badge badge-pill badge-secondary num"></label><%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %></div>
-                  <button type="button" class="ml-2 add-method">+</button>
+                  
+                  <div class="cook">
+                    <label class="badge badge-pill badge-secondary num1">1</label>
+                    <%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
+                    <button type="button" class="ml-1 remove-method">-</button>
+                    <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
+                  </div>
+                  
+                  <div class="cook">
+                    <label class="badge badge-pill badge-secondary num2">2</label>
+                    <%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
+                    <button type="button" class="ml-1 remove-method">-</button>
+                    <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
+                  </div>
+                  
+                  <div class="cook">
+                    <label class="badge badge-pill badge-secondary num3">3</label>
+                    <%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2", placeholder:"作り方を入力" %>
+                    <button type="button" class="ml-1 remove-method">-</button>
+                    <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
+                  </div>
+                  
+                  <div class="cook">
+                    <label class="badge badge-pill badge-secondary num4">4</label>
+                    <%= cm.text_field :method,multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 d-inline", placeholder:"作り方を入力" %>
+                    <button type="button" class="ml-1 remove-method">-</button>
+                    <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
+                  </div>
+                  
                 </div>
+                  <button type="button" class="ml-2 add-method">+</button>
             
               <% end %>
             
@@ -100,33 +134,73 @@
   </body>
 </html>
 
+
 <script>
-  jQuery(function(){
-    
-    var size=$('div[class*="af"]').length
-    var mate_size=$('div[class*="food"]').length
-    var meth_button=$(".method button")
-    var mate_button=$(".material button")
-    
-     $(".method div .num").each(function(i){
-        $(this).text(i+1);
-      });
   
-    $(meth_button).on('click',function(){
-      $(meth_button).before($(`.af${size}`).clone())
-      size=$('div[class*="af"]').length
-     
-      $(".method div:last").attr("class",`af${size}`)
-      $(".method div .num:last").text(`${size}`)
-    });
-    
+  jQuery(function(){
+  
+    var len = $(".food").length;
+    var mate_button=$(".add-material")
     $(mate_button).on('click',function(){
-      $(mate_button).before($(`.food${mate_size}`).clone())
-      mate_size=$('div[class*="food"]').length
-      
-      $(".material div:last").attr("class",`food${mate_size}`)
-      // $(".material div .num:last").text(`${mate_size}`)
+      $(".food:last").after($(`.material > .food:last`).clone(true));
     });
     
+    var mate_remove_button=$(".remove-material")
+    $(mate_remove_button).on('click',function(){
+      $(this).parent().remove();
+    });
+    
+    
+    var meth_button=$(".add-method")
+    $(meth_button).on('click',function(){
+      $(".cook:last").after($(`.method > .cook:last`).clone(true));
+      // var len = $(".cook").length;
+      var i=1
+      $('.cook').each(function() {
+        var n = $(this).children("label").text();   
+        if(Number(n) !== i){
+          $(this).children("label").text(i);
+          $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+        }
+        i=i+1
+      });
+    });
+    
+    var meth_remove_button=$(".remove-method")
+    $(meth_remove_button).on('click',function(){
+      $(this).parent().remove();
+      var i=1
+      $('.cook').each(function() {
+        var n = $(this).children("label").text();   
+        if(Number(n) !== i){
+          $(this).children("label").text(i);
+          $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+        }
+        i=i+1
+      });
+    });
+    
+      
+    Sortable.create($('.method')[0], {
+      animation: 110
+      ,onUpdate: function(event,ui)
+      {
+        var i=1;
+        var method_move_button=$(".cook");
+        $(method_move_button).each(function(){
+          var n = $(this).children("label").text();   
+          console.log(n)
+          if(Number(n) !== i){
+            $(this).children("label").text(i);
+            $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+            console.log(i)
+          }
+          i=i+1;
+        });
+      }
+    });
   });
+
 </script>
+
+

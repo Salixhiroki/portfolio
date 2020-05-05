@@ -56,10 +56,8 @@
                 <tr><th class="text-center thead-border">材&ensp;&ensp;料</th><th class="text-center thead-border">分&nbsp;&nbsp;&nbsp;&nbsp;量</th></tr>
               </thead>
               
-              <% num=0 %>  
-              
-              <tbody>
-                <% while num < @n*2 do %>
+              <% for num in 0..@n-1 do %>
+                <tbody>
                   <tr>
                     <td>
                       <p class="d-inline offset-md-4">
@@ -73,9 +71,8 @@
                       </p>
                       </td>
                   </tr>
-                  <% num+=1 %>
-                <% end %>
-              </tbody>
+                </tbody>
+              <% end %>
             </table>
         </div>
           
