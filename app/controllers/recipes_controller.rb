@@ -165,7 +165,8 @@ class RecipesController < ApplicationController
     # logger.debug(@m_lengths)
     @material_cnt = 0 # カウンタ変数
     num = 0 # カウンタ変数
-    @nothing_material = [] # 空の配列作成 => 忘れるな！
+    @nothing_material = [] # 空の配列作成
+    
     # binding pry
 
     # 要素数分ループする
@@ -181,7 +182,6 @@ class RecipesController < ApplicationController
        next
       end
       
-      
       if @m_name != '' && @m_quantity != ''
         if @material[m_length].update(material_name: @m_name) && @material[m_length].update(material_quantity: @m_quantity)
           @material_cnt += 1
@@ -191,25 +191,18 @@ class RecipesController < ApplicationController
           @material_cnt += 1
         end
       else
-        # binding pry
         @nothing_material[num] = @material[m_length]
         num += 1
       end
 
-      m_quantity_l = recipe_params[:materials_attributes][m_length.to_s][:material_quantity]
       m_name_l = recipe_params[:materials_attributes][m_length.to_s][:material_name]
-      # binding pry
-      if m_quantity_l.length > 1 || m_name_l.length > 1
-  
-        @m_quantities = m_quantity_l.length
-        @m_names = m_name_l.length
-        for n in 1..@m_quantities-1 do
-          @m_quantity_else = recipe_params[:materials_attributes][m_length.to_s][:material_quantity][n]
-          @m_name_else = recipe_params[:materials_attributes][m_length.to_s][:material_name][n]
-  
-          @material_new = Material.new(user_id: @update_user_id, recipe_id: params[:id], material_name: @m_name_else, material_quantity: @m_quantity_else)
+      m_names = m_name_l.length
+      (1..m_names - 1).each do |n|
+        m_name_else = recipe_params[:materials_attributes][m_length.to_s][:material_name][n]
+        m_quantity_else = recipe_params[:materials_attributes][m_length.to_s][:material_quantity][n]
+        @material.where(material_name: m_name_else, material_quantity: m_quantity_else).exists?
+          @material_new = Material.new(user_id: @update_user_id, recipe_id: params[:id], material_name: m_name_else, material_quantity: m_quantity_else)
           @material_new.save
-        end
       end
     end
     #----------------------------------<//>
@@ -217,10 +210,9 @@ class RecipesController < ApplicationController
     @method_cnt = 0 # カウンタ変数
     @nothing_method = [] # 空の配列作成
     num = 0
-    
     # cookmethodsのデータをハッシュに変換してそれに格納されている要素数を格納
     @method_lengths = recipe_params[:cookmethods_attributes].to_h.length 
-
+    
     # 要素分ループする
     for method_length in 0..@method_lengths-1 do
       @method = recipe_params[:cookmethods_attributes][method_length.to_s][:method]
@@ -235,17 +227,15 @@ class RecipesController < ApplicationController
         num += 1
       end
       method_l = recipe_params[:cookmethods_attributes][method_length.to_s][:method]
+      puts method_l.to_s + "kodesu" 
     end
     
-    if method_l.length > 1
-      @methods = method_l.length
-  
-      (1..@methods - 1).each do |n|
-        @method_else = recipe_params[:cookmethods_attributes][method_length.to_s][:method][n]
-        # binding pry
-        @method_new = Cookmethod.new(user_id: @update_user_id, recipe_id: params[:id], method: @method_else)
-        @method_new.save
-      end
+    @methods = method_l.length
+    (1..@methods - 1).each do |n|
+      method_else = recipe_params[:cookmethods_attributes][method_length.to_s][:method][n]
+      @cookmethod.where(method: method_else).exists?
+        method_new = Cookmethod.new(user_id: @update_user_id, recipe_id: params[:id], method: method_else)
+        method_new.save
     end
     
     if @recipe_cnt == 1 && @material_cnt != 0 && @method_cnt != 0

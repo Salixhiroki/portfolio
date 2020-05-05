@@ -79,12 +79,7 @@
   
   jQuery(function(){
     
-    
-    
-    
-    
-    
-    
+    // 初期 番号追加
     var i=1
     $('.cook').each(function() {
       var n = $(this).children("label").text();   
@@ -95,13 +90,14 @@
       i=i+1
     });
     
-  
+  // 材料追加ボタンクリック時
     var len = $(".food").length;
     var mate_button=$(".add-material")
     $(mate_button).on('click',function(){
       $(".food:last").after($(`.material > .food:last`).clone(true));
     });
-    
+  
+  // 材料削除ボタンクリック時  
     var mate_remove_button=$(".remove-material")
     $(mate_remove_button).on('click',function(){
       var f_size = $(".food").length
@@ -112,7 +108,7 @@
       }
     });
     
-    
+    // 調理方法追加ボタンクリック時  
     var meth_button=$(".add-method")
     $(meth_button).on('click',function(){
       $(".cook:last").after($(`.method > .cook:last`).clone(true));
@@ -128,6 +124,7 @@
       });
     });
     
+    // 調理方法削除ボタンクリック時
     var meth_remove_button=$(".remove-method")
     $(meth_remove_button).on('click',function(){
       var c_size = $(".cook").length
@@ -147,7 +144,7 @@
       }
     });
     
-      
+    // セレクタ移動後
     Sortable.create($('.method')[0], {
       // animation: 50
       onUpdate: function(e)
@@ -165,9 +162,6 @@
             item = e.item
             item_data= $(".cook").data();
             params= {_method: 'put'}
-            // console.log(e);
-            // console.log($(this).hidden.value)
-            // console.log(Math.ceil(e.oldIndex/2))
             params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) - 1 , method_id: item.dataset.methodId}
     
             $.ajax({
