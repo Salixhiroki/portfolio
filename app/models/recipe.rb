@@ -4,7 +4,6 @@ class Recipe < ApplicationRecord
   # validate :recipes_nothing
   with_options presence: true do
     validates :title
-    validates :point
   end
 
   has_many :materials, dependent: :destroy

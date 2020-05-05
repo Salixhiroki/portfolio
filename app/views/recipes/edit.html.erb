@@ -8,7 +8,7 @@
               <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 編集</h2>
             </div>
             
-            <div class="heading">
+            <div class="heading-sentence">
               <p>お茶漬けにはバリエーションがたくさんあります。だしやトッピングを変えることで様々な味を表現することができます。<br>
               自分のオリジナルのお茶漬けを投稿して日本のお茶漬けを盛り上げましょう！</p>
             </div>
@@ -26,7 +26,7 @@
                 <%= f.file_field :image, style: "display:none;",value:"画像を選択" %>
               
               <div class="material">
-                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※空欄は投稿されません。</a>
+                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※材料と分量の両方が空欄は投稿されません。</a>
 
                   <%= f.fields_for :materials do |m| %>
                     <div class="food">
@@ -55,7 +55,7 @@
               
               <div>
                 <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください</label></div>
-                <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力" %>
+                <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力（任意）" %>
               </div>
               
               <div>
