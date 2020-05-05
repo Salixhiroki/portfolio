@@ -120,7 +120,7 @@ class RecipesController < ApplicationController
    
     @material = Material.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
     @cookmethod = Cookmethod.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
-    # @cookmethod = @cookmethod.order(row_order: "ASC")
+    @cookmethod = @cookmethod.order(row_order: "ASC")
   end
 
   #-------------------------------------------------------------------------------------------------</>
@@ -146,7 +146,7 @@ class RecipesController < ApplicationController
     # cookmethosテーブルの情報を取得
     @cookmethod = Cookmethod.where(user_id: @update_user_id, recipe_id: params[:id])
     # @cookmethod = @cookmethod.order(row_order: "ASC")
-    # @cookmethod = Cookmethod.rank(:row_order)
+    @cookmethod = Cookmethod.rank(:row_order)
     # logger.debug(@material)
 
     #----------------------------------<//>
