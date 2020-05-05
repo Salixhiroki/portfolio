@@ -13,11 +13,17 @@
 @import "favorites";
 @import "search";
 
+body{ 
+  padding-top: 80px;
+}
+
 .navigation{
   background-color:lightgreen;
   color:seagreen;
   outline:none;
+  
 }
+
 
 .alert{
   margin-bottom:0px;
@@ -35,6 +41,7 @@ i{
 .nav-li{
   font-size: 20px;
 }
+
 
 
 @media screen and ( min-width:375px) and ( max-width:425px) {

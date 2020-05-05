@@ -1,7 +1,19 @@
+.user-new-screen{
+  background-image: url("/assets/images.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
 
 .user-index-wrapper{
   
-  position:relative;
+  .create{
+    background-color:palegreen;
+    margin-top: 70px;
+    padding-bottom:40px;
+    border-radius:10px;
+  }
   
   .login{
     background-color:palegreen;

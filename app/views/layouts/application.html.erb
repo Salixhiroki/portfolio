@@ -15,7 +15,7 @@
   </head>
   <body>
    
-    <nav class="navbar navbar-dark navigation nav-class">
+    <nav class="navbar navbar-dark navigation fixed-top nav-class">
       <div class="container col-md-12">
         <ul class="nav mt-2">
           <li class="nav-li">
@@ -80,10 +80,11 @@
       </div>
     </nav>
     
+    
     <% flash.each do |key,value| %>
        <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
     <% end %>  
-  
+    
     
     <%= yield %>
   

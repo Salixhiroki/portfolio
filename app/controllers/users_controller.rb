@@ -69,7 +69,6 @@ class UsersController < ApplicationController
       end
 
     else
-      binding pry
       @nothing = 1
       render :search
     end
