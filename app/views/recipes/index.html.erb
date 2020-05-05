@@ -45,11 +45,15 @@
                       <!--タイトル ↓ recipe.title-->
                       <h4><%= recipe.title %></h4>
                       <!--ポイント ↓ recipe.discription-->
-                       <p class="link"><%= recipe.point %></p>
+                      <%# if recipe.point == false %>
+                        <!--logger.debug(<)-->
+                        <!--<p class="link">&nbsp;</p>-->
+                      <%# else %>
+                      <p class="link"><%= recipe.point %>&nbsp; </p>
+                      <%# end %> 
                     </div>
             
                     <div class="recipes-favorite">
-                      
                       <div id="favorite_button_<%= recipe.id %>", class="d-inline-block">
                         <%= render partial: 'favorites/favorite_index', locals: {recipe: recipe} %>
                       </div>
@@ -79,8 +83,6 @@
                       <% if recipe.comments.count!=0 %>
                         <p class="favorites_count d-inline mr-3"><%= recipe.comments.count %></p>
                       <% end %>
-                      
-                      
                       <%= recipe.user&.name %>
                     </div>
                   </div>

@@ -26,7 +26,7 @@
                 <%= f.file_field :image, style: "display:none;",value:"画像を選択" %>
               
               <div class="material">
-                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※材料と分量の両方が空欄は投稿されません。</a>
+                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※材料と分量の両方が空欄の場合は投稿されません。</a>
 
                   <%= f.fields_for :materials do |m| %>
                     <div class="food">
@@ -54,7 +54,7 @@
               <button type="button" class="add-method ml-2">+</button>
               
               <div>
-                <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください</label></div>
+                <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください（）</label></div>
                 <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力（任意）" %>
               </div>
               
