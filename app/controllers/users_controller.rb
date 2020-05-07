@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  
+  before_action :ensure_correct_user,{only:[:edit,:update,:destroy]}
+  
   # ユーザーアカウント作成ページへ遷移
   def new
     @user = User.new
@@ -8,7 +11,6 @@ class UsersController < ApplicationController
 
   # ユーザーアカウントを新規登録
   def create
-    # binding pry
     @user = User.new(user_params)
 
     # binding pry
@@ -20,6 +22,14 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def ensure_correct_user
+    @check=User.find_by(id: params[:id])
+    if @check.id!= current_user.id
+      redirect_to root_path, danger: '権限がありません'
+    end
+  end
+  
 
   def destroy
     @user = User.find_by(id: params[:id])
@@ -84,7 +94,7 @@ class UsersController < ApplicationController
     # @user.email=user_params[:email]
     # @user.user_image=user_params[:user_image]
     # binding pry
-    if @user.id == current_user.id
+    if @user.id == @current_user.id
       if @user.update(user_params)
         redirect_to users_path, success: 'アカウントを編集しました'
       else

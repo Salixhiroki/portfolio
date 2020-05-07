@@ -1,5 +1,5 @@
   .top-screen{
-    background-image: url("/assets/images.jpeg");
+    background-image: url("/assets/chazuke.jpeg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,20 +16,26 @@
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
-    color: rgba(255, 255, 255, 0.6);
+    color: green;
+    background-color: rgba(255,255,255,0.6);
     font-size: 130px;
-    
+    width: 100%;
   }
   
   
   .top-title1{
     // text-shadow: 5px 5px 2px lightgreen;
     margin-bottom: 20px;
+    text-align: center;
   }
   
   .top-title2 h2{
     // text-shadow: 5px 5px 2px lightgreen;
     margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .top-title3 h2{
     text-align: center;
   }
   

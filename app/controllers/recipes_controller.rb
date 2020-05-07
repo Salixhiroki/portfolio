@@ -3,6 +3,8 @@
 class RecipesController < ApplicationController
   protect_from_forgery except: :create
   attr_accessor :material_name, :material_quantity, :method
+  before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
+  before_action :ensure_correct_user,{only:[:edit,:update,:destroy]}
   before_action :all_comments, only: [:show]
   #-------------------------------------------------------------------------------------------------</>
 
@@ -24,7 +26,8 @@ class RecipesController < ApplicationController
     if @recipe.save
       # 材料名と分量を格納、保存
       recipe_params[:materials_attributes]['0']['material_name'].zip(recipe_params[:materials_attributes]['0']['material_quantity']).each do |m_name, m_quantity|
-        @material = @recipe.materials.create!(user_id: current_user.id, material_name: m_name, material_quantity: m_quantity)
+        # binding pry
+        @material = @recipe.materials.create(user_id: current_user.id, material_name: m_name, material_quantity: m_quantity)
 
         if m_name != '' && m_quantity != ''
           @material.save
@@ -37,7 +40,7 @@ class RecipesController < ApplicationController
 
       # 作り方を格納、保存
       recipe_params[:cookmethods_attributes]['0']['method'].each do |cm|
-        @cookmethod = @recipe.cookmethods.create!(user_id: current_user.id, method: cm)
+        @cookmethod = @recipe.cookmethods.create(user_id: current_user.id, method: cm)
         if cm != ''
           @cookmethod.save
         else
@@ -48,7 +51,9 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, success: 'レシピを投稿しました！'
     else
       flash.now[:danger] = 'レシピの投稿に失敗しました'
-      render "recipes/new"
+      render("recipes/new")
+      # redirect_to new_recipe_path, danger: "レシピの投稿に失敗しました"
+      
     end
   end
 
@@ -110,32 +115,43 @@ class RecipesController < ApplicationController
     @detail_material = Material.where(user_id: @detail.user_id, recipe_id: @detail.id)
     # binding pry
     @detail_method = Cookmethod.where(user_id: @detail.user_id, recipe_id: @detail.id)
-    @detail_method = @detail_method.rank(:row_order)
+    # @detail_method = @detail_method.rank(:row_order)
     @n= @detail_material.length
     @m =  @detail_method.length
     @user = User.find_by(id: @detail.user_id)
   end
 
   #-------------------------------------------------------------------------------------------------</>
-
+  
+  def ensure_correct_user
+    @check=Recipe.find_by(id: params[:id])
+    if @check.user_id!= current_user.id
+      redirect_to root_path, danger: '権限がありません'
+    end
+  end
+  
+  #-------------------------------------------------------------------------------------------------</>
+  
   # 編集対象のレシピの情報を格納
   def edit
     @recipe = Recipe.find_by(id: params[:id])
-   
     @material = Material.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
     @cookmethod = Cookmethod.where(user_id: @recipe.user_id, recipe_id: @recipe.id)
-    @cookmethod = @cookmethod.order(row_order: "ASC")
+    # @cookmethod = @cookmethod.rank(:row_order)
+    # @cookmethod = Cookmethod.rank(:row_order)
+    # @cookmethod = @cookmethod.order(row_order: "ASC")
+    # binding pry
   end
 
   #-------------------------------------------------------------------------------------------------</>
   #並べ替えを保存する
-  def sort
-    # binding pry
-    sort_recipe = Cookmethod.find(recipe_params[:method_id])
-    sort_recipe.update(row_order_position: recipe_params[:row_order_position].to_i)
-    # binding pry
-    render body: nil
-  end
+  # def sort
+  #   # binding pry
+  #   sort_recipe = Cookmethod.find(recipe_params[:method_id])
+  #   sort_recipe.update_attributes(row_order_position: recipe_params[:row_order_position].to_i, method: sort_recipe.method)
+  #   # binding pry
+  #   render body: nil
+  # end
 
   #----------------------------------<//>
   # 編集内容の取得と保存
@@ -150,7 +166,7 @@ class RecipesController < ApplicationController
     # cookmethosテーブルの情報を取得
     @cookmethod = Cookmethod.where(user_id: @update_user_id, recipe_id: params[:id])
     # @cookmethod = @cookmethod.order(row_order: "ASC")
-    @cookmethod = Cookmethod.rank(:row_order)
+    # @cookmethod = @cookmethod.rank(:row_order)
     # logger.debug(@material)
 
     #----------------------------------<//>
@@ -158,9 +174,17 @@ class RecipesController < ApplicationController
     # recipesテーブルを更新
     @recipe_cnt = 0 # カウンタ変数
     # binding pry
-    if @recipe.update(recipe_params)
+    if recipe_params[:image]
+      image= recipe_params[:image]
+      File.binwrite("public#{@recipe.image}",image.read)
+      @recipe.update(image: recipe_params[:image])
+    end  
+    if @recipe.update_attributes(title: recipe_params[:title],
+      point: recipe_params[:point], impression: recipe_params[:impression])
+      
       @recipe_cnt += 1 
     end
+    
     # binding pry
     #----------------------------------<//>
 
@@ -216,12 +240,12 @@ class RecipesController < ApplicationController
     num = 0
     # cookmethodsのデータをハッシュに変換してそれに格納されている要素数を格納
     @method_lengths = recipe_params[:cookmethods_attributes].to_h.length 
-    
     # 要素分ループする
     for method_length in 0..@method_lengths-1 do
       @method = recipe_params[:cookmethods_attributes][method_length.to_s][:method]
       if @method != nil
         @method = recipe_params[:cookmethods_attributes][method_length.to_s][:method][0]
+        # binding pry
         @method_cnt += 1 if @cookmethod[method_length].update(method: @method)
       elsif @method == nil
         @cookmethod[method_length].destroy
@@ -231,21 +255,25 @@ class RecipesController < ApplicationController
         num += 1
       end
       method_l = recipe_params[:cookmethods_attributes][method_length.to_s][:method]
-      puts method_l.to_s + "kodesu" 
     end
-    
     @methods = method_l.length
+    # binding pry
     (1..@methods - 1).each do |n|
+      
       method_else = recipe_params[:cookmethods_attributes][method_length.to_s][:method][n]
       @cookmethod.where(method: method_else).exists?
         method_new = Cookmethod.new(user_id: @update_user_id, recipe_id: params[:id], method: method_else)
         method_new.save
     end
-    
+    # binding pry
     if @recipe_cnt == 1 && @material_cnt != 0 && @method_cnt != 0
       material_method_destroy(@nothing_material, @nothing_method) # material_method_destroyを呼び出して何も入っていない場合のレコードを削除< fn >
-      redirect_to edit_recipe_path, success: 'レシピの編集をしました'
+      if @recipe_cnt == 1
+        redirect_to "/recipes/#{@recipe.id}", success: 'レシピの編集をしました'
+        # binding pry
+      end 
     else
+      # binding pry
       flash.now[:danger] = 'レシピの編集に失敗しました'
       render :edit
     end
@@ -255,6 +283,7 @@ class RecipesController < ApplicationController
   def material_method_destroy(nothing_material, nothing_method)
     num = 0
     unless nothing_material.empty?
+    # binding pry
       nothing_material.each do |n_material|
         n_material&.destroy
         num += 1

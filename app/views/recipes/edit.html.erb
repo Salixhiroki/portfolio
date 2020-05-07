@@ -22,31 +22,30 @@
               
               <div><label class="badge badge-secondary">画像を選択してください</label></div>
                 <%= f.label :image, "画像をアップロード", class: "image-input-btn" %> 
-                
-                <%= f.file_field :image, style: "display:none;",value:"画像を選択" %>
-              
-              <div class="material">
-                  <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><a>※材料と分量の両方が空欄の場合は投稿されません。</a>
-
-                  <%= f.fields_for :materials do |m| %>
-                    <div class="food">
-                      <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
-                      <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
-                      <button type="button" class="ml-1 remove-material">-</button>
-                    </div>
-                  <% end %>
-                  <button type="button" class="ml-1 add-material">+</button>    
-              </div>
+                <%= f.file_field :image, multipart: true, style: "display:none;" %>
+                <div class="material">
+                    <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label>
+                    <%= f.fields_for :materials do |m| %>
+                      <div class="food">
+                        <%= m.text_field :material_name,multiple: true, class:"text-form material-name", placeholder:"材料を入力" %>
+                        <%= m.text_field :material_quantity,multiple: true, class:"text-form material-quantity", placeholder:"分量を入力" %>
+                        <button type="button" class="ml-1 remove-material">-</button>
+                      </div>
+                    <% end %>
+                    <button type="button" class="ml-1 add-material">+</button>    
+                </div>
               
               <div class="method mt-4">
-                <div><label class="badge badge-secondary mr-2">作り方を入力してください</label><a>※空欄は投稿されません。</a></div>
+                <div><label class="badge badge-secondary mr-2">作り方を入力してください</label></div>
                   <% i=0 %>
                     <%= f.fields_for :cookmethods, @cookmethod.sort_by(&:row_order)  do |cm| %>
-                      <div class="cook" data-model-name=<%= @recipe.class.name.underscore %> data-update-url= <%= recipe_sort_path( @recipe.id) %> data-method-id= <%= @cookmethod[i].id %>>
+                      <!--<div class="cook" data-model-name=<%#= @recipe.class.name.underscore %> data-update-url= <%#= recipe_sort_path( @recipe.id) %> data-method-id= <%#= @cookmethod[i].id %>>-->
+                      <div class="cook">
                         <label class="badge badge-pill badge-secondary num">i</label>
+                        
                         <%= cm.text_field :method, multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 method-area", placeholder:"作り方を入力" %>
                         <button type="button" class="ml-1 remove-method">-</button>
-                        <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
+                        <!--<i class="fas fa-arrows-alt-v ml-2 method-move"></i>-->
                       </div>
                       <% i= i + 1 %>
                 <% end %>
@@ -54,8 +53,8 @@
               <button type="button" class="add-method ml-2">+</button>
               
               <div>
-                <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください（）</label></div>
-                <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力（任意）" %>
+                <div><label class="badge badge-secondary mt-4">作る上でのポイントを入力してください</label></div>
+                <%= f.text_area :point, class:"point", placeholder:"調理のポイントを入力" %>
               </div>
               
               <div>
@@ -145,36 +144,37 @@
     });
     
     // セレクタ移動後
-    Sortable.create($('.method')[0], {
-      animation: 110,
-      onUpdate: function(e)
-      {
-        var i=1;
-        var method_move_button=$(".cook");
-        $("hidden").remove();
-        $(method_move_button).each(function(){
-          var n = $(this).children("label").text();
-          var m = n
-          var n = $(this).children("label").text();   
-          if(Number(n) !== i){
-            $(this).children("label").text(i);
-            $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
-            item = e.item
-            item_data= $(".cook").data();
-            params= {_method: 'put'}
-            params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) - 1 , method_id: item.dataset.methodId}
+    // Sortable.create($('.method')[0], {
+    //   // animation: 110,
+    //   onUpdate: function(e)
+    //   {
+    //     window.alert($.fn.jquery);
+    //     var i=1;
+    //     var method_move_button=$(".cook");
+    //     $("hidden").remove();
+    //     $(method_move_button).each(function(){
+    //       var n = $(this).children("label").text();
+    //       var m = n
+    //       var n = $(this).children("label").text();   
+    //       if(Number(n) !== i){
+    //         $(this).children("label").text(i);
+    //         $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+    //         item = e.item
+    //         item_data= $(".cook").data();
+    //         params= {_method: 'put'}
+    //         params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) - 1 , method_id: item.dataset.methodId}
     
-            $.ajax({
-              type: 'POST',
-              url: item_data.updateUrl,
-              dataType: 'json',
-              data: params
-            });
-          }
-          i=i+1;
-        });
-      }
-    });
+    //         $.ajax({
+    //           type: 'POST',
+    //           url: item_data.updateUrl,
+    //           dataType: 'json',
+    //           data: params
+    //         });
+    //       }
+    //       i=i+1;
+    //     });
+    //   }
+    // });
   });
 
 </script>

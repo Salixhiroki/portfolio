@@ -12,7 +12,7 @@
       </div>
    </div>
        
-  <% if @detail_material[0]&.material_name != nil %>
+  <%# if @detail_material[0]&.material_name != nil %>
    
     <div id="favorite_button_<%= @detail.id %>", class="d-inline-block">
       <%= render partial: 'favorites/favorite', locals: {detail: @detail} %>
@@ -113,7 +113,7 @@
           <%= render @comments %>
         </div>
         
-  <% end %>
+  <%# end %>
       </div>    
     </div>
   </div>      
@@ -136,8 +136,8 @@
     
     $(window).scroll(function(){
      
-      // 100pxスクロールしたら
-      if($(this).scrollTop() > 70){
+      // 90pxスクロールしたら
+      if($(this).scrollTop() > 90){
         pagetop.stop().animate({
           'bottom': '50px' //下から50pxの位置に
         }, 300);// フェードインさせる

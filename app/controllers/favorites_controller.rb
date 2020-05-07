@@ -12,8 +12,6 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new
     @favorite.user_id = current_user.id
     @favorite.recipe_id = params[:recipe_id]
-    # binding pry
-    logger.debug(request.url)
     if @favorite.save
       # redirect_to recipe_path(@favorite.recipe_id), success: 'お気に入りに登録しました'
       # flash.now[:success] = 'お気に入りに登録しました'
@@ -26,7 +24,6 @@ class FavoritesController < ApplicationController
   def cancel
     @detail = Recipe.find(params[:recipe_id])
     @favorite = Favorite.find_by(user_id: current_user.id, recipe_id: params[:recipe_id])
-    # binding pry
     @favorite&.destroy
   #   redirect_to recipe_path(@favorite.recipe_id), success: 'お気に入りを解除しました'
   end
