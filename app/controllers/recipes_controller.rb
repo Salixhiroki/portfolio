@@ -51,8 +51,10 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, success: 'レシピを投稿しました！'
     else
       flash.now[:danger] = 'レシピの投稿に失敗しました'
-      render("recipes/new")
-      # redirect_to new_recipe_path, danger: "レシピの投稿に失敗しました"
+      # binding pry
+      # @recipe.materials.material_name= "a"
+      # @recipe.cookmethods.method = "a"
+      redirect_to new_recipe_path, danger: "レシピの投稿に失敗しました"
       
     end
   end

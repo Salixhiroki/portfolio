@@ -27,7 +27,7 @@
               <%= f.label :image, "画像をアップロード", class: "image-input-btn" %> 
                <%= f.file_field :image, style: "display:none;"%>
               
-              <%= f.fields_for :materials do |m| %>
+              <%= f.fields_for :materials, @recipe.materials do |m| %>
             
                 <div class="material">
                   <label class="badge badge-secondary mr-2">材料とそれに対する分量を入力してください</label><br class="sm-br">
@@ -48,7 +48,7 @@
               
               <% end %>
             
-              <%= f.fields_for :cookmethods do |cm| %>
+              <%= f.fields_for :cookmethods, @recipe.cookmethods do |cm| %>
             
                 <div class="method mt-4">
                   <div><label class="badge badge-secondary mr-2">作り方を入力してください</label></div>
@@ -82,7 +82,7 @@
               </div>
               
               <div>
-                <%= button_to "投稿",{controller:"recipes", action:"create"},{method: :post, class:"btn btn-success col-md-3 offset-md-4 mb-5"} %>
+                <%= f.button '投稿',type: 'button', onclick: 'submit();',class:"btn btn-success col-md-3 offset-md-4 mb-5" %>
               </div>
             <% end %>
           </div>
