@@ -83,3 +83,4 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 gem 'rails-i18n'
 gem 'ranked-model'
+gem 'rails_12factor', group: :production

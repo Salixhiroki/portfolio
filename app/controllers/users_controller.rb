@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     # binding pry
-
+    
     if @user.save
       redirect_to login_path, success: 'アカウントの登録に成功しました'
     else
