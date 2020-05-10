@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_095047) do
     t.string "user_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
+    t.string "passworddigest"
   end
 
 end
