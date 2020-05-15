@@ -50,9 +50,7 @@ class RecipesController < ApplicationController
 
       redirect_to recipes_path, success: 'レシピを投稿しました！'
     else
-      flash.now[:danger] = 'レシピの投稿に失敗しました'
-      # @recipe.materials.material_name= "a"
-      # @recipe.cookmethods.method = "a"
+      # flash.now[:danger] = 'レシピの投稿に失敗しました'
       redirect_to new_recipe_path, danger: "レシピの投稿に失敗しました"
       
     end
@@ -167,7 +165,7 @@ class RecipesController < ApplicationController
     # cookmethosテーブルの情報を取得
     @cookmethod = Cookmethod.where(user_id: @update_user_id, recipe_id: params[:id])
     # @cookmethod = @cookmethod.order(row_order: "ASC")
-    # @cookmethod = @cookmethod.rank(:row_order)
+    @cookmethod = @cookmethod.rank(:row_order)
     # logger.debug(@material)
 
     #----------------------------------<//>

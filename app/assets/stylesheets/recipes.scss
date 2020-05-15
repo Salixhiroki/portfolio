@@ -34,19 +34,17 @@ body{
     
   }
 
-  .link{
-    text-decoration:none;
-    color:green;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
 
   .recipes-top{
     height: 285px;
     border:1px solid;
   }
 
+  h4{
+    color: green;
+  }
+
+  
 
 
   .recipes-bottom{
@@ -131,7 +129,12 @@ body{
     text-align: center;
   }
     
-    
+  
+  #page_top{
+    margin-bottom:50px;
+  }
+  
+  
   @media screen and ( min-width:1440px) {
   
     .heading-sentence{
@@ -142,8 +145,14 @@ body{
       margin-left: 450px;
     }
     
-    
-    
+    .impression{
+      text-decoration:none;
+      color:green;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  
     .recipes:nth-child(2n){
       width:25%;
     }
@@ -159,9 +168,16 @@ body{
       margin-left: 350px;
     }
     
-    
     .recipes{
       width: 32%;
+    }
+    
+    .impression{
+      text-decoration:none;
+      color:green;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
     
     .recipes:nth-child(2n){
@@ -184,16 +200,23 @@ body{
       margin-left: 260px;
     }
 
-
+  
     .img{
       width: 276px;
+    }
+    
+    .impression{
+      text-decoration:none;
+      color:green;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .recipes:nth-child(2n){
       width:40%;
     }
     
-
   }
   
   
@@ -219,6 +242,14 @@ body{
       width:316px;
     }
     
+    .impression{
+      text-decoration:none;
+      color:green;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    
   }
   
   @media screen and ( min-width:325px) and ( max-width:375px) {
@@ -226,7 +257,27 @@ body{
     .img{
       width: 276px;
     }
+    
+    .impression{
+      text-decoration:none;
+      color:green;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    
   }
+  
+  @media screen and (max-width: 320px) {
+   
+   .impression{
+      text-decoration:none;
+      color:green;
+    }
+    
+  }
+  
+  
 }
 
 

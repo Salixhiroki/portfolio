@@ -5,7 +5,7 @@
       <div class="container recipes-index-container">
         <div class="row">
           
-          <div class="col-md-10 offset-md-1 mb-3">
+          <div class="col-md-10 offset-md-1 mb-3 mt-4">
             <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 一覧</h2>
           </div>
           
@@ -46,7 +46,7 @@
                         <!--タイトル ↓ recipe.title-->
                         <h4 class="link"><%= @recipes_q[i][0].title %></h4>
                         <!--ポイント ↓ recipe.discription-->
-                         <p class="link"><%= @recipes_q[i][0].point %></p>
+                         <p class="impression"><%= @recipes_q[i][0].impression %></p>
                       </div>
                       
                 <% end %>
@@ -76,8 +76,8 @@
               <% end %>
         <% else %>
                 
-          <%= link_to recipes_path do %>
-            <p class="offset-md-5 badge badge-success">レシピ一覧に戻る</p>
+          <%= link_to users_path do %>
+            <p class="offset-md-5 badge badge-success">ユーザーのレシピ一覧に戻る</p>
           <% end %>
                 
             </div>

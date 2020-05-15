@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="offset-md-1 offset-sm-1">
-            <div class="heading mb-3">
+            <div class="heading mb-3 mt-4">
               <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 編集</h2>
             </div>
             
@@ -39,11 +39,11 @@
                 <div><label class="badge badge-secondary mr-2">作り方を入力してください</label></div>
                   <% i=0 %>
                     <%= f.fields_for :cookmethods, @cookmethod.sort_by(&:row_order)  do |cm| %>
-                      <!--<div class="cook" data-model-name=<%#= @recipe.class.name.underscore %> data-update-url= <%#= recipe_sort_path( @recipe.id) %> data-method-id= <%#= @cookmethod[i].id %>>-->
+                      <!--<div class="cook" data-model-name=<%#= @recipe.class.name.underscore %> data-update-url= <%#= recipe_sort_path( @recipe.id) %> data-method-id= <%# @cookmethod[i].id %>>-->
                       <div class="cook">
                         <label class="badge badge-pill badge-secondary num">i</label>
                         
-                        <%= cm.text_field :method, multiple: true, class:"textarea method col-md-5 col-sm-10 ml-2 method-area", placeholder:"作り方を入力" %>
+                        <%= cm.text_field :method, multiple: true, class:"textarea method col-6 ml-2 method-area", placeholder:"作り方を入力" %>
                         <button type="button" class="ml-1 remove-method">-</button>
                         <!--<i class="fas fa-arrows-alt-v ml-2 method-move"></i>-->
                       </div>
@@ -148,10 +148,10 @@
     //   // animation: 110,
     //   onUpdate: function(e)
     //   {
-    //     window.alert($.fn.jquery);
+    //     // window.alert($.fn.jquery);
     //     var i=1;
     //     var method_move_button=$(".cook");
-    //     $("hidden").remove();
+    //     // $("hidden").remove();
     //     $(method_move_button).each(function(){
     //       var n = $(this).children("label").text();
     //       var m = n

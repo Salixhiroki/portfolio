@@ -5,7 +5,7 @@
       <div class="container recipes-index-container">
   
         <div class="row">
-          <div class="col-md-11 offset-md-1 mb-3">
+          <div class="col-md-11 offset-md-1 mb-3 mt-4">
             <h2 class="text-center mt-4 pt-2 pb-2 text-white bg-success">お茶漬けレシピ 一覧</h2>
             <%= link_to "アカウントを削除する",{controller: "users",action: "destroy",id: current_user.id},{method: :delete, data: {confirm:"アカウントを削除しますか？"},class:"badge badge-danger"}%>
             <%= link_to "アカウントを編集する",{controller: "users",action: "edit",id: current_user.id},{class:"badge badge-info"}%>
@@ -47,7 +47,7 @@
                       <!--タイトル ↓ recipe.title-->
                       <h4><%= recipe.title %></h4>
                       <!--ポイント ↓ recipe.discription-->
-                       <p class="link"><%= recipe.point %>&nbsp;</p>
+                       <p class="impression"><%= recipe.impression %>&nbsp;</p>
                     </div>
             
                     <div class="recipes-favorite">
@@ -68,6 +68,55 @@
         </div>
       </div>
     </div>
+    
+    <div id="page_top">
+      <p id="return">TOP</p>
+    </div>
+    
   </body>
 </html>
 
+
+<script>
+// 処理開始
+  jQuery(function(){
+    var pagetop = $('#page_top');
+    // 実験結果＝＞hideにすると非表示になって何も起こらない
+    // showで再度表示させるとアニメーションが起こる！
+    pagetop.stop().animate({
+      'bottom': '-50px' //下から-50pxの位置に
+    }, 1);  // フェードアウトさせる
+    
+    $(window).scroll(function(){
+     
+      // 90pxスクロールしたら
+      if($(this).scrollTop() > 90){
+        pagetop.stop().animate({
+          'bottom': '50px' //下から50pxの位置に
+        }, 300);// フェードインさせる
+        
+      }else{
+        pagetop.stop().animate({
+          'bottom': '-30px' //下から-50pxの位置に
+        }, 300);  // フェードアウトさせる
+      }
+      
+    });
+      // pagetopをクリックしたら
+    pagetop.on('click',function(){
+      $('body,html').animate({scrollTop: 0 }, 500);
+        return false;
+      });
+      
+    
+    var ajust=1300;
+    var speed=400;
+    var position=$(".comment").offset().top + ajust;
+    
+    $(".comment").on('click',function(){
+      $("html,body").animate({scrollTop:position},speed,'swing');
+        return false;
+    });
+  });
+  
+</script>

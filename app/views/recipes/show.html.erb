@@ -131,15 +131,18 @@
     var pagetop = $('#page_top');
     // 実験結果＝＞hideにすると非表示になって何も起こらない
     // showで再度表示させるとアニメーションが起こる！
-    pagetop.hide();
-    pagetop.show();
-    
+    // pagetop.hide();
+    pagetop.stop().animate({
+      'bottom': '-50px' //下から-50pxの位置に
+    }, 1);  // フェードアウトさせる
+   
     $(window).scroll(function(){
      
       // 90pxスクロールしたら
-      if($(this).scrollTop() > 90){
+      if($(this).scrollTop() > 100){
         pagetop.stop().animate({
-          'bottom': '50px' //下から50pxの位置に
+           // pagetop.show();
+          'bottom': '100px' //下から50pxの位置に
         }, 300);// フェードインさせる
         
       }else{
