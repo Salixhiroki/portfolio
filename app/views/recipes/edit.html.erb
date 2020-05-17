@@ -39,13 +39,13 @@
                 <div><label class="badge badge-secondary mr-2">作り方を入力してください</label></div>
                   <% i=0 %>
                     <%= f.fields_for :cookmethods, @cookmethod.sort_by(&:row_order)  do |cm| %>
-                      <!--<div class="cook" data-model-name=<%#= @recipe.class.name.underscore %> data-update-url= <%#= recipe_sort_path( @recipe.id) %> data-method-id= <%# @cookmethod[i].id %>>-->
-                      <div class="cook">
+                      <!--<div class="cook">-->
+                      <div class="cook" data-model-name=<%= @recipe.class.name.underscore %> data-update-url= <%= recipe_sort_path( @recipe.id) %> data-method-id= <%= @cookmethod[i].id %>>
                         <label class="badge badge-pill badge-secondary num">i</label>
                         
                         <%= cm.text_field :method, multiple: true, class:"textarea method col-6 ml-2 method-area", placeholder:"作り方を入力" %>
                         <button type="button" class="ml-1 remove-method">-</button>
-                        <!--<i class="fas fa-arrows-alt-v ml-2 method-move"></i>-->
+                        <i class="fas fa-arrows-alt-v ml-2 method-move"></i>
                       </div>
                       <% i= i + 1 %>
                 <% end %>
@@ -144,37 +144,38 @@
     });
     
     // セレクタ移動後
-    // Sortable.create($('.method')[0], {
-    //   // animation: 110,
-    //   onUpdate: function(e)
-    //   {
-    //     // window.alert($.fn.jquery);
-    //     var i=1;
-    //     var method_move_button=$(".cook");
-    //     // $("hidden").remove();
-    //     $(method_move_button).each(function(){
-    //       var n = $(this).children("label").text();
-    //       var m = n
-    //       var n = $(this).children("label").text();   
-    //       if(Number(n) !== i){
-    //         $(this).children("label").text(i);
-    //         $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
-    //         item = e.item
-    //         item_data= $(".cook").data();
-    //         params= {_method: 'put'}
-    //         params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) - 1 , method_id: item.dataset.methodId}
+    Sortable.create($('.method')[0], {
+      // animation: 110,
+      onUpdate: function(e)
+      {
+        // window.alert($.fn.jquery);
+        var i=1;
+        var method_move_button=$(".cook");
+        // $("hidden").remove();
+        $(method_move_button).each(function(){
+          var n = $(this).children("label").text();
+          var m = n
+          var n = $(this).children("label").text();   
+          if(Number(n) !== i){
+            $(this).children("label").text(i);
+            $(this).children("label").attr('class',`badge badge-pill badge-secondary num${i}`);
+            item = e.item
+            console.log(e)
+            item_data= $(".cook").data();
+            params= {_method: 'put'}
+            params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) - 1 , method_id: item.dataset.methodId}
     
-    //         $.ajax({
-    //           type: 'POST',
-    //           url: item_data.updateUrl,
-    //           dataType: 'json',
-    //           data: params
-    //         });
-    //       }
-    //       i=i+1;
-    //     });
-    //   }
-    // });
+            $.ajax({
+              type: 'POST',
+              url: item_data.updateUrl,
+              dataType: 'json',
+              data: params
+            });
+          }
+          i=i+1;
+        });
+      }
+    });
   });
 
 </script>
