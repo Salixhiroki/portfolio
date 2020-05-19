@@ -35,8 +35,8 @@
                     <button type="button" class="ml-1 add-material">+</button>    
                 </div>
               
-              <div class="method mt-4">
-                <div><label class="badge badge-secondary mr-2">作り方を入力してください</label></div>
+                <div><label class="badge badge-secondary mr-2 mt-3">作り方を入力してください</label></div>
+                <div class="method mt-1">
                   <% i=0 %>
                     <%= f.fields_for :cookmethods, @cookmethod.sort_by(&:row_order)  do |cm| %>
                       <!--<div class="cook">-->
