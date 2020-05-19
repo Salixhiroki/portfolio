@@ -84,3 +84,4 @@ gem 'rubocop-rails', require: false
 gem 'rails-i18n'
 gem 'ranked-model'
 gem 'rails_12factor', group: :production
+gem 'fog-aws', '~> 3.6', '>= 3.6.4'
