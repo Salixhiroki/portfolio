@@ -5,7 +5,7 @@ unless Rails.env.development? || Rails.env.test?
       provider: "AWS",
       aws_access_key_id: ENV[""],
       aws_secret_access_key: ENV[""],
-      region: ENV["ap-northeast-1"]
+      region: ENV[""]
     }
     
     config.fog_directory = ENV["rails-photo-chazuke"]
