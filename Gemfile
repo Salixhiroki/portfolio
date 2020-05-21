@@ -75,7 +75,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'bcrypt'
 gem 'bootstrap', '~> 4.3.1'
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.0'
 gem 'jquery-rails'
 gem 'rails-ujs'
 gem 'ransack'
@@ -85,3 +85,4 @@ gem 'rails-i18n'
 gem 'ranked-model'
 gem 'rails_12factor', group: :production
 gem 'fog-aws', '~> 3.6', '>= 3.6.4'
+gem 'dotenv-rails'

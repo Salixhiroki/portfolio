@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
   # アカウント新規作成
   def create
     user = User.find_by(email: session_params[:email])
-    # binding pry
 
     if user&.authenticate(session_params[:password])
       log_in user
@@ -17,7 +16,6 @@ class SessionsController < ApplicationController
     else
       flash.now[:danger] = 'ログインに失敗しました'
       @error="メールアドレスまたはパスワードが間違っています"
-      # binding pry
       render :new
     end
   end
