@@ -106,7 +106,7 @@ class RecipesController < ApplicationController
   end
 
   #-------------------------------------------------------------------------------------------------</>
-  
+  # 権限をかくにん
   def ensure_correct_user
     @check=Recipe.find_by(id: params[:id])
     if @check.user_id!= current_user.id
