@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   # ユーザーアカウントを新規登録
   def create
     @user = User.new(user_params)
-
     
     if @user.save
       redirect_to login_path, success: 'アカウントの登録に成功しました'
@@ -22,6 +21,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # 権限確認
   def ensure_correct_user
     @check=User.find_by(id: params[:id])
     if @check.id!= current_user.id
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
   end
   
-
+  # アカウント削除
   def destroy
     @user = User.find_by(id: params[:id])
     if @user.destroy
@@ -43,7 +43,6 @@ class UsersController < ApplicationController
   def index
     @user_recipes = Recipe.where(user_id: current_user.id)
     @q = Material.ransack(params[:q])
-
     @@q_materials = @q.result(distinct: true)
     @user_materials = @@q_materials.where(user_id: current_user.id)
   end
