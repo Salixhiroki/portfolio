@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
   
+  # ログインしていない場合
   def authenticate_user
     if @current_user == nil
       redirect_to login_path, danger: 'ログインが必要です'
