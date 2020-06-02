@@ -106,7 +106,7 @@ class RecipesController < ApplicationController
   end
 
   #-------------------------------------------------------------------------------------------------</>
-  # 権限をかくにん
+  # 権限を確認
   def ensure_correct_user
     @check=Recipe.find_by(id: params[:id])
     if @check.user_id!= current_user.id
@@ -207,7 +207,7 @@ class RecipesController < ApplicationController
     #----------------------------------<//>
     @cookmethod = @cookmethod.order(id: "ASC")
     @method_cnt = 0 # カウンタ変数
-    @nothing_method = [] # 空の配列作成
+    @nothing_method = Array.new # 空の配列作成
     num = 0
     # cookmethodsのデータをハッシュに変換してそれに格納されている要素数を格納
     @method_lengths = recipe_params[:cookmethods_attributes].to_h.length 
