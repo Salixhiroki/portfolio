@@ -15,7 +15,7 @@ CarrierWave.configure do |config|
       host: ENV['FOG_HOST']
     }
     
-    config.fog_directory = ENV['FOG_DIRECTORY']
+    config.fog_directory = ENV['AWS_S3_BUCKET']
     config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" }
   
   else
