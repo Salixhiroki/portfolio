@@ -163,7 +163,7 @@
             console.log(e)
             item_data= $(".cook").data();
             params= {_method: 'put'}
-            params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) - 1 , method_id: item.dataset.methodId}
+            params[item_data.modelName] = { row_order_position: Math.ceil(e.newIndex / 2) , method_id: item.dataset.methodId}
     
             $.ajax({
               type: 'POST',

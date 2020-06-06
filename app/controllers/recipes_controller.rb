@@ -127,6 +127,7 @@ class RecipesController < ApplicationController
   #-------------------------------------------------------------------------------------------------</>
   #並べ替えを保存する
   def sort
+    # binding pry
     sort_recipe = Cookmethod.find(recipe_params[:method_id])
     sort_recipe.update_attributes(row_order_position: recipe_params[:row_order_position].to_i, method: sort_recipe.method)
     render body: nil
