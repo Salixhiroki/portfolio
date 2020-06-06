@@ -1,5 +1,5 @@
   .top-screen{
-    background-image: url("/assets/chazuke2.jpeg");
+    background-image: url("/assets/marisa-harris-rL-L4fI46ZI-unsplash.jpeg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,7 +13,7 @@
     left: 50%;
     // -ms-transform: translate(-50%, -50%)[]
     // -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 10%);
     margin: 0;
     padding: 0;
     color: green;
@@ -24,20 +24,23 @@
   }
   
   
-  .top-title1{
+  .top-title1 h2{
     // text-shadow: 5px 5px 2px lightgreen;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
+    font-weight: bold;
   }
   
   .top-title2 h2{
     // text-shadow: 5px 5px 2px lightgreen;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
+    font-weight: bold;
   }
   
   .top-title3 h2{
     text-align: center;
+    font-weight: bold;
   }
   
   
